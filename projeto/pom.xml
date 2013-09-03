@@ -6,11 +6,25 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
+		<!-- INICIO SPRING LIBS -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>3.2.4.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+		<!-- FIM SPRING LIBS -->
 	</dependencies>
 
 </project>
