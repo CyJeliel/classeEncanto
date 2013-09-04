@@ -5,7 +5,15 @@
 	<artifactId>projeto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<domain>org.glassfish.maven.plugin.Domain</domain>
+		<glassfishDirectory>C:\development\shared\glassfish</glassfishDirectory>
+		<adminPassword></adminPassword>
+	</properties>
+
 	<dependencies>
+
+
 		<!-- INICIO SPRING LIBS -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -27,4 +35,40 @@
 		<!-- FIM SPRING LIBS -->
 	</dependencies>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>maven.java.net</id>
+			<name>Java.net Maven2 Repository</name>
+			<url>http://download.java.net/maven/2</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<glassfishDirectory>${glassfish.directory}</glassfishDirectory>
+					<user>admin</user>
+					<adminPassword></adminPassword>
+					<domain>
+						<name>domain1</name>
+						<httpPort>8080</httpPort>
+						<adminPort>4848</adminPort>
+					</domain>
+					<components>
+						<component>
+							<name>${project.artifactId}</name>
+							<artifact>target/${project.build.finalName}.war</artifact>
+						</component>
+					</components>
+					<terse>false</terse>
+					<echo>true</echo>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
 </project>
