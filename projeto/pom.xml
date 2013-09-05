@@ -1,14 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>projeto</groupId>
-	<artifactId>projeto</artifactId>
+	<groupId>classeEncanto</groupId>
+	<artifactId>classeEncanto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<domain>org.glassfish.maven.plugin.Domain</domain>
-		<glassfishDirectory>C:\development\shared\glassfish</glassfishDirectory>
-		<adminPassword></adminPassword>
+		<admin.password>admin</admin.password>
+		<glassfish.home>C:\\development\\shared\\glassfish\\glassfish4</glassfish.home>
 	</properties>
 
 	<dependencies>
@@ -50,11 +49,13 @@
 				<artifactId>maven-glassfish-plugin</artifactId>
 				<version>2.1</version>
 				<configuration>
-					<glassfishDirectory>${glassfish.directory}</glassfishDirectory>
+					<glassfishDirectory>${glassfish.home}</glassfishDirectory>
 					<user>admin</user>
-					<adminPassword></adminPassword>
+					<passwordFile>${glassfish.home}/password/passwords.txt</passwordFile>
+					<!-- <adminPassword>${admin.password}</adminPassword> -->
+					<autoCreate>true</autoCreate>
 					<domain>
-						<name>domain1</name>
+						<name>${project.artifactId}</name>
 						<httpPort>8080</httpPort>
 						<adminPort>4848</adminPort>
 					</domain>
