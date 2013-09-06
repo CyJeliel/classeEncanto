@@ -1,0 +1,1 @@
+<a href="home.jsp"><img src="<%=request.getContextPath()%>/img/logotipo.jpg"></a>
