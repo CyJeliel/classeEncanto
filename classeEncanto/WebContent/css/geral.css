@@ -18,6 +18,14 @@ body {
 	float: right;
 }
 
+#redeSocial {
+	margin-right: 10px;
+	margin-top: 60px;
+	height: 40px;
+	width: 40px;
+	float: right;
+}
+
 .menuLateral {
 	margin: 20px 100px 10px 100px;
 	width: 150px;
