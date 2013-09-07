@@ -1,7 +1,58 @@
+body {
+	background-color: #FFFFE0;
+	font-family: sans-serif;
+}
+
+.header {
+	margin: 20px 100px 20px 100px;
+}
+
 #logotipo {
 	height: 100px;
 	width: 150px;
-	margin: 20px 100px 0 100px;
+}
+
+#listaDeDesejos {
+	height: 100px;
+	width: 150px;
+	float: right;
+}
+
+.menuLateral {
+	margin: 20px 100px 10px 100px;
+	width: 150px;
+}
+
+.menuSubtituloLink {
+	padding: 2px 5px 2px 5px;
+	display: block;
+	background-color: #F0F0F0;
+	text-decoration: none;
+	text-align: center;
+	border-color: #D0D0D0;
+	border-style: groove;
+	color: #FF3399;
+}
+
+.menuLink {
+	padding: 2px 5px 2px 5px;
+	display: block;
+	background-color: #F0F0F0;
+	text-decoration: none;
+	text-align: center;
+	border-color: #D0D0D0;
+	border-style: groove;
+	font-size: 0.9em;
+	color: #FF3399;
+}
+
+.itensMenu {
+	margin-left: 10px;
+}
+
+a.menuLink:hover, a.menuSubtituloLink:hover {
+	color: #F0F0F0;
+	background-color: #FF3399;
 }
 
 .footer {
@@ -10,18 +61,18 @@
 	margin: 20px 100px 10px 100px;
 	border: 0.5px;
 	border-color: #FFFF99;
+	text-align: center;
 }
 
 .footerLink {
 	padding: 10px 0 10px 50px;
-	text-decoration: none;
-	font-family: cursive;
 	font-size: 0.8em;
 	color: #0099FF;
 	display: block;
 	float: left;
+	text-decoration: none;
 }
 
-body {
-	background-color: #FFFFE0;
+.itensFooter {
+	margin-left: 300px;
 }
