@@ -12,5 +12,7 @@
 <%@ include file="header.jsp" %>
 <%@ include file="menuLateral.jsp" %>
 <%@ include file="footer.jsp" %>
+
+	<div></div>
 </body>
 </html>
