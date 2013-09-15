@@ -1,6 +1,8 @@
 body {
 	background-color: #FFFFE0;
 	font-family: sans-serif;
+	width: 70%;
+	height: 80%;
 }
 
 .header {
@@ -29,6 +31,7 @@ body {
 .menuLateral {
 	margin: 20px 100px 10px 100px;
 	width: 150px;
+	float: left;
 }
 
 .menuSubtituloLink {
@@ -63,13 +66,16 @@ a.menuLink:hover, a.menuSubtituloLink:hover {
 	background-color: #FF3399;
 }
 
-.footer {
-	height: 40px;
+footer {
 	background-color: #FFFFCC;
-	margin: 20px 100px 10px 100px;
+	margin: -35px 100px 10px 100px;
 	border: 0.5px;
 	border-color: #FFFF99;
 	text-align: center;
+	position: relative;
+	/* margin-top: -20px; /* negative value of footer height */
+	height: 35px;
+	clear:both
 }
 
 .footerLink {
@@ -82,5 +88,9 @@ a.menuLink:hover, a.menuSubtituloLink:hover {
 }
 
 .itensFooter {
-	margin-left: 300px;
+	margin-left: 200px;
+}
+
+#conteudo {
+	height: 600%;
 }
