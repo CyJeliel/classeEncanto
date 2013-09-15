@@ -13,6 +13,8 @@
 <%@ include file="menuLateral.jsp" %>
 <%@ include file="footer.jsp" %>
 
-	<div></div>
+	<div id="conteudo">
+	
+	</div>
 </body>
 </html>
