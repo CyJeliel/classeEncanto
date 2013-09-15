@@ -1,12 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>css/login.css">
 		<meta charset="UTF-8">
 		<title>
 			Login page
 		</title>
-		<script src="js/login.js"></script>
+		<script src="<%=request.getContextPath()%>js/login.js"></script>
 	</head>
 	<body>
 		<div id="login">
