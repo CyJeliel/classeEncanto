@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+#login {
+	font-family: arial, helvetica, sans-serif;
+	line-height: 1;
+	font-style: normal;
+	font-variant: normal;
+	font-size: 81.25%;
+	font-weight: bold;
+	direction: ltr;
+}
