@@ -1,0 +1,12 @@
+#conteudo {
+	float: right;
+	border-color: #3399FF;
+	margin-right: 330px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 30em;
+	height: 25em;
+	background-color: #CCCCFF;
+	border-width: 5px;
+	border-style: solid;
+}

@@ -1,7 +1,7 @@
 body {
 	background-color: #FFFFE0;
 	font-family: "calibri", Garamond, 'Comic Sans';
-	width: 100%;
+	width: 90%;
 	height: 100%;
 }
 
@@ -16,7 +16,7 @@ body {
 
 #listaDeDesejos {
 	height: 100px;
-	width: 150px;
+	width: 100px;
 	float: right;
 }
 
@@ -88,8 +88,4 @@ footer {
 
 .itensFooter {
 	margin-left: 200px;
-}
-
-#conteudo {
-	height: 600%;
 }
