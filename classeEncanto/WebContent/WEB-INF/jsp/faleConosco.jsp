@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/WEB-INF/css/geral.css">
+		<link rel="stylesheet" type="text/css" href="css/geral.css">
 		<meta charset="UTF-8">
 		<title>Fale conosco</title>
-		<script src="<%=request.getContextPath()%>/WEB-INF/js/faleConosco.js"></script>
+		<script src="js/faleConosco.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>

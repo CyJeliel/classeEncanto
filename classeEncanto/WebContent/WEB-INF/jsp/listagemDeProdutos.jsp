@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/geral.css"/>
+		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
-		<script src="<%=request.getContextPath()%>/WEB-INF/js/listagemDeProdutos.js"></script>
+		<script src="js/listagemDeProdutos.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
