@@ -12,7 +12,7 @@ public class HomeController {
 	@Autowired
 	private ProdutoDAO produtoDao;
 	
-	@RequestMapping("/")
+	@RequestMapping({"/", "/home"})
 	public String execute(){
 		return "home";
 	}

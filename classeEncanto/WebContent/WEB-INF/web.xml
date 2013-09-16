@@ -6,25 +6,22 @@
 	<display-name>classeEncanto</display-name>
 
 	<servlet>
-	      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-	      <servlet-class>
-	          org.springframework.web.servlet.DispatcherServlet
-	      </servlet-class>
-	      <init-param>
-	          <param-name>contextConfigLocation</param-name>
-	          <param-value>
-	              /WEB-INF/applicationContext.xml
-	          </param-value>
-	      </init-param>
-	      <load-on-startup>1</load-on-startup>
-	  </servlet>
-	
-	  <servlet-mapping>
-	      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-	      <url-pattern>/</url-pattern>
+      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+      <servlet-class>
+          org.springframework.web.servlet.DispatcherServlet
+      </servlet-class>
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>
+              /WEB-INF/applicationContext.xml
+          </param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+  	</servlet>
+
+  	<servlet-mapping>
+      <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+      <url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<welcome-file-list>
-		<welcome-file>/jsp/home.jsp</welcome-file>
-	</welcome-file-list>
 </web-app>

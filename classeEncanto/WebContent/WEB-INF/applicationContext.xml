@@ -10,10 +10,12 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:default-servlet-handler />
+	<context:component-scan base-package="br.com.classeencanto" />
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="br.com.classeencanto" />
+	<context:annotation-config />
+
+	<mvc:default-servlet-handler />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
