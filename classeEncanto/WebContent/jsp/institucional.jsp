@@ -10,8 +10,10 @@
 	<body>
 		<%@ include file="/jsp/header.jsp" %>
 		<%@ include file="/jsp/menuLateral.jsp" %>
-		<div id="conteudo">
-		</div>
+		<header>
+			Sobre a Classe Encanto
+		</header>
+		<p>A Classe Encanto nasceu da vontade que a Cindy tem de trabalhar com fazendo enfeites de festa.</p>
 		<%@ include file="/jsp/footer.jsp" %>
 	</body>
 </html>
