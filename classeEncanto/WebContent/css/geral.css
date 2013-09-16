@@ -73,7 +73,6 @@ footer {
 	border-color: #FFFF99;
 	text-align: center;
 	position: relative;
-	/* margin-top: -20px; /* negative value of footer height */
 	height: 35px;
 	clear:both
 }

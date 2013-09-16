@@ -6,7 +6,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
 		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/geral.css"/>
-		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/home.css"/>
 	</head>
 	<body>
 		<%@ include file="header.jsp" %>
