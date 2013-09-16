@@ -11,10 +11,9 @@ public class HomeController {
 
 	@Autowired
 	private ProdutoDAO produtoDao;
-	
-	@RequestMapping({"/", "/home"})
-	public String execute(){
+
+	@RequestMapping({ "/", "/home" })
+	public String execute() {
 		return "home";
 	}
-	
 }

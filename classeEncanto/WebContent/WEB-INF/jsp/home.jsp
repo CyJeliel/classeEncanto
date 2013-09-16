@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/WEB-INF/css/geral.css"/>
+		<link type="text/css" rel="stylesheet" href="WEB-INF/css/geral.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
 	</head>
