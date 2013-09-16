@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/geral.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/WEB-INF/css/geral.css">
 		<meta charset="UTF-8">
 		<title>Fale conosco</title>
-		<script src="<%=request.getContextPath()%>/js/faleConosco.js"></script>
+		<script src="<%=request.getContextPath()%>/WEB-INF/js/faleConosco.js"></script>
 	</head>
 	<body>
-		<%@ include file="/jsp/header.jsp" %>
-		<%@ include file="/jsp/menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/header.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<form name="faleConosco" >
 			<pre>
 				Fale Conosco<br />
@@ -21,6 +21,6 @@
 				<input value="Enviar" type="button" onclick="check(this.form)" />
 			</pre>
 		</form>
-		<%@ include file="/jsp/footer.jsp" %>
+		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

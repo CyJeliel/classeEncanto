@@ -3,16 +3,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/geral.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/WEB-INF/css/geral.css">
 		<meta charset="UTF-8">
 		<title>
 			Login page
 		</title>
-		<script src="<%=request.getContextPath()%>/js/login.js"></script>
+		<script src="<%=request.getContextPath()%>/WEB-INF/js/login.js"></script>
 	</head>
 	<body>
-		<%@ include file="/jsp/header.jsp" %>
-		<%@ include file="/jsp/menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/header.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<form name="login">
 			<pre>
 				Entrada<br />
@@ -23,6 +23,6 @@
 				<input type="button" onclick="check(this.form)" value="Login"/>
 			</pre>
 		</form>
-		<%@ include file="/jsp/footer.jsp" %>
+		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

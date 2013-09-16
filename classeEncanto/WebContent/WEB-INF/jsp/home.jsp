@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/geral.css"/>
+		<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/WEB-INF/css/geral.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
 	</head>
 	<body>
-		<%@ include file="/jsp/header.jsp" %>
-		<%@ include file="/jsp/menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/header.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<div id="conteudo">
 		</div>
-		<%@ include file="/jsp/footer.jsp" %>
+		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

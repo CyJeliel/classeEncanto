@@ -7,7 +7,7 @@ window.onload = function() {
 	var texto = "<ol>";
 	if ( qtdItens > 0 ) {
 		for ( productItem = 0; productItem < qtdItens; productItem++ ) {
-			texto = texto + '<li class="artigo" ><a href=""><img src="/img/' + listaDeArtigos[productItem].codigo + '" alt="' + listaDeArtigos[productItem].nome + '" /></a></li>';
+			texto = texto + '<li class="artigo" ><a href=""><img src="/WEB-INF/img/' + listaDeArtigos[productItem].codigo + '" alt="' + listaDeArtigos[productItem].nome + '" /></a></li>';
 			if ( (productItem%maxColunas) == 0 )
 				texto = texto + "<br />";
 		}
