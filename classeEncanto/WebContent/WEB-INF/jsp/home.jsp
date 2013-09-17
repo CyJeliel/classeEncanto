@@ -12,8 +12,8 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<div id="conteudo">
-			<div id="setaFrente"></div>
-			<div id="setaTras"></div>
+			<a href="" id="setaFrente"><img src="img/setaFrente.png"></img></a>
+			<a href="" id="setaTras"><img src="img/setaTras.png"></img></a>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
