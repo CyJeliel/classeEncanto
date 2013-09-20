@@ -11,8 +11,8 @@
 		<script src="<%=request.getContextPath()%>/js/login.js"></script>
 	</head>
 	<body>
-		<%@ include file="../header.jsp" %>
-		<%@ include file="../menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/header.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<form name="login">
 			<pre>
 				Entrada<br />
@@ -23,6 +23,6 @@
 				<input type="button" onclick="check(this.form)" value="Login"/>
 			</pre>
 		</form>
-		<%@ include file="../footer.jsp" %>
+		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

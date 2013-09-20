@@ -3,7 +3,7 @@ window.onload = function() {
 	int maxColunas = 5;
 	int qtdItens = 24;
 	int i, j;
-	int productItem;
+	var productItem;
 	var texto = "<ol>";
 	if ( qtdItens > 0 ) {
 		for ( productItem = 0; productItem < qtdItens; productItem++ ) {

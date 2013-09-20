@@ -8,7 +8,6 @@ import br.com.classeencanto.dao.ProdutoDAO;
 
 @Controller
 public class HomeController {
-
 	@Autowired
 	private ProdutoDAO produtoDao;
 
