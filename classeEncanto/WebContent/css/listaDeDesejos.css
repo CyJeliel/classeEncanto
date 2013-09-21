@@ -1,0 +1,26 @@
+#miniatura {
+	width: 100px;
+	float: left;
+}
+
+#descricaoReduzida {
+	margin-left: 20px;
+}
+
+#descricaoDetalhada {
+	display: block;
+	margin: 20px;
+}
+
+#quantidade {
+	margin-left: 178px;
+}
+
+#cabecalho {
+	color: #3399FF;
+	margin-bottom: 20px;
+}
+
+#cabecalhoQuantidade {
+	margin-left: 400px;
+}

@@ -14,6 +14,7 @@
 		<div id="conteudo">
 			<a href="" id="setaFrente"><img src="img/setaFrente.png"></img></a>
 			<a href="" id="setaTras"><img src="img/setaTras.png"></img></a>
+			<img  id="destaqueHome"	src="img/bandaid.jpg">
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
