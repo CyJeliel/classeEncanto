@@ -33,7 +33,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<form action="login" method="post">
+		<form id="form" action="admin" method="post">
 			<pre>
 				Entrada<br />
 				Login

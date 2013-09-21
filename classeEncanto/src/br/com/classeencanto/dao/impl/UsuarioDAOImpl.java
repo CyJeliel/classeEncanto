@@ -3,7 +3,7 @@ package br.com.classeencanto.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.UsuarioDAO;
-import br.com.classeencanto.entity.Usuario;
+import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
