@@ -104,3 +104,17 @@ footer {
 	height: 100px;
 	margin-left: 23px;
 }
+
+#tabelaDeProdutos {
+	border-collapse: collapse;
+//	border:1px solid #FF0000;
+}
+
+#tabelaDeProdutos td {
+	text-align: right;
+//	border: 1px solid #FF0000;
+}
+
+#tabelaDeProdutos input {
+	width:  150px;
+}

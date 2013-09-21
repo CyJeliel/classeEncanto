@@ -13,7 +13,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<h3>Produto<c:out value="${idProduto}"/></h3>
-		<img src="/WEB-INF/img/produto<c:out value="${idProduto}"/>.jpg" alt="imagem do produto <c:out value="${idProduto}"/>" class="imagem_produto" />
+		<img src="img/produto<c:out value="${idProduto}"/>.png" alt="imagem do produto <c:out value="${idProduto}"/>" class="imagem_produto" />
 		<h4>Resumo do produto<c:out value="${idProduto}"/></h4>
 		<h4>Detalhes do produto<c:out value="${idProduto}"/></h4>
 		<div class="block">
