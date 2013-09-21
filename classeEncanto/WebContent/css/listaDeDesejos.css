@@ -1,3 +1,7 @@
+#conteudo {
+	color: #3399FF;
+}
+
 #miniatura {
 	width: 100px;
 	float: left;
@@ -8,16 +12,14 @@
 }
 
 #descricaoDetalhada {
-	display: block;
-	margin: 20px;
+	margin-left: 20px;
 }
 
 #quantidade {
-	margin-left: 178px;
+	margin-left: 50px;
 }
 
 #cabecalho {
-	color: #3399FF;
 	margin-bottom: 20px;
 }
 
