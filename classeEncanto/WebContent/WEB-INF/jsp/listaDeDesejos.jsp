@@ -36,6 +36,10 @@
 					<option>10</option>
 				</select>
 			</span>
+			
+			<a class="link" href="#">Atualizar</a>
+			
+			<a class="link" id="removerItem" href="#">Remover</a>
 		</div>
 		
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

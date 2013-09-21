@@ -2,6 +2,14 @@
 	color: #3399FF;
 }
 
+#cabecalho {
+	margin-bottom: 20px;
+}
+
+#cabecalhoQuantidade {
+	margin-left: 400px;
+}
+
 #miniatura {
 	width: 100px;
 	float: left;
@@ -16,13 +24,17 @@
 }
 
 #quantidade {
-	margin-left: 50px;
+	margin-left: 20px;
 }
 
-#cabecalho {
-	margin-bottom: 20px;
+#removerItem {
+	margin-left: 30px;
 }
 
-#cabecalhoQuantidade {
-	margin-left: 400px;
+a.link:visited {
+	color: #3399FF;
+}
+
+a {
+	text-decoration: none;
 }
