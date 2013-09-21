@@ -89,3 +89,20 @@ footer {
 .itensFooter {
 	margin-left: 200px;
 }
+
+
+
+.block ul {
+	display: inline-block;
+//	margin-left: 350px;
+	width: 500px;
+	
+}
+
+.block li {
+	display: inline-block;
+	list-style-type: none;
+	height: 100px;
+	margin-left: 23px;
+	
+}
