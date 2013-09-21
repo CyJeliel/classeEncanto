@@ -17,29 +17,58 @@
 				<span><b>Item</b></span>
 				<span id="cabecalhoQuantidade"><b>Quantidade</b></span>
 			</div>
-			<img  id="miniatura" src="img/bandaid.jpg">
-			<span id="descricaoReduzida"><b>Bandaid's personalizados</b></span>
-			<br/>
-			<span id="descricaoDetalhada">Bandaid's personalizados para Kit Banheiro</span>
 			
-			<span id="quantidade">
-				<select>
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
-					<option>7</option>
-					<option>8</option>
-					<option>9</option>
-					<option>10</option>
-				</select>
-			</span>
-			
-			<a class="link" href="#">Atualizar</a>
-			
-			<a class="link" id="removerItem" href="#">Remover</a>
+			<div class="item">
+				<img  id="miniatura" src="img/bandaid.jpg">
+				<span id="descricaoReduzida"><b>Bandaid's personalizados</b></span>
+				<br/>
+				<span id="descricaoDetalhada">Bandaid's personalizados para Kit Banheiro</span>
+				
+				<span id="quantidade">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+				</span>
+				
+				<a class="link" href="#">Atualizar</a>
+				
+				<a class="link" id="removerItem" href="#">Remover</a>
+			</div>
+
+			<div class="item">
+				<img  id="miniatura" src="img/bandaid.jpg">
+				<span id="descricaoReduzida"><b>Bandaid's personalizados</b></span>
+				<br/>
+				<span id="descricaoDetalhada">Bandaid's personalizados para Kit Banheiro</span>
+				
+				<span id="quantidade">
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+				</span>
+				
+				<a class="link" href="#">Atualizar</a>
+				
+				<a class="link" id="removerItem" href="#">Remover</a>
+			</div>
 		</div>
 		
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

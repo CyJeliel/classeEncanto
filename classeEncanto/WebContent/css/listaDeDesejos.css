@@ -10,6 +10,10 @@
 	margin-left: 400px;
 }
 
+.item {
+	margin-bottom: 120px;	
+}
+
 #miniatura {
 	width: 100px;
 	float: left;
