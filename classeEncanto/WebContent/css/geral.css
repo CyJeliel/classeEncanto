@@ -94,9 +94,7 @@ footer {
 
 .block ul {
 	display: inline-block;
-//	margin-left: 350px;
-	width: 500px;
-	
+	width: 500px;	
 }
 
 .block li {
@@ -104,5 +102,4 @@ footer {
 	list-style-type: none;
 	height: 100px;
 	margin-left: 23px;
-	
 }

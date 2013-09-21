@@ -14,7 +14,7 @@
 			<h3>Lista de produtos</h3>
 			<div class="block">
 				<ul>
-					<li>Produto 01</li>
+					<li>Produto 01<!-- TODO Adicionar imagem e dados do produto. --></li>
 					<li>Produto 02</li>
 					<li>Produto 03</li>
 					<li>Produto 04</li>
