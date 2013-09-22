@@ -7,23 +7,76 @@
 		<link type="text/css" rel="stylesheet" href="css/cadastroProdutosEmDestaque.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroProdutosEmDestaque.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 
 		<div id="conteudo">
-			<div class="produtoDestaque" id="destaqueEsquerda">
-				<a href="#" class="linkAdicionar">Adicionar</a>
+			<div id="produtosEscolhidos" >
+				<div class="produtoDestaque" id="destaqueEsquerda">
+					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+				</div>
+				<div class="produtoDestaque" id="destaqueDireita">
+					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+				</div>
+				<div class="produtoDestaque" id="destaqueEsquerda">
+					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+				</div>
+				<div class="produtoDestaque" id="destaqueDireita">
+					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+				</div>
 			</div>
-			<div class="produtoDestaque" id="destaqueDireita">
-				<a href="#" class="linkAdicionar">Adicionar</a>
-			</div>
-			<div class="produtoDestaque" id="destaqueEsquerda">
-				<a href="#" class="linkAdicionar">Adicionar</a>
-			</div>
-			<div class="produtoDestaque" id="destaqueDireita">
-				<a href="#" class="linkAdicionar">Adicionar</a>
+			<div id="escolherProdutos" style="display: none;">
+				<div id="miniaturasBox">
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+					<div class="miniatura">
+						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
+					</div>
+				</div>
 			</div>
 		</div>
 
