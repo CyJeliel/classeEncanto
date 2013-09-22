@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class DetalhesDeProdutoController {
-	@RequestMapping({ "/detalhesDeProduto" })
+	@RequestMapping("detalhesDeProduto")
 	public ModelAndView execute(String idProduto) {
 		ModelAndView mav = new ModelAndView();
 

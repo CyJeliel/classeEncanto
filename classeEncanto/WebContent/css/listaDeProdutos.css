@@ -1,0 +1,43 @@
+.block ul {
+	display: inline-block;
+	width: 500px;	
+}
+
+.block li {
+	display: inline-block;
+	list-style-type: none;
+	height: 100px;
+	margin-left: 23px;
+}
+
+#conteudo {
+	width: 400px;
+	height: 400px;
+	margin-left: 470px;
+}
+
+#miniaturasBox {
+	margin-left: -120px;
+	width: 610px;
+	height: 390px;
+	margin-bottom: 20px;
+}
+
+.miniatura {
+	border-color: #3399FF;
+	width: 100px;
+	height: 100px;
+	background-color: #CCCCFF;
+	border-width: 5px;
+	border-style: solid;
+	margin-bottom: 10px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.produto {
+	width: 76px;
+	margin-left: 12px;
+	cursor: pointer;
+}
