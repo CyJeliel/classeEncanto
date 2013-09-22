@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/geral.css">
+		<link rel="stylesheet" type="text/css" href="css/faleConosco.css">
 		<meta charset="UTF-8">
 		<title>Fale conosco</title>
 		<script src="js/faleConosco.js"></script>
@@ -11,7 +12,7 @@
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
-		<form name="faleConosco" >
+	<form name="faleConosco" class="faleConosco">
 			<pre>
 				Fale Conosco<br />
 				Email
