@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
+		<link type="text/css" rel="stylesheet" href="css/cadastroDeProdutos.css"/>		
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Classe e Encanto</title>
 	</head>
@@ -30,7 +31,7 @@
 							</label>
 						</td>
 						<td>
-							<input type="file" name="imagemDoProduto" id="imagemDoProduto" width="30">
+							<input type="file" name="imagemDoProduto" id="imagemDoProduto">
 						</td>
 					</tr>
 					<tr>
@@ -38,7 +39,7 @@
 							Resumo:
 						</td>
 						<td>
-							<input type="text" name="resumoDoProduto" width="30">
+							<input type="text" name="resumoDoProduto">
 						</td>
 					</tr>
 					<tr>
@@ -46,7 +47,7 @@
 							Detalhes:
 						</td>
 						<td>
-							<input type="text" name="detalhesDoProduto" width="30" height="30">
+							<input type="text" name="detalhesDoProduto">
 						</td>
 					</tr>
 					<tr>
@@ -54,7 +55,12 @@
 							Grupo:
 						</td>
 						<td>
-							<input type="text" name="grupoDoProduto" width="30" height="30">
+							<select multiple name="grupoDoProduto">
+								<option value="01">Grupo 01</option>
+								<option value="02">Grupo 02</option>
+								<option value="03">Grupo 03</option>
+								<option value="04">Grupo 04</option>
+							</select>
 						</td>
 					</tr>
 					<tr>
@@ -62,7 +68,12 @@
 							Tema:
 						</td>
 						<td>
-							<input type="text"  name="temaDoProduto" width="30" height="30">
+							<select multiple name="temaDoProduto" />
+								<option value="01">Tema 01</option>
+								<option value="02">Tema 02</option>
+								<option value="03">Tema 03</option>
+								<option value="04">Tema 04</option>
+							</select>
 						</td>
 					</tr>
 					<tr>

@@ -69,7 +69,7 @@ a.menuLink:hover, a.menuSubtituloLink:hover {
 
 footer {
 	background-color: #FFFFCC;
-	margin: -35px 100px 10px 100px;
+	margin: 0px 100px 10px 100px;
 	border: 0.5px;
 	border-color: #FFFF99;
 	text-align: center;
@@ -91,8 +91,6 @@ footer {
 	margin-left: 200px;
 }
 
-
-
 .block ul {
 	display: inline-block;
 	width: 500px;	
@@ -103,18 +101,4 @@ footer {
 	list-style-type: none;
 	height: 100px;
 	margin-left: 23px;
-}
-
-#tabelaDeProdutos {
-	border-collapse: collapse;
-//	border:1px solid #FF0000;
-}
-
-#tabelaDeProdutos td {
-	text-align: right;
-//	border: 1px solid #FF0000;
-}
-
-#tabelaDeProdutos input {
-	width:  150px;
 }

@@ -1,0 +1,36 @@
+#conteudo {
+	width: 400px;
+	height: 300px;
+	margin-left: 470px;
+	margin-top: 40px;
+}
+
+.produtoDestaque {
+	border-color: #3399FF;
+	width: 170px;
+	height: 170px;
+	background-color: #CCCCFF;
+	border-width: 5px;
+	border-style: solid;
+	margin-bottom: 20px;
+}
+
+#destaqueEsquerda {
+	float: left;
+}
+
+#destaqueDireita {
+	margin-left: 200px
+}
+
+.linkAdicionar {
+	margin-left: 55px;
+	margin-top: 72px;
+	text-decoration: none;
+	color: #FF3399;
+	display: block;
+}
+
+a.linkAdicionar:visited {
+	color: #FF3399;
+}
