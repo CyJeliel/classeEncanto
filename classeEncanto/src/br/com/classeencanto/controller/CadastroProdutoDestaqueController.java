@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Controller
-public class CadastroProdutoDestaque {
+public class CadastroProdutoDestaqueController {
 
 	@RequestMapping("produtoDestaque")
 	public String login(Usuario usuario) {
