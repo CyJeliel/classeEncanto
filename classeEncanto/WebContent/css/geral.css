@@ -19,19 +19,22 @@ p {
 form {
 	color: #3399FF;
 }
+
 .header {
 	margin: 20px 100px 20px 100px;
+	min-width: 1050px;
 }
 
 #logotipo {
 	height: 100px;
 	width: 150px;
+	float: left;
 }
 
 #listaDeDesejos {
 	height: 100px;
 	width: 100px;
-	float: right;
+	margin-left: 760px;
 }
 
 #redeSocial {
@@ -55,7 +58,7 @@ form {
 	text-decoration: none;
 	text-align: center;
 	border-color: #3399FF;
-	border-style: groove;
+	border-style: solid;
 	color: #FF3399;
 	font-size: 1.1em;
 }
@@ -67,7 +70,7 @@ form {
 	text-decoration: none;
 	text-align: center;
 	border-color: #3399FF;
-	border-style: groove;
+	border-style: solid;
 	font-size: 0.9em;
 	color: #FF3399;
 }
@@ -89,7 +92,8 @@ footer {
 	text-align: center;
 	position: relative;
 	height: 35px;
-	clear:both
+	clear:both;
+	min-width: 1050px;
 }
 
 .footerLink {

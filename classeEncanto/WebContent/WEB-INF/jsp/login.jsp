@@ -33,12 +33,17 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
+		<h1>Acesso à administração</h1>
+		
 		<form id="form" action="admin" method="post">
-				Entrada<br />
 				Login
+				<br/>
 				<input type="text" name="login"/>
+				<br/>
 				Senha
+				<br/>
 				<input type="password" name="senha"/>
+				<br/>
 				<input type="button" onclick="check(this.form)" value="Login"/>
 		</form>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

@@ -14,15 +14,15 @@
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<form name="faleConosco" class="faleConosco">
 				<h1>Fale Conosco</h1>
-				<span class="label">Email</span>
+				Email
 				<br/>
 				<input name="email" type="text" />
 				<br/>
-				<span class="label">Telefone</span>
+				Telefone
 				<br/>
 				<input name="telefone" type="text" />
 				<br/>
-				<span class="label">Mensagem</span>
+				Mensagem
 				<br/>
 				<textarea name="mensagem" cols="94" rows="10"></textarea>
 				<br/>
