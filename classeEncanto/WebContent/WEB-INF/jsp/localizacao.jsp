@@ -4,6 +4,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/geral.css">
+		<link rel="stylesheet" type="text/css" href="css/localizacao.css">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     	<style type="text/css">
@@ -29,9 +30,10 @@
     </script>
 	</head>
 	<body onload="initialize()">
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-	    <div id="map_canvas" style="width:50%; height:50%"></div>
+		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<h1>Localização</h1>
+	    <div id="map_canvas"></div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

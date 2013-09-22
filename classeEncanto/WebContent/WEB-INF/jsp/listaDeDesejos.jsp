@@ -14,6 +14,8 @@
 		
 		<div id="conteudo">
 		
+			<h1>Lista de Desejos</h1>
+			
 			<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
 			
 			<div id="cabecalho">
