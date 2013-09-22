@@ -1,12 +1,22 @@
-#tabelaDeProdutos {
-	border-collapse: collapse;
+.ladoEsquerdo {
+	float: left;
+	width: 100px;
 }
 
-#tabelaDeProdutos td {
-	text-align: right;
+.itemLadoEsquerdo {
+	margin-bottom: 20px;	
 }
 
-#tabelaDeProdutos input {
-	width:  150px;
+.itemLadoDireito {
+	margin-bottom: 12px;	
+}
+
+.itemMaior {
+	margin-top: 65px;
+	margin-bottom: 30px;	
+}
+
+.itemBotao {
+	margin-top: 57px;
 }
 

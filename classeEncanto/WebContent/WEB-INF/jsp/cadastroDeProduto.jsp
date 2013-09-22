@@ -11,80 +11,62 @@
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
 		<div>
-			<h3>Dados do Produto</h3>
-			<form>
-				<table id="tabelaDeProdutos">
-					<tr>
-						<td>
-							Nome:
-						</td>
-						<td>
-							<input type="text" name="nomeDoProduto">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="imagemDoProduto">
-								Imagem:
-							</label>
-						</td>
-						<td>
-							<input type="file" name="imagemDoProduto" id="imagemDoProduto">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Resumo:
-						</td>
-						<td>
-							<input type="text" name="resumoDoProduto">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Detalhes:
-						</td>
-						<td>
-							<input type="text" name="detalhesDoProduto">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Grupo:
-						</td>
-						<td>
-							<select multiple name="grupoDoProduto">
-								<option value="01">Grupo 01</option>
-								<option value="02">Grupo 02</option>
-								<option value="03">Grupo 03</option>
-								<option value="04">Grupo 04</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Tema:
-						</td>
-						<td>
-							<select multiple name="temaDoProduto" />
-								<option value="01">Tema 01</option>
-								<option value="02">Tema 02</option>
-								<option value="03">Tema 03</option>
-								<option value="04">Tema 04</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="submit" value="Criar">  
-						</td>
-						<td>
-							<input type="reset" value="Cancelar" >
-						</td>
-					</tr>
-				</table>
+			<h1>Novo Produto</h1>
+			<form action="novoProduto">
+				<div class="ladoEsquerdo">
+					<div class="itemLadoEsquerdo">Nome:</div>
+					<div class="itemLadoEsquerdo">
+						<label for="imagemDoProduto">Imagem:</label>
+					</div>
+					<div class="itemLadoEsquerdo">Resumo:</div>
+					<div class="itemLadoEsquerdo">Detalhes:</div>
+					<div class="itemMaior">Eventos:</div>
+					<div class="itemMaior">Decorações:</div>
+					<div class="itemBotao">
+						<input type="submit" value="Criar">
+					</div>
+					
+				</div>
+				<div class="ladoDireito">
+					<div class="itemLadoDireito">
+						<input type="text" name="nomeDoProduto">
+					</div>
+					<div class="itemLadoDireito">
+						<input type="file" name="imagemDoProduto" id="imagemDoProduto">
+					</div>
+					<div class="itemLadoDireito">
+						<input type="text" name="resumoDoProduto">
+					</div>
+					<div class="itemLadoDireito">
+						<textarea name="detalhesDoProduto" cols="50"></textarea>
+					</div>
+					<div class="itemLadoDireito">
+						<select multiple name="grupoDoProduto">
+							<option value="01">Aniversário</option>
+							<option value="02">Batizado</option>
+							<option value="03">Casamento</option>
+							<option value="04">Chá de Bebê</option>
+							<option value="05">Debutante</option>
+							<option value="06">Nascimento</option>
+						</select>
+					</div>
+					<div class="itemLadoDireito">
+						<select multiple name="temaDoProduto">
+							<option value="01">Convites</option>
+							<option value="02">Lembrancinhas</option>
+							<option value="03">Kit Higiene</option>
+							<option value="04">Kit Ressaca</option>
+							<option value="05">Mesa do Bolo</option>
+							<option value="06">Mesa dos Convidados</option>
+						</select>
+					</div>
+					<br/>
+					<div class="itemLadoDireito">
+						<input type="reset" value="Cancelar">
+					</div>
+				</div>
 			</form>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

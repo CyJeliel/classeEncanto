@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
 
 		<div id="conteudo">
 			<div id="produtosEscolhidos" >
