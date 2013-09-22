@@ -13,6 +13,9 @@
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
 		<div id="conteudo">
+		
+			<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
+			
 			<div id="cabecalho">
 				<span><b>Item</b></span>
 				<span id="cabecalhoQuantidade"><b>Quantidade</b></span>
@@ -69,6 +72,9 @@
 				
 				<a class="link" id="removerItem" href="#">Remover</a>
 			</div>
+			
+			<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
+			
 		</div>
 		
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
