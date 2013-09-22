@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.classeencanto.model.impl.Produto;
+
 @Controller
 public class DetalhesDeProdutoController {
 	@RequestMapping("detalhesDeProduto")
@@ -17,6 +19,9 @@ public class DetalhesDeProdutoController {
         mav.setViewName("detalhesDeProduto");
         // Add a model object to be displayed by the view
         mav.addObject("idProduto", idProduto);
+        Produto produto = new Produto();
+        produto.setNome("Bandaid's personalizados");
+		mav.addObject("produto", produto);
         
         List<String> itensRelacionados = new ArrayList<>();
         itensRelacionados.add("02");
