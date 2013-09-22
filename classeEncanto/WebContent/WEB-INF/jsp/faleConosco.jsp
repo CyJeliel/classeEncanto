@@ -12,15 +12,21 @@
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
-	<form name="faleConosco" class="faleConosco">
-			<pre>
-				Fale Conosco<br />
-				Email
+		<form name="faleConosco" class="faleConosco">
+				<h1>Fale Conosco</h1>
+				<span class="label">Email</span>
+				<br/>
 				<input name="email" type="text" />
-				Telefone
+				<br/>
+				<span class="label">Telefone</span>
+				<br/>
 				<input name="telefone" type="text" />
+				<br/>
+				<span class="label">Mensagem</span>
+				<br/>
+				<textarea name="mensagem" cols="94" rows="10"></textarea>
+				<br/>
 				<input value="Enviar" type="button" onclick="check(this.form)" />
-			</pre>
 		</form>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
