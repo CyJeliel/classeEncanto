@@ -33,7 +33,9 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		<h1>Localização</h1>
+		
 	    <div id="map_canvas"></div>
+		
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

@@ -11,7 +11,7 @@
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
-			<h3>Lista de produtos</h3>
+			<h1>Lista de produtos</h1>
 			<div class="block">
 				<ul>
 					<li><a href="detalhesDeProduto?idProduto=01">Produto 01</a><!-- TODO Adicionar imagem e dados do produto. --></li>
