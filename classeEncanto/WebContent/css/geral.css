@@ -11,6 +11,11 @@ h1 {
 	size: 20px;
 }
 
+p {
+	width: 1115px;
+	color: #3399FF;
+}
+
 .header {
 	margin: 20px 100px 20px 100px;
 }
