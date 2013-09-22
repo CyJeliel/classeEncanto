@@ -10,6 +10,6 @@ public class AdminController {
 
 	@RequestMapping("admin")
 	public String login(Usuario usuario) {
-		return "admin";
+		return "redirect:produtoDestaque";
 	}
 }
