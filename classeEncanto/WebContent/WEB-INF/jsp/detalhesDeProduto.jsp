@@ -14,7 +14,10 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<h1><c:out value="${produto.nome}"/></h1>
+		<h1>
+			<c:out value="${produto.nome}"/> 
+			<a href="#"><img id="adicionarListaDeDesejos" src="img/listaDeDesejos.png" title="Adicionar à Lista de Desejos"/></a>
+		</h1>
 		<img src="img/produto<c:out value="${idProduto}"/>.png" alt="imagem do produto <c:out value="${idProduto}"/>" class="imagem_produto" />
 		<h2>Resumo</h2>
 		<p>
