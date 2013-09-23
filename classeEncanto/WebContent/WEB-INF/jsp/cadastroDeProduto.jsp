@@ -25,9 +25,7 @@
 					<div class="itemMaior">Eventos:</div>
 					<div class="itemMaior">Decorações:</div>
 					<div class="itemBotao">
-						<input type="submit" value="Criar">
 					</div>
-					
 				</div>
 				<div class="ladoDireito">
 					<div class="itemLadoDireito">
@@ -64,6 +62,7 @@
 					</div>
 					<br/>
 					<div class="itemLadoDireito">
+						<input type="submit" value="Criar">
 						<input type="reset" value="Cancelar">
 					</div>
 				</div>
