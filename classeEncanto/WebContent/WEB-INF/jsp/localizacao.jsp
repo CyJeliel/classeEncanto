@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
      	 	body { height: 100%; margin: 0; padding: 0 }
       		#map_canvas { height: 50% }
     	</style>
-		<title>Localização</title>
+		<title>LocalizaÃ§Ã£o</title>
 		<script src="js/faleConosco.js"></script>
 	<script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDl8gRUgEBhN-Q5pIOxAwz-FNgE6RHDR1Q&sensor=true">
@@ -32,7 +32,7 @@
 	<body onload="initialize()">
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
-		<h1>Localização</h1>
+		<h1>LocalizaÃ§Ã£o</h1>
 		
 	    <div id="map_canvas"></div>
 		
