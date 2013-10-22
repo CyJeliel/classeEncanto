@@ -32,7 +32,7 @@
 					</a>
 					<span id="descricaoReduzida"><b><c:out value="${item.nome}"/></b></span>
 					<br/>
-					<span id="descricaoDetalhada"><c:out value="${item.descricao}"/></span>
+					<span id="descricaoDetalhada"><c:out value="${item.resumo}"/></span>
 					
 					<span id="quantidade">
 						<select>

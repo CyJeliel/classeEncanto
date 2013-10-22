@@ -19,6 +19,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		
         Produto produto = new Produto();
         produto.setNome("Bandaid's personalizados 2");
+        produto.setResumo("Bandaid's personalizados para Kit Banheiro 2");
         produto.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
         produto.setId(id);
         return produto;

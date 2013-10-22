@@ -7,6 +7,8 @@ public class Produto extends AbstractModel{
 
 	private String nome;
 
+	private String resumo;
+
 	private String descricao;
 
 	public String getNome() {
@@ -15,6 +17,14 @@ public class Produto extends AbstractModel{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getResumo() {
+		return resumo;
+	}
+
+	public void setResumo(String resumo) {
+		this.resumo = resumo;
 	}
 
 	public String getDescricao() {

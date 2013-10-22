@@ -25,16 +25,12 @@
 		</div>
 		<h2>Resumo</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			<c:out value="${produto.resumo}"/>
 		</p>
 
 		<h2>Detalhes</h2>
-		<p>Mauris vitae neque elementum dolor commodo malesuada non id arcu. 
-		Proin commodo porta justo, nec ornare ligula lobortis quis. Nulla 
-		rutrum elit quam, sit amet tristique est blandit in. Nullam sed sapien 
-		et elit ultricies tincidunt. Quisque lacinia eleifend dui ut interdum. 
-		Nullam eleifend faucibus nulla eu tristique. Praesent quis velit sapien. 
-		Nulla facilisi. Proin non massa ut tortor lobortis varius at in dolor.
+		<p>
+			<c:out value="${produto.descricao}"/>
 		</p>
 
 		<h2>Itens relacionados</h2>		
