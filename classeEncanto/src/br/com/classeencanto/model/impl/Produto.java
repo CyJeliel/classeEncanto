@@ -1,15 +1,30 @@
 package br.com.classeencanto.model.impl;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import br.com.classeencanto.model.Model;
 
 @Entity
-public class Produto extends AbstractModel{
+@Table(name="produto")
+public class Produto implements Model{
+	@Id
+	private Long id;
 
 	private String nome;
 
 	private String resumo;
 
 	private String descricao;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
