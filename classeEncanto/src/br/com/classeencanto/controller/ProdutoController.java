@@ -74,8 +74,17 @@ public class ProdutoController {
 	}	
 	
 	@RequestMapping("listaDeDesejos")
-	public String listaDeDesejos() {
-		return "listaDeDesejos";
+	public ModelAndView listaDeDesejos() {
+
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("listaDeDesejos");
+
+		List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(null);
+		
+		mav.addObject("listaDeDesejos", listaDeDesejos);
+		
+		return mav;
 	}
 
 	@RequestMapping("listaDeProdutos")

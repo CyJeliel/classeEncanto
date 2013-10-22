@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Produto;
+import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
@@ -17,7 +18,8 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		//TODO REMOVER MÉTODO
 		
         Produto produto = new Produto();
-        produto.setNome("Bandaid's personalizados");
+        produto.setNome("Bandaid's personalizados 2");
+        produto.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
         produto.setId(id);
         return produto;
 	}
@@ -32,6 +34,23 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
         itensRelacionados.add(4L);
         itensRelacionados.add(5L);
 		return itensRelacionados;
+	}
+
+	@Override
+	public List<Produto> findListaDeDesejos(Usuario usuario) {
+		// TODO MÉTODO EM MOCK
+		
+		List<Produto> listaDeDesejos= new ArrayList<>();
+		
+		Produto produto = findById(1l);
+		
+		listaDeDesejos.add(produto);
+		
+		Produto produto2 = findById(2l);
+		
+		listaDeDesejos.add(produto2);
+		
+		return listaDeDesejos;
 	}
 	
 }
