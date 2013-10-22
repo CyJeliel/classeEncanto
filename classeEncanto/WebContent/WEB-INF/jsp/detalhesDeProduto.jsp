@@ -21,7 +21,7 @@
 			<a href="#" title="Excluir Produto" id="manterProduto">Remover</a>
 		</h1>
 		<div>
-			<img src="img/produto<c:out value="${idProduto}"/>.png" alt="imagem do produto <c:out value="${idProduto}"/>" class="imagem_produto" />
+			<img src="img/produto<c:out value="${produto.id}"/>.png" alt="imagem do produto <c:out value="${idProduto}"/>" class="imagem_produto" />
 		</div>
 		<h2>Resumo</h2>
 		<p>
