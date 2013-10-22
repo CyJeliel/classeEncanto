@@ -71,6 +71,11 @@ public class ProdutoController {
 		mav.addObject("itensRelacionados", itensRelacionados);
 
 		return mav;
+	}	
+	
+	@RequestMapping("listaDeDesejos")
+	public String listaDeDesejos() {
+		return "listaDeDesejos";
 	}
 
 	@RequestMapping("listaDeProdutos")
