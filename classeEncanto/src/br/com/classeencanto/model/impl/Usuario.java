@@ -23,4 +23,19 @@ public class Usuario extends AbstractModel {
 		this.senha = senha;
 	}
 
+	public boolean valido() {
+
+		if (login == null || login.isEmpty()){
+		
+			return false;
+		}
+		
+		if (senha == null || senha.isEmpty()){
+		
+			return false;
+		}
+		
+		return true;
+	}
+
 }
