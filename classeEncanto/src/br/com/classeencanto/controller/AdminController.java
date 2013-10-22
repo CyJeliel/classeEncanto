@@ -25,7 +25,7 @@ public class AdminController implements Serializable {
 	@RequestMapping("admin")
 	public String login(Usuario usuario) {
 
-		if (usuario.existe()) {
+		if (usuario.existe(usuarioDAO)) {
 
 			this.usuario = usuario;
 

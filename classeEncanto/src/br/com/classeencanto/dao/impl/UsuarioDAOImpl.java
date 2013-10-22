@@ -13,20 +13,20 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 	@Override
 	public boolean existe(Usuario usuario) {
 		// TODO Auto-generated method stub
-		
+
 		Random random = new Random();
-		
+
 		return random.nextBoolean();
-		
+
 	}
 
 	@Override
 	public Usuario find(Usuario t) {
 		// TODO REMOVER MÉTODO
-		
+
 		Usuario usuario = new Usuario();
-		
+
 		return usuario;
 	}
-	
+
 }

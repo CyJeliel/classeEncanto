@@ -1,31 +1,17 @@
 package br.com.classeencanto.model.impl;
 
-import java.io.Serializable;
-
 import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.classeencanto.dao.UsuarioDAO;
+import br.com.classeencanto.model.Model;
 
-@Controller
-public class Usuario implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Usuario implements Model {
 
 	private String login;
 
 	private String senha;
 
 	private String email;
-
-	@Autowired
-	private UsuarioDAO usuarioDAO;
 
 	public String getLogin() {
 		return login;
@@ -65,10 +51,8 @@ public class Usuario implements Serializable{
 
 		return true;
 	}
-	
-	@RequestMapping("existe")
 
-	public boolean existe() {
+	public boolean existe(UsuarioDAO usuarioDAO) {
 
 		if (valido()) {
 
@@ -83,7 +67,7 @@ public class Usuario implements Serializable{
 		return false;
 	}
 
-	public void adicionar() {
+	public void adicionar(UsuarioDAO usuarioDAO) {
 
 		usuarioDAO.save(this);
 	}
