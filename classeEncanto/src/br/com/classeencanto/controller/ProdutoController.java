@@ -16,6 +16,7 @@ public class ProdutoController {
 
 	@Autowired
 	private AdminController adminController;
+	
 	@Autowired
 	private ProdutoDAO produtoDao;
 

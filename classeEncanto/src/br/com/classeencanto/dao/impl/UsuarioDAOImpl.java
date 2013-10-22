@@ -20,4 +20,13 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 		
 	}
 
+	@Override
+	public Usuario find(Usuario t) {
+		// TODO REMOVER MÉTODO
+		
+		Usuario usuario = new Usuario();
+		
+		return usuario;
+	}
+	
 }

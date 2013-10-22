@@ -9,7 +9,10 @@ import br.com.classeencanto.model.Model;
  * 
  * @param <T>
  */
-public interface DAO<T extends Model> {
+public interface DAO<T// extends Model
+> {
+
+	T find(T t);
 
 	T findById(Long id);
 
