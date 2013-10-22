@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
@@ -33,7 +33,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<h1>Acesso à administração</h1>
+		<h1>Acesso Ã  administraÃ§Ã£o</h1>
 		
 		<form id="form" action="admin" method="post">
 				Login

@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<link type="text/css" rel="stylesheet" href="css/detalhesDoProduto.css"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 		<script src="js/listagemDeProdutos.js"></script>
 	</head>
@@ -16,7 +16,7 @@
 		
 		<h1>
 			<c:out value="${produto.nome}"/> 
-			<a href="#"><img src="img/listaDeDesejos.png" id="adicionarListaDeDesejos" title="Adicionar à Lista de Desejos"/></a>
+			<a href="#"><img src="img/listaDeDesejos.png" id="adicionarListaDeDesejos" title="Adicionar Ã  Lista de Desejos"/></a>
 			<a href="#" title="Alterar Produto" id="manterProduto">Alterar</a>
 			<a href="#" title="Excluir Produto" id="manterProduto">Remover</a>
 		</h1>
