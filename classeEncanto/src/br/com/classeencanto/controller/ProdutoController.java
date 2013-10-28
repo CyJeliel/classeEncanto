@@ -34,7 +34,7 @@ public class ProdutoController {
 			return "cadastroProdutosEmDestaque";
 		}
 
-		return "login";
+		return "loginAdmin";
 	}
 
 	@RequestMapping({ "/cadastroDeProduto" })

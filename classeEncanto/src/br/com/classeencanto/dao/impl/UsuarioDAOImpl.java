@@ -5,6 +5,7 @@ import java.util.Random;
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.UsuarioDAO;
+import br.com.classeencanto.model.impl.Administrador;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
@@ -27,6 +28,12 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 		Usuario usuario = new Usuario();
 
 		return usuario;
+	}
+
+	@Override
+	public Administrador findAdministrador(Administrador administrador) {
+		// TODO Auto-generated method stub
+		return administrador;
 	}
 
 }

@@ -9,41 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.classeencanto.dao.UsuarioDAO;
-import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.model.impl.Administrador;
 
 @Controller
 @SessionScoped
-public class AdminController implements Serializable {
+public class AdminController extends AbstractLoginController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private Usuario usuario;
 
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
 	@RequestMapping("admin")
-	public String login(Usuario usuario) {
+	public String login(Administrador administrador) {
 
-		if (usuario.existe(usuarioDAO)) {
-
-			this.usuario = usuario;
-
-			return "redirect:produtoDestaque";
-
-		} else {
-
-			return "login";
-
-		}
-	}
-
-	@RequestMapping("logout")
-	public String logout() {
-
-		this.usuario = null;
-
-		return "login";
+		return super.login(administrador, usuarioDAO);
 	}
 
 	public boolean isLogado() {
@@ -54,5 +34,15 @@ public class AdminController implements Serializable {
 		}
 
 		return true;
+	}
+
+	@Override
+	protected String getPaginaDeLogin() {
+		return "loginAdmin";
+	}
+
+	@Override
+	protected String getPaginaDeRetorno() {
+		return "redirect:produtoDestaque";
 	}
 }
