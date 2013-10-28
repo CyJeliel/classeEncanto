@@ -26,16 +26,7 @@ public class AdminController extends AbstractLoginController implements Serializ
 		return super.login(administrador, usuarioDAO);
 	}
 
-	public boolean isLogado() {
-
-		if (usuario == null) {
-
-			return false;
-		}
-
-		return true;
-	}
-
+	@RequestMapping({ "/loginAdmin" })
 	@Override
 	protected String getPaginaDeLogin() {
 		return "loginAdmin";
@@ -44,5 +35,15 @@ public class AdminController extends AbstractLoginController implements Serializ
 	@Override
 	protected String getPaginaDeRetorno() {
 		return "redirect:produtoDestaque";
+	}
+
+	/*public String execute() {
+		return "loginAdmin";
+	}*/
+
+	@RequestMapping("logoutAdmin")
+	public String logout() {
+
+		return super.logout();
 	}
 }

@@ -13,16 +13,10 @@ public class LoginController extends AbstractLoginController {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 
-	@RequestMapping({ "/paginaDelogin" })
-	public String execute() {
-		return "loginAdmin";
-	}
-
 	@RequestMapping("login")
 	public String login(Usuario usuario) {
 
-		String login = super.login(usuario, usuarioDAO);
-		return login;
+		return super.login(usuario, usuarioDAO);
 	}
 
 	@Override
@@ -38,8 +32,6 @@ public class LoginController extends AbstractLoginController {
 	@RequestMapping("logout")
 	public String logout() {
 
-		this.usuario = null;
-
-		return "loginAdmin";
+		return super.logout();
 	}
 }

@@ -14,7 +14,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
 		<div>
-			<a href="logout" class="logout">Logout</a>
+			<a href="logoutAdmin" class="logout">Logout</a>
 			<h1>Novo Produto</h1>
 			<form action="novoProduto">
 				<div class="ladoEsquerdo">

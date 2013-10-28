@@ -16,6 +16,9 @@ public class ProdutoController {
 
 	@Autowired
 	private AdminController adminController;
+
+	@Autowired
+	private LoginController loginController;
 	
 	@Autowired
 	private ProdutoDAO produtoDao;
@@ -48,7 +51,7 @@ public class ProdutoController {
 
 		} else {
 
-			mav.setViewName("login");
+			mav.setViewName("loginAdmin");
 		}
 
 		return mav;
@@ -79,12 +82,15 @@ public class ProdutoController {
 
 		ModelAndView mav = new ModelAndView();
 		
+		if (loginController.isLogado()){
 		mav.setViewName("listaDeDesejos");
 
 		List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(null);
 		
 		mav.addObject("listaDeDesejos", listaDeDesejos);
-		
+		} else {
+			
+		}
 		return mav;
 	}
 
