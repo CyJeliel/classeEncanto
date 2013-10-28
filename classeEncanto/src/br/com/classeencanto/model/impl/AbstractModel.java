@@ -1,9 +1,11 @@
 package br.com.classeencanto.model.impl;
 
+import javax.persistence.Id;
+
 import br.com.classeencanto.model.Model;
 
 public abstract class AbstractModel implements Model {
-
+	@Id
 	private Long id;
 
 	public Long getId() {
@@ -13,5 +15,5 @@ public abstract class AbstractModel implements Model {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 }
