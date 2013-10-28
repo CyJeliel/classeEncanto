@@ -14,6 +14,7 @@
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
 		<div id="conteudo">
+			<a href="logout" class="logout">Logout</a>
 		
 			<h1>Lista de Desejos</h1>
 			

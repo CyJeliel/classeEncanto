@@ -6,7 +6,6 @@
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<link type="text/css" rel="stylesheet" href="css/cadastroDeProdutos.css"/>		
-		<link type="text/css" rel="stylesheet" href="css/admin.css"/>		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 	</head>
@@ -14,7 +13,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
 		<div>
-			<a href="logout" class="logout">Logout</a>
+			<a href="logoutAdmin" class="logout">Logout</a>
 			<h1>Novo Produto</h1>
 			<form action="novoProduto">
 				<div class="ladoEsquerdo">

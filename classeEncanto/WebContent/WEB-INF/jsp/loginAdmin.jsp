@@ -33,9 +33,9 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<h1>Acesso à área do usuário</h1>
+		<h1>Acesso à administração</h1>
 		
-		<form id="form" action="login" method="post">
+		<form id="form" action="admin" method="post">
 				Login
 				<br/>
 				<input type="text" name="login"/>
