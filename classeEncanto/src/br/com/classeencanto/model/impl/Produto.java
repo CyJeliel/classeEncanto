@@ -3,7 +3,6 @@ package br.com.classeencanto.model.impl;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import br.com.classeencanto.model.Model;
 
 @Entity
@@ -11,11 +10,8 @@ import br.com.classeencanto.model.Model;
 public class Produto implements Model{
 	@Id
 	private Long id;
-
 	private String nome;
-
 	private String resumo;
-
 	private String descricao;
 
 	public Long getId() {

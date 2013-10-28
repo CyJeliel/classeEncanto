@@ -1,17 +1,28 @@
 package br.com.classeencanto.model.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
-
 import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.Model;
 
+@Entity
+@Table(name="usuario")
 public class Usuario implements Model {
-
+	@Id
+	private Long id;
 	private String login;
-
 	private String senha;
-
 	private String email;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getLogin() {
 		return login;
