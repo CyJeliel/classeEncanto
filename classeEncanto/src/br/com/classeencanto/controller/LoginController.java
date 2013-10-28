@@ -21,12 +21,12 @@ public class LoginController extends AbstractLoginController {
 
 	@Override
 	protected String getPaginaDeLogin() {
-		return "redirect:produtoDestaque";
+		return "login";
 	}
 
 	@Override
 	protected String getPaginaDeRetorno() {
-		return "loginAdmin";
+		return "redirect:listaDeDesejos";
 	}
 
 	@RequestMapping("logout")

@@ -5,7 +5,6 @@
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<link type="text/css" rel="stylesheet" href="css/cadastroProdutosEmDestaque.css"/>
-		<link type="text/css" rel="stylesheet" href="css/admin.css"/>		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>

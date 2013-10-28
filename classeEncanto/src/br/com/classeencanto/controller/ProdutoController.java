@@ -19,7 +19,7 @@ public class ProdutoController {
 
 	@Autowired
 	private LoginController loginController;
-	
+
 	@Autowired
 	private ProdutoDAO produtoDao;
 
@@ -75,22 +75,26 @@ public class ProdutoController {
 		mav.addObject("itensRelacionados", itensRelacionados);
 
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping("listaDeDesejos")
 	public ModelAndView listaDeDesejos() {
 
 		ModelAndView mav = new ModelAndView();
-		
-		if (loginController.isLogado()){
-		mav.setViewName("listaDeDesejos");
 
-		List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(null);
-		
-		mav.addObject("listaDeDesejos", listaDeDesejos);
-		} else {
+		if (loginController.isLogado()) {
 			
+			mav.setViewName("listaDeDesejos");
+
+			List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(null);
+
+			mav.addObject("listaDeDesejos", listaDeDesejos);
+			
+		} else {
+
+			mav.setViewName("login");
 		}
+		
 		return mav;
 	}
 

@@ -6,7 +6,6 @@
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<link type="text/css" rel="stylesheet" href="css/cadastroDeProdutos.css"/>		
-		<link type="text/css" rel="stylesheet" href="css/admin.css"/>		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 	</head>
