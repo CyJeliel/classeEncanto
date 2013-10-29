@@ -14,27 +14,15 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 		
-		<style>
-.error {
-	color: #ff0000;
-}
- 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
-</style>
-		
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
+		<a href="formNovoUsuario" class="logout">Criar Login</a>
+
 		<h1>Acesso à área do usuário</h1>
-		
+
 		<form id="form" action="login" method="post">
 				Login
 				<br/>

@@ -34,4 +34,14 @@ public class LoginController extends AbstractLoginController {
 
 		return super.logout();
 	}
+	
+	@RequestMapping("formNovoUsuario")
+	public String formNovoUsuario(){
+		return "formNovoUsuario";
+	}
+	
+	@RequestMapping("novoUsuario")
+	public String novoUsuario(Usuario usuario){
+		return super.login(usuario, usuarioDAO);
+	}
 }
