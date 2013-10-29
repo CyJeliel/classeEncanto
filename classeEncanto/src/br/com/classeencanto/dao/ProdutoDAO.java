@@ -11,4 +11,6 @@ public interface ProdutoDAO extends DAO<Produto> {
 
 	List<Produto> findListaDeDesejos(Usuario usuario);
 
+	List<Produto> addToListaDeDesejos(Produto produto, Usuario usuario);
+
 }

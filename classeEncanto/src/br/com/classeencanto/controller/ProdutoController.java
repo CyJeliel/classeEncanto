@@ -86,7 +86,7 @@ public class ProdutoController {
 			
 			mav.setViewName("listaDeDesejos");
 
-			List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(null);
+			List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(loginController.usuario);
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
 			
@@ -102,6 +102,29 @@ public class ProdutoController {
 	public String listaDeProdutos() {
 
 		return "listaDeProdutos";
+	}
+
+	@RequestMapping("adicionarListaDeDesejos")
+	public ModelAndView adicionarListaDeDesejos(Long produtoId) {
+
+		ModelAndView mav = new ModelAndView();
+
+		if (loginController.isLogado()) {
+			
+			mav.setViewName("listaDeDesejos");
+
+			Produto produto = produtoDao.findById(produtoId);
+			
+			List<Produto> listaDeDesejos = produtoDao.addToListaDeDesejos(produto, loginController.usuario);
+
+			mav.addObject("listaDeDesejos", listaDeDesejos);
+			
+		} else {
+
+			mav.setViewName("login");
+		}
+		
+		return mav;
 	}
 
 }

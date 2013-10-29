@@ -53,5 +53,15 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		
 		return listaDeDesejos;
 	}
+
+	@Override
+	public List<Produto> addToListaDeDesejos(Produto produto, Usuario usuario) {
+		// TODO MÉTODO EM MOCK
+		List<Produto> listaDeDesejos = findListaDeDesejos(usuario);
+		
+		listaDeDesejos.add(produto);
+		
+		return listaDeDesejos;
+	}
 	
 }
