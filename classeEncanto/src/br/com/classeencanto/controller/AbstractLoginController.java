@@ -9,7 +9,7 @@ public abstract class AbstractLoginController {
 
 	public String login(Usuario usuario, UsuarioDAO usuarioDAO) {
 
-		if (usuario.existe(usuarioDAO)) {
+		if (isLogado() || usuario.existe(usuarioDAO)) {
 
 			this.usuario = usuario;
 

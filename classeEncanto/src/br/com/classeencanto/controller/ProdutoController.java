@@ -83,6 +83,8 @@ public class ProdutoController {
 
 		mav.addObject("itensRelacionados", itensRelacionados);
 
+		mav.addObject("isAdmin", adminController.isLogado());
+
 		return mav;
 	}
 

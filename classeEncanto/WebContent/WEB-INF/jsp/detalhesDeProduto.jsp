@@ -17,8 +17,10 @@
 		<h1>
 			<c:out value="${produto.nome}"/> 
 			<a href="adicionarListaDeDesejos?produtoId=${produto.id}"><img src="img/listaDeDesejos.png" id="adicionarListaDeDesejos" title="Adicionar à Lista de Desejos"/></a>
-			<a href="#" title="Alterar Produto" id="manterProduto">Alterar</a>
-			<a href="#" title="Excluir Produto" id="manterProduto">Remover</a>
+			<c:if test="${isAdmin}">
+				<a href="#" title="Alterar Produto" id="manterProduto">Alterar</a>
+				<a href="#" title="Excluir Produto" id="manterProduto">Remover</a>
+			</c:if>
 		</h1>
 		<div>
 			<img src="img/produto<c:out value="${produto.id}"/>.png" alt="imagem do produto <c:out value="${produto.id}"/>" class="imagem_produto" />
