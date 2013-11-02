@@ -12,17 +12,13 @@
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
 		<h1>Missão</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non interdum felis. 
-		Morbi vitae gravida lorem. Donec iaculis eros semper dignissim laoreet. Etiam vehicula 
-		facilisis commodo. Etiam id dignissim velit, eu tincidunt nisl. Nunc ut malesuada nibh, 
-		sit amet sagittis tellus. Donec imperdiet felis lacus, eu pharetra eros lacinia quis. 
+		<p>Nós da Classe e Encanto temos como missão oferecer produtos de qualidade aos nossos 
+		clientes, buscando sua satisfação na realização de seus eventos, sem que eles precisem
+		se preocupar com os detalhes de decoração, que ficam sob nossa responsabilidade.
 		</p>
 		<h1>Visão</h1>
-		<p>Quisque nisi nisl, imperdiet a lorem vitae, semper imperdiet diam. Vestibulum et diam 
-		tempus lectus commodo consectetur sed ut nisl. Donec dolor tellus, commodo vel vulputate 
-		vel, suscipit nec elit. Mauris tincidunt augue enim, bibendum convallis libero fermentum 
-		vel. Ut congue mauris quis lectus rutrum porta. Aenean et ante vitae dolor eleifend 
-		volutpat. Duis eget elit gravida, bibendum turpis in, elementum arcu.</p>
+		<p>Nós buscamos prover produtos personalizados de forma a agradar nossas clientes e seus
+		convidados, sempre visando à produção sustentável e respeitando a natureza.</p>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>
