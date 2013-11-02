@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
 
@@ -22,6 +23,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
         produto.setResumo("Bandaid's personalizados para Kit Banheiro 2");
         produto.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
         produto.setId(id);
+        produto.setLocal("img/bandaid.jpg");
         return produto;
 	}
 
@@ -62,6 +64,41 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		listaDeDesejos.add(produto);
 		
 		return listaDeDesejos;
+	}
+
+	@Override
+	public List<Produto> findProdutos(Long idCategoria) {
+		// TODO MÉTODO EM MOCK
+
+		return findListaDeDesejos(null);
+	}
+
+	@Override
+	public List<Destaque> findListaDeDestaques() {
+		// TODO MÉTODO EM MOCK
+
+		List<Destaque> listaDeDestaques = new ArrayList<>();
+		
+		for (int i = 1; i <= 3; ++i){
+			
+			Destaque destaque = new Destaque();
+			
+			destaque.setNome("Bandaid's personalizados 2");
+			
+			destaque.setResumo("Bandaid's personalizados para Kit Banheiro 2");
+			
+			destaque.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
+			
+			destaque.setId(Long.valueOf(i));
+			
+			destaque.setLocal("img/bandaid.jpg");
+	        
+			destaque.setPosicao(i);
+			
+			listaDeDestaques.add(destaque);
+		}
+		
+		return listaDeDestaques ;
 	}
 	
 }

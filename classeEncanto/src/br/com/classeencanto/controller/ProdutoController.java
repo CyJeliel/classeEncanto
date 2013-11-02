@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
 
@@ -24,9 +25,17 @@ public class ProdutoController {
 	private ProdutoDAO produtoDao;
 
 	@RequestMapping({ "/", "/home" })
-	public String produtosEmDestaque() {
+	public ModelAndView produtosEmDestaque() {
 
-		return "home";
+		ModelAndView mav = new ModelAndView();
+
+		List<Destaque> listaDeDestaques = produtoDao.findListaDeDestaques();
+
+		mav.addObject("listaDeDestaques", listaDeDestaques);
+
+		mav.setViewName("home");
+
+		return mav;
 	}
 
 	@RequestMapping("produtoDestaque")
@@ -83,25 +92,34 @@ public class ProdutoController {
 		ModelAndView mav = new ModelAndView();
 
 		if (loginController.isLogado()) {
-			
+
 			mav.setViewName("listaDeDesejos");
 
-			List<Produto> listaDeDesejos = produtoDao.findListaDeDesejos(loginController.usuario);
+			List<Produto> listaDeDesejos = produtoDao
+					.findListaDeDesejos(loginController.usuario);
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
-			
+
 		} else {
 
 			mav.setViewName("login");
 		}
-		
+
 		return mav;
 	}
 
 	@RequestMapping("listaDeProdutos")
-	public String listaDeProdutos() {
+	public ModelAndView listaDeProdutos() {
 
-		return "listaDeProdutos";
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("listaDeProdutos");
+
+		List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
+
+		mav.addObject("listaDeProdutos", listaDeProdutos);
+
+		return mav;
 	}
 
 	@RequestMapping("adicionarListaDeDesejos")
@@ -110,20 +128,21 @@ public class ProdutoController {
 		ModelAndView mav = new ModelAndView();
 
 		if (loginController.isLogado()) {
-			
+
 			mav.setViewName("listaDeDesejos");
 
 			Produto produto = produtoDao.findById(produtoId);
-			
-			List<Produto> listaDeDesejos = produtoDao.addToListaDeDesejos(produto, loginController.usuario);
+
+			List<Produto> listaDeDesejos = produtoDao.addToListaDeDesejos(
+					produto, loginController.usuario);
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
-			
+
 		} else {
 
 			mav.setViewName("login");
 		}
-		
+
 		return mav;
 	}
 

@@ -8,11 +8,17 @@ import br.com.classeencanto.model.Model;
 @Entity
 @Table(name="produto")
 public class Produto implements Model{
+	
 	@Id
 	private Long id;
+	
 	private String nome;
+	
 	private String resumo;
+	
 	private String descricao;
+	
+	private String local;
 
 	public Long getId() {
 		return id;
@@ -44,6 +50,14 @@ public class Produto implements Model{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
 	}
 	
 }

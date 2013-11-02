@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,81 +18,13 @@
 		<div id="conteudo">
 			<div id="escolherProdutos">
 				<div id="miniaturasBox">
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
-					<div class="miniatura">
-						<a href="detalhesDeProduto?idProduto=11">
-							<img class="produto" src="img/bandaid.jpg">
-						</a>
-					</div>
+					<c:forEach var="produto" items="${listaDeProdutos}" >
+						<div class="miniatura">
+							<a href="detalhesDeProduto?idProduto=${produto.id}">
+								<img class="produto" src="${produto.local}">
+							</a>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
