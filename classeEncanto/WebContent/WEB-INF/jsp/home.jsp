@@ -13,7 +13,14 @@
 	</head>
 	<body onload="exibeProximoDestaque()">
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<c:choose>
+			<c:when test="${isAdmin}">
+				<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+			</c:otherwise>			
+		</c:choose>
 		<div id="conteudo">
 			<a href="#" onclick="exibeProximoDestaque()" id="setaFrente"><img src="img/setaFrente.png"></img></a>
 			<a href="#" onclick="exibeDestaqueAnterior()" id="setaTras"><img src="img/setaTras.png"></img></a>

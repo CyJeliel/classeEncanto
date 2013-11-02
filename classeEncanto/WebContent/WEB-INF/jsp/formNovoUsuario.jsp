@@ -13,7 +13,14 @@
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<c:choose>
+			<c:when test="${isAdmin}">
+				<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+			</c:otherwise>			
+		</c:choose>
 		<div>
 			<h1>Novo Usuário</h1>
 			<form action="novoUsuario" method="post">

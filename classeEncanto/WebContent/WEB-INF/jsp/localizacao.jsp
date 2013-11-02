@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +32,14 @@
 	</head>
 	<body onload="initialize()">
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
-		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+		<c:choose>
+			<c:when test="${isAdmin}">
+				<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
+			</c:otherwise>			
+		</c:choose>
 		<h1>Localização</h1>
 		
 	    <div id="map_canvas"></div>

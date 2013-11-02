@@ -11,6 +11,9 @@ import br.com.classeencanto.model.impl.Usuario;
 public class LoginController extends AbstractLoginController {
 
 	@Autowired
+	private AdminController adminController;
+
+	@Autowired
 	private UsuarioDAO usuarioDAO;
 
 	@RequestMapping("login")
@@ -31,17 +34,27 @@ public class LoginController extends AbstractLoginController {
 
 	@RequestMapping("logout")
 	public String logout() {
-
+		
+		adminController.logout();
+		
 		return super.logout();
 	}
-	
+
 	@RequestMapping("formNovoUsuario")
-	public String formNovoUsuario(){
+	public String formNovoUsuario() {
+
+		adminController.logout();
+
 		return "formNovoUsuario";
 	}
-	
+
 	@RequestMapping("novoUsuario")
-	public String novoUsuario(Usuario usuario){
+	public String novoUsuario(Usuario usuario) {
+
+		adminController.logout();
+
+		usuarioDAO.save(usuario);
+
 		return super.login(usuario, usuarioDAO);
 	}
 }

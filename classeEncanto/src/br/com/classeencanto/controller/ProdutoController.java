@@ -33,6 +33,8 @@ public class ProdutoController {
 
 		mav.addObject("listaDeDestaques", listaDeDestaques);
 
+		mav.addObject("isAdmin", adminController.isLogado());
+
 		mav.setViewName("home");
 
 		return mav;
@@ -93,7 +95,7 @@ public class ProdutoController {
 
 		ModelAndView mav = new ModelAndView();
 
-		if (loginController.isLogado()) {
+		if (loginController.isLogado() || adminController.isLogado()) {
 
 			mav.setViewName("listaDeDesejos");
 
@@ -101,6 +103,8 @@ public class ProdutoController {
 					.findListaDeDesejos(loginController.usuario);
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
+
+			mav.addObject("isAdmin", adminController.isLogado());
 
 		} else {
 
@@ -121,6 +125,8 @@ public class ProdutoController {
 
 		mav.addObject("listaDeProdutos", listaDeProdutos);
 
+		mav.addObject("isAdmin", adminController.isLogado());
+
 		return mav;
 	}
 
@@ -129,7 +135,7 @@ public class ProdutoController {
 
 		ModelAndView mav = new ModelAndView();
 
-		if (loginController.isLogado()) {
+		if (loginController.isLogado() || adminController.isLogado()) {
 
 			mav.setViewName("listaDeDesejos");
 
