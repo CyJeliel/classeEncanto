@@ -154,4 +154,22 @@ public class ProdutoController {
 		return mav;
 	}
 
+	@RequestMapping("novoProduto")
+	public String novoProduto(Produto produto) {
+
+		String retorno = "redirect:cadastroDeProduto";
+
+		if (adminController.isLogado()) {
+
+			if (produto.valido()) {
+
+				produtoDao.save(produto);
+			} else {
+
+				retorno = "login";
+			}
+		}
+		return retorno;
+	}
+
 }

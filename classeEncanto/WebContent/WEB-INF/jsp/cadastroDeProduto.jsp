@@ -30,16 +30,16 @@
 				</div>
 				<div class="ladoDireito">
 					<div class="itemLadoDireito">
-						<input type="text" name="nomeDoProduto">
+						<input type="text" name="nome">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="file" name="imagemDoProduto" id="imagemDoProduto">
+						<input type="file" name="local" id="imagemDoProduto">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="text" name="resumoDoProduto">
+						<input type="text" name="resumo">
 					</div>
 					<div class="itemLadoDireito">
-						<textarea name="detalhesDoProduto" cols="50"></textarea>
+						<textarea name="descricao" cols="50"></textarea>
 					</div>
 					<div class="itemLadoDireito">
 						<select multiple name="grupoDoProduto">

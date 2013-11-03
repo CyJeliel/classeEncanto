@@ -1,8 +1,13 @@
 package br.com.classeencanto.model.impl;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.Model;
 
+@Entity
+@Table(name="administrador")
 public class Administrador extends Usuario implements Model {
 
 	private boolean admin;

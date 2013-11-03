@@ -1,8 +1,11 @@
 package br.com.classeencanto.model.impl;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import br.com.classeencanto.model.Model;
 
 @Entity
@@ -10,7 +13,8 @@ import br.com.classeencanto.model.Model;
 public class Produto implements Model{
 	
 	@Id
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	private String nome;
 	
@@ -58,6 +62,11 @@ public class Produto implements Model{
 
 	public void setLocal(String local) {
 		this.local = local;
+	}
+
+	public boolean valido() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 }
