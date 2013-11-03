@@ -11,3 +11,4 @@ CREATE TABLE usuario (
 	senha		VARCHAR(20)						NOT NULL,
 	email		VARCHAR(20)						NOT NULL
 );
+
