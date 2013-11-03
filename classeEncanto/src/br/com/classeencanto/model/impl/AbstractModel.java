@@ -1,7 +1,6 @@
 package br.com.classeencanto.model.impl;
 
 import javax.persistence.Id;
-
 import br.com.classeencanto.model.Model;
 
 public abstract class AbstractModel implements Model {
