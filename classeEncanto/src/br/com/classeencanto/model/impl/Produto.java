@@ -4,24 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import br.com.classeencanto.model.Model;
-
 @Entity
-@Table(name="produto")
-public class Produto implements Model{
-	
+@Table(name = "produto")
+public class Produto {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "produto_seq")
+	@SequenceGenerator(name = "produto_seq", sequenceName = "produto_id_seq", allocationSize = 1)
 	private long id;
-	
+
 	private String nome;
-	
+
 	private String resumo;
-	
+
 	private String descricao;
-	
+
 	private String local;
 
 	public Long getId() {
@@ -68,5 +68,5 @@ public class Produto implements Model{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 }

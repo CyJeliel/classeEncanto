@@ -2,7 +2,8 @@ CREATE TABLE produto (
 	id			SERIAL			PRIMARY KEY				,
 	nome		VARCHAR(20)						NOT NULL,
 	resumo		VARCHAR(50)						NOT NULL,
-	descricao	VARCHAR(50)						NOT NULL
+	descricao	VARCHAR(50)						NOT NULL,
+	localizacao VARCHAR(200)                    NOT NULL       
 );
 
 CREATE TABLE usuario (

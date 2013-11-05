@@ -5,19 +5,19 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.classeencanto.dao.DAO;
-import br.com.classeencanto.model.Model;
 
-public class AbstractDAO<T extends Model> implements DAO<T> {
+public class AbstractDAO<T> implements DAO<T> {
 
 	private EntityManager em;
 
 	public AbstractDAO() {
 		// TODO Em construção
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
-		
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
+
 		em = factory.createEntityManager();
 	}
-	
+
 	@Override
 	public T findById(Long id) {
 		// TODO Auto-generated method stub
@@ -27,8 +27,10 @@ public class AbstractDAO<T extends Model> implements DAO<T> {
 	@Override
 	public void save(T t) {
 		// TODO Em construção
+		em.getTransaction().begin();
 		em.persist(t);
-		em.close();
+		em.getTransaction().commit();
+
 	}
 
 	@Override

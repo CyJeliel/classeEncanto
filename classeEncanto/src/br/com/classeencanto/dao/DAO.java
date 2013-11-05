@@ -1,6 +1,5 @@
 package br.com.classeencanto.dao;
 
-import br.com.classeencanto.model.Model;
 
 /**
  * Interface para classes que acessam o banco de dados.
@@ -9,7 +8,7 @@ import br.com.classeencanto.model.Model;
  * 
  * @param <T>
  */
-public interface DAO<T extends Model> {
+public interface DAO<T> {
 
 	T find(T t);
 
