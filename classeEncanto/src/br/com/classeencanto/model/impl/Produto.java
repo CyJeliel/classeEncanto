@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,13 +23,13 @@ public class Produto {
 
 	private String descricao;
 
-	private String local;
+	private String localizacao;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -56,17 +57,12 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getLocal() {
-		return local;
+	public String getLocalizacao() {
+		return localizacao;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public boolean valido() {
-		// TODO Auto-generated method stub
-		return true;
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
 	}
 
 }

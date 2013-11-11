@@ -161,13 +161,15 @@ public class ProdutoController {
 
 		if (adminController.isLogado()) {
 
-			if (produto.valido()) {
+			//if (produto.valido()) {
+			
+				produto.setLocalizacao("teste");
 
 				produtoDao.save(produto);
-			} else {
+			//} else {
 
-				retorno = "login";
-			}
+				//retorno = "login";
+			//}
 		}
 		return retorno;
 	}
