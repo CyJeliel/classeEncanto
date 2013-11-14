@@ -18,9 +18,17 @@ public class Destaque {
 	private long id;
 	
 	private int posicao;
-
+	
 	@OneToOne
 	private Produto produto;
+	
+	public Destaque() {
+	}
+	
+	public Destaque(Produto produto) {
+		
+		this.produto = produto;
+	}
 
 	public int getPosicao() {
 		return posicao;
@@ -44,6 +52,10 @@ public class Destaque {
 
 	public void setLocalizacao(String localizacao) {
 		produto.setLocalizacao(localizacao);
+	}
+
+	public String getLocalizacao() {
+		return produto.getLocalizacao();
 	}
 
 	public long getId() {

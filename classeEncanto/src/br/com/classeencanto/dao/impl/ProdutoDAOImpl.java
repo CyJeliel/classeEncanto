@@ -81,7 +81,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		
 		for (int i = 1; i <= 3; ++i){
 			
-			Destaque destaque = new Destaque();
+			Destaque destaque = new Destaque(new Produto());
 			
 			destaque.setNome("Bandaid's personalizados 2");
 			

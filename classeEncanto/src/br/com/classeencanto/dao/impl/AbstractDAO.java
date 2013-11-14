@@ -11,7 +11,7 @@ public class AbstractDAO<T> implements DAO<T> {
 	private EntityManager em;
 
 	public AbstractDAO() {
-		// TODO Em construção
+
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("classeEncanto");
 
@@ -26,11 +26,12 @@ public class AbstractDAO<T> implements DAO<T> {
 
 	@Override
 	public void save(T t) {
-		// TODO Em construção
-		em.getTransaction().begin();
-		em.persist(t);
-		em.getTransaction().commit();
 
+		em.getTransaction().begin();
+		
+		em.persist(t);
+		
+		em.getTransaction().commit();
 	}
 
 	@Override

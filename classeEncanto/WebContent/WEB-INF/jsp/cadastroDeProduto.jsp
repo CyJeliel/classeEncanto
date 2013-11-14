@@ -14,6 +14,13 @@
 		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
 		<div>
 			<a href="logoutAdmin" class="logout">Logout</a>
+			
+			<div class="feedback">
+				<c:forEach var="feedback" items="feedbacks">
+					<div class="<c:out value="${feedback.tipo}"></c:out>"><c:out value="${feedback.mensagem}"></c:out></div>
+				</c:forEach>
+			</div>
+			
 			<h1>Novo Produto</h1>
 			<form action="novoProduto">
 				<div class="ladoEsquerdo">

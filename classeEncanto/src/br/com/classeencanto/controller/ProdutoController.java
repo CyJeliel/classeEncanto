@@ -1,6 +1,8 @@
 package br.com.classeencanto.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.util.Feedback;
 
 @Controller
 public class ProdutoController {
@@ -155,23 +158,30 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("novoProduto")
-	public String novoProduto(Produto produto) {
+	public ModelAndView novoProduto(Produto produto) {
 
-		String retorno = "redirect:cadastroDeProduto";
+		ModelAndView mav = new ModelAndView();
 
 		if (adminController.isLogado()) {
 
-			//if (produto.valido()) {
-			
+			mav.setViewName("redirect:cadastroDeProduto");
+
+			Set<Feedback> feedbacks = new HashSet<>();
+
+			if (produto.valido(feedbacks)) {
+
 				produto.setLocalizacao("teste");
 
 				produtoDao.save(produto);
-			//} else {
+			}
 
-				//retorno = "login";
-			//}
+			mav.addObject("feedbacks", feedbacks);
+		} else {
+
+			mav.setViewName("login");
 		}
-		return retorno;
+
+		return mav;
 	}
 
 }
