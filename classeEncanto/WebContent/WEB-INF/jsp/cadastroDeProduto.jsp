@@ -15,12 +15,14 @@
 		<div>
 			<a href="logoutAdmin" class="logout">Logout</a>
 			
-			<div class="feedback">
-				<c:forEach var="feedback" items="feedbacks">
-					<div class="<c:out value="${feedback.tipo}"></c:out>"><c:out value="${feedback.mensagem}"></c:out></div>
-				</c:forEach>
-			</div>
-			
+			<c:if test="${feedbacks != null}">
+				<div class="feedback">
+					<c:forEach var="feedback" items="feedbacks">
+						1
+						<div class="<c:out value="${feedback}"></c:out>"><c:out value="${feedback}"></c:out></div>
+					</c:forEach>
+				</div>
+			</c:if>
 			<h1>Novo Produto</h1>
 			<form action="novoProduto">
 				<div class="ladoEsquerdo">

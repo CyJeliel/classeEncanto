@@ -2,6 +2,7 @@ package br.com.classeencanto.model.impl;
 
 import static br.com.classeencanto.util.TipoFeedback.ERRO;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -70,7 +71,7 @@ public class Produto {
 		this.localizacao = localizacao;
 	}
 
-	public boolean valido(Set<Feedback> feedbacks) {
+	public boolean valido(List<Feedback> feedbacks) {
 
 		boolean valido = true;
 
