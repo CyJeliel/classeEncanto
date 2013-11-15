@@ -1,9 +1,11 @@
-CREATE TABLE produto (
-	id			SERIAL			PRIMARY KEY				,
-	nome		VARCHAR(20)						NOT NULL,
-	resumo		VARCHAR(50)						NOT NULL,
-	descricao	VARCHAR(50)						NOT NULL,
-	localizacao VARCHAR(200)                    NOT NULL       
+CREATE TABLE produto
+(
+  id serial NOT NULL,
+  nome character varying(20) NOT NULL,
+  resumo character varying(50) NOT NULL,
+  descricao character varying(50) NOT NULL,
+  imagem bytea NOT NULL,
+  CONSTRAINT produto_pkey PRIMARY KEY (id)
 );
 
 CREATE TABLE usuario (

@@ -23,7 +23,6 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
         produto.setResumo("Bandaid's personalizados para Kit Banheiro 2");
         produto.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
         produto.setId(id);
-        produto.setLocalizacao("img/bandaid.jpg");
         return produto;
 	}
 
@@ -91,14 +90,18 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 			
 			destaque.setId(Long.valueOf(i));
 			
-			destaque.setLocalizacao("img/bandaid.jpg");
-	        
 			destaque.setPosicao(i);
 			
 			listaDeDestaques.add(destaque);
 		}
 		
 		return listaDeDestaques ;
+	}
+
+	@Override
+	public Destaque findDestaque(int posicaoAntiga) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

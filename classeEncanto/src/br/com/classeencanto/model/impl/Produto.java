@@ -1,9 +1,6 @@
 package br.com.classeencanto.model.impl;
 
-import static br.com.classeencanto.util.TipoFeedback.ERRO;
-
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import br.com.classeencanto.util.Feedback;
 
 @Entity
 @Table(name = "produto")
@@ -29,7 +24,7 @@ public class Produto {
 
 	private String descricao;
 
-	private String localizacao;
+	private byte[] imagem;
 
 	public long getId() {
 		return id;
@@ -63,48 +58,42 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getLocalizacao() {
-		return localizacao;
+	public byte[] getImagem() {
+		return imagem;
 	}
 
-	public void setLocalizacao(String localizacao) {
-		this.localizacao = localizacao;
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
 	}
 
-	public boolean valido(List<Feedback> feedbacks) {
+	public boolean valido(List<String> feedbacks) {
 
 		boolean valido = true;
 
 		if (nome == null || nome.isEmpty()) {
 
-			feedbacks.add(new Feedback(
-					"O nome do produto não pode estar em branco.", ERRO));
+			feedbacks.add("O nome do produto não pode estar em branco.");
 
 			valido = false;
 		}
 
 		if (resumo == null) {
 
-			feedbacks.add(new Feedback(
-					"O resumo do produto não pode estar em branco.", ERRO));
+			feedbacks.add("O resumo do produto não pode estar em branco.");
 
 			valido = false;
 		}
 
 		if (descricao == null) {
 
-			feedbacks.add(new Feedback(
-					"A descrição do produto não pode estar em branco.", ERRO));
+			feedbacks.add("A descrição do produto não pode estar em branco.");
 
 			valido = false;
 		}
 
-		if (localizacao == null) {
+		if (imagem == null) {
 
-			feedbacks
-					.add(new Feedback(
-							"A localização do produto não pode estar em branco.",
-							ERRO));
+			feedbacks.add("A imagem do produto não pode estar em branco.");
 
 			valido = false;
 		}

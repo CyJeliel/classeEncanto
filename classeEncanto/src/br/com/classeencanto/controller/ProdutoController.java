@@ -12,7 +12,6 @@ import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
-import br.com.classeencanto.util.Feedback;
 
 @Controller
 public class ProdutoController {
@@ -26,11 +25,10 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoDAO produtoDao;
 
-	private List<Feedback> feedbacks;
-	
-	
+	private List<String> feedbacks;
+
 	public ProdutoController() {
-	
+
 		feedbacks = new ArrayList<>();
 	}
 
@@ -42,6 +40,22 @@ public class ProdutoController {
 		List<Destaque> listaDeDestaques = produtoDao.findListaDeDestaques();
 
 		mav.addObject("listaDeDestaques", listaDeDestaques);
+
+		mav.addObject("isAdmin", adminController.isLogado());
+
+		mav.setViewName("home");
+
+		return mav;
+	}
+
+	@RequestMapping({ "/", "/home" })
+	public ModelAndView produtoEmDestaque(int posicaoAntiga) {
+
+		ModelAndView mav = new ModelAndView();
+
+		Destaque destaque = produtoDao.findDestaque(posicaoAntiga);
+
+		mav.addObject("destaque", destaque);
 
 		mav.addObject("isAdmin", adminController.isLogado());
 
@@ -70,12 +84,18 @@ public class ProdutoController {
 
 			mav.setViewName("cadastroDeProduto");
 
+			List<String> feedbacks = new ArrayList<>();
+
+			feedbacks.addAll(this.feedbacks);
+
 			mav.addObject("feedbacks", feedbacks);
 
 		} else {
 
 			mav.setViewName("loginAdmin");
 		}
+
+		feedbacks.clear();
 
 		return mav;
 
@@ -174,12 +194,10 @@ public class ProdutoController {
 		if (adminController.isLogado()) {
 
 			feedbacks.clear();
-			
+
 			retorno = "redirect:cadastroDeProduto";
 
 			if (produto.valido(feedbacks)) {
-
-				produto.setLocalizacao("teste");
 
 				produtoDao.save(produto);
 			}

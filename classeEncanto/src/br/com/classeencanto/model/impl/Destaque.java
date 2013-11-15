@@ -50,14 +50,6 @@ public class Destaque {
 		produto.setDescricao(descricao);
 	}
 
-	public void setLocalizacao(String localizacao) {
-		produto.setLocalizacao(localizacao);
-	}
-
-	public String getLocalizacao() {
-		return produto.getLocalizacao();
-	}
-
 	public long getId() {
 		return id;
 	}

@@ -12,16 +12,13 @@
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuAdministracao.jsp" %>
-		<div>
+		<div id="conteudo">
 			<a href="logoutAdmin" class="logout">Logout</a>
 			
 			<c:if test="${feedbacks != null}">
-				<div class="feedback">
-					<c:forEach var="feedback" items="feedbacks">
-						1
-						<div class="<c:out value="${feedback}"></c:out>"><c:out value="${feedback}"></c:out></div>
-					</c:forEach>
-				</div>
+				<c:forEach var="feedback" items="${feedbacks}">
+					<div class="feedback"><c:out value="${feedback}"></c:out></div>
+				</c:forEach>
 			</c:if>
 			<h1>Novo Produto</h1>
 			<form action="novoProduto">
@@ -42,7 +39,7 @@
 						<input type="text" name="nome">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="file" name="local" id="imagemDoProduto">
+						<input type="file" name="imagem" id="imagemDoProduto">
 					</div>
 					<div class="itemLadoDireito">
 						<input type="text" name="resumo">

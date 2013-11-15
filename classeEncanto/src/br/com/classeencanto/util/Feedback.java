@@ -5,7 +5,7 @@ public class Feedback {
 	private String mensagem;
 	
 	private TipoFeedback tipo;
-	
+
 	public Feedback(String mensagem, TipoFeedback tipo) {
 
 		this.mensagem = mensagem;
@@ -20,6 +20,14 @@ public class Feedback {
 
 	public TipoFeedback getTipo() {
 		return tipo;
+	}
+	
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public void setTipo(TipoFeedback tipo) {
+		this.tipo = tipo;
 	}
 
 }
