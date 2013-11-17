@@ -8,7 +8,7 @@ import br.com.classeencanto.dao.DAO;
 
 public class AbstractDAO<T> implements DAO<T> {
 
-	private EntityManager em;
+	protected EntityManager em;
 
 	public AbstractDAO() {
 

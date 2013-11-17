@@ -27,7 +27,7 @@
 			
 			<c:forEach var="destaque" items="${listaDeDestaques}" >
 				<a id="${destaque.posicao}" href="detalhesDeProduto?idProduto=${destaque.id}">
-					<!-- <img  id="destaqueHome"	src="${destaque.localizacao}">-->
+					<img  id="destaqueHome"	src="<%=request.getContextPath()%>/getDestaquehome?posicao=${destaque.posicao}">
 				</a>
 			</c:forEach>
 		</div>

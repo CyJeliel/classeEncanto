@@ -99,9 +99,19 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	}
 
 	@Override
-	public Destaque findDestaque(int posicaoAntiga) {
+	public Destaque findDestaque(Integer posicaoAntiga) {
 		// TODO Auto-generated method stub
-		return null;
+		em.getTransaction().begin();
+
+		Produto produto = em.find(Produto.class, 7l);
+		
+		Destaque destaque = new Destaque(produto);
+		
+		destaque.setPosicao(1);
+
+		em.getTransaction().rollback();
+
+		return destaque;
 	}
 	
 }

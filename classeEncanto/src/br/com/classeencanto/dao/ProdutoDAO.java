@@ -18,6 +18,6 @@ public interface ProdutoDAO extends DAO<Produto> {
 
 	List<Destaque> findListaDeDestaques();
 
-	Destaque findDestaque(int posicaoAntiga);
+	Destaque findDestaque(Integer posicaoAntiga);
 
 }

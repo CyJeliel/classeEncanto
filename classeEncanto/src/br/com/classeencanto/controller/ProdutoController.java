@@ -1,7 +1,13 @@
 package br.com.classeencanto.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,20 +54,51 @@ public class ProdutoController {
 		return mav;
 	}
 
-	@RequestMapping({ "/", "/home" })
-	public ModelAndView produtoEmDestaque(int posicaoAntiga) {
+	@RequestMapping({ "/getDestaquehome" })
+	public void produtoEmDestaque(Integer posicao, HttpServletResponse response) {
 
-		ModelAndView mav = new ModelAndView();
+		Destaque destaque = produtoDao.findDestaque(posicao);
 
-		Destaque destaque = produtoDao.findDestaque(posicaoAntiga);
+		if (destaque != null && destaque.getImagem() != null) {
 
-		mav.addObject("destaque", destaque);
+			byte[] thumb = destaque.getImagem();
 
-		mav.addObject("isAdmin", adminController.isLogado());
+			String name = "destaque";
+			response.setContentType("image/jpeg");
+			response.setContentLength(thumb.length);
 
-		mav.setViewName("home");
+			response.setHeader("Content-Disposition", "inline; filename=\""
+					+ name + "\"");
 
-		return mav;
+			BufferedInputStream input = null;
+			BufferedOutputStream output = null;
+
+			try {
+				input = new BufferedInputStream(new ByteArrayInputStream(thumb));
+				output = new BufferedOutputStream(response.getOutputStream());
+				byte[] buffer = new byte[8192];
+				int length;
+				while ((length = input.read(buffer)) > 0) {
+					output.write(buffer, 0, length);
+				}
+			} catch (IOException e) {
+				System.out
+						.println("There are errors in reading/writing image stream "
+								+ e.getMessage());
+			} finally {
+				if (output != null)
+					try {
+						output.close();
+					} catch (IOException ignore) {
+					}
+				if (input != null)
+					try {
+						input.close();
+					} catch (IOException ignore) {
+					}
+			}
+
+		}
 	}
 
 	@RequestMapping("produtoDestaque")

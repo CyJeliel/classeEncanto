@@ -34,6 +34,10 @@ public class Destaque {
 		return posicao;
 	}
 
+	public byte[] getImagem() {
+		return produto.getImagem();
+	}
+	
 	public void setPosicao(int posicao) {
 		this.posicao = posicao;
 	}
@@ -48,6 +52,10 @@ public class Destaque {
 
 	public void setDescricao(String descricao) {
 		produto.setDescricao(descricao);
+	}
+	
+	public void setImagem(byte[] imagem) {
+		produto.setImagem(imagem);
 	}
 
 	public long getId() {
