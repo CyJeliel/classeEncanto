@@ -1,23 +1,24 @@
 package br.com.classeencanto.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.transformer.ImageTransformer;
 
 @Controller
 public class ProdutoController {
@@ -30,6 +31,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoDAO produtoDao;
+
+	@Autowired
+	private ImageTransformer transformer;
 
 	private List<String> feedbacks;
 
@@ -55,50 +59,19 @@ public class ProdutoController {
 	}
 
 	@RequestMapping({ "/getDestaquehome" })
-	public void produtoEmDestaque(Integer posicao, HttpServletResponse response) {
+	@ResponseBody
+	public byte[] produtoEmDestaque(Integer posicao) {
+
+		byte[] image = null;
 
 		Destaque destaque = produtoDao.findDestaque(posicao);
 
 		if (destaque != null && destaque.getImagem() != null) {
 
-			byte[] thumb = destaque.getImagem();
-
-			String name = "destaque";
-			response.setContentType("image/jpeg");
-			response.setContentLength(thumb.length);
-
-			response.setHeader("Content-Disposition", "inline; filename=\""
-					+ name + "\"");
-
-			BufferedInputStream input = null;
-			BufferedOutputStream output = null;
-
-			try {
-				input = new BufferedInputStream(new ByteArrayInputStream(thumb));
-				output = new BufferedOutputStream(response.getOutputStream());
-				byte[] buffer = new byte[8192];
-				int length;
-				while ((length = input.read(buffer)) > 0) {
-					output.write(buffer, 0, length);
-				}
-			} catch (IOException e) {
-				System.out
-						.println("There are errors in reading/writing image stream "
-								+ e.getMessage());
-			} finally {
-				if (output != null)
-					try {
-						output.close();
-					} catch (IOException ignore) {
-					}
-				if (input != null)
-					try {
-						input.close();
-					} catch (IOException ignore) {
-					}
-			}
-
+			image = destaque.getImagem();
 		}
+
+		return image;
 	}
 
 	@RequestMapping("produtoDestaque")
@@ -224,20 +197,41 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("novoProduto")
-	public String novoProduto(Produto produto) {
+	public String novoProduto(Produto produto, HttpServletRequest request) {
 
-		String retorno = "login";
+		String retorno = "redirect:admin";
 
 		if (adminController.isLogado()) {
 
 			feedbacks.clear();
 
-			retorno = "redirect:cadastroDeProduto";
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
-			if (produto.valido(feedbacks)) {
+			MultipartFile file = multipartRequest.getFile("arquivo");
 
-				produtoDao.save(produto);
+			if (file != null) {
+
+				if (produto.valido(feedbacks)) {
+
+					try {
+						produto.setImagem(transformer.fileToByte(file));
+					} catch (IOException e) {
+
+						e.printStackTrace();
+
+						return retorno;
+					}
+
+					produtoDao.save(produto);
+
+					feedbacks.add("Produto salvo com sucesso.");
+				}
+			} else {
+
+				feedbacks.add("A imagem do produto não pode estar em branco.");
 			}
+
+			retorno = "redirect:cadastroDeProduto";
 		}
 
 		return retorno;

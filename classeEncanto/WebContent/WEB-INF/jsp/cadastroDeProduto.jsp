@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,7 +22,7 @@
 				</c:forEach>
 			</c:if>
 			<h1>Novo Produto</h1>
-			<form action="novoProduto">
+			<form method="post" action="novoProduto" enctype="multipart/form-data">
 				<div class="ladoEsquerdo">
 					<div class="itemLadoEsquerdo">Nome:</div>
 					<div class="itemLadoEsquerdo">
@@ -39,7 +40,7 @@
 						<input type="text" name="nome">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="file" name="imagem" id="imagemDoProduto">
+						<input type="file" name="arquivo" id="imagemDoProduto">
 					</div>
 					<div class="itemLadoDireito">
 						<input type="text" name="resumo">

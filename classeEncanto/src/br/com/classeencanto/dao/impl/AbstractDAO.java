@@ -8,14 +8,11 @@ import br.com.classeencanto.dao.DAO;
 
 public class AbstractDAO<T> implements DAO<T> {
 
+	protected EntityManagerFactory factory;
+
 	protected EntityManager em;
 
 	public AbstractDAO() {
-
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("classeEncanto");
-
-		em = factory.createEntityManager();
 	}
 
 	@Override
@@ -27,10 +24,14 @@ public class AbstractDAO<T> implements DAO<T> {
 	@Override
 	public void save(T t) {
 
+		factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		em = factory.createEntityManager();
+
 		em.getTransaction().begin();
-		
+
 		em.persist(t);
-		
+
 		em.getTransaction().commit();
 	}
 

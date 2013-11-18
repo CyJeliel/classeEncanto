@@ -1,50 +1,15 @@
 package br.com.classeencanto.transformer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.IOException;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+@Component
 public class ImageTransformer {
 
-	public byte[] fileToByte(File file) {
+	public byte[] fileToByte(MultipartFile file) throws IOException {
 
-		byte[] byteImage = new byte[(int) file.length()];
-
-		try {
-
-			FileInputStream fileInputStream = new FileInputStream(file);
-
-			fileInputStream.read(byteImage);
-
-			fileInputStream.close();
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		return byteImage;
+		return file.getBytes();
 	}
-
-	public File byteToFile(byte[] byteImage) {
-		// TODO FAZER MÉTODO
-
-		//sFile file = new File(pathname);
-		
-		try {
-			
-			FileOutputStream fos = new FileOutputStream("C:\\test.gif");
-
-			fos.write(byteImage);
-
-			fos.close();
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
 }

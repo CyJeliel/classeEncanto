@@ -91,13 +91,6 @@ public class Produto {
 			valido = false;
 		}
 
-		if (imagem == null) {
-
-			feedbacks.add("A imagem do produto não pode estar em branco.");
-
-			valido = false;
-		}
-
 		return valido;
 	}
 

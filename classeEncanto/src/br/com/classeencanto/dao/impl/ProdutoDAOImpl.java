@@ -3,6 +3,8 @@ package br.com.classeencanto.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Persistence;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
@@ -100,16 +102,18 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public Destaque findDestaque(Integer posicaoAntiga) {
-		// TODO Auto-generated method stub
+
+		factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		em = factory.createEntityManager();
+		
 		em.getTransaction().begin();
 
-		Produto produto = em.find(Produto.class, 7l);
+		Produto produto = em.find(Produto.class, 10l);
 		
 		Destaque destaque = new Destaque(produto);
 		
 		destaque.setPosicao(1);
-
-		em.getTransaction().rollback();
 
 		return destaque;
 	}
