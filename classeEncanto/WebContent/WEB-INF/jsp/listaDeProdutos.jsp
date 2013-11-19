@@ -28,7 +28,7 @@
 					<c:forEach var="produto" items="${listaDeProdutos}" >
 						<div class="miniatura">
 							<a href="detalhesDeProduto?idProduto=${produto.id}">
-								<img class="produto" src="${produto.local}">
+								<img class="produto" src="<%=request.getContextPath()%>/getDestaquehome?posicao=${destaque.posicao}">
 							</a>
 						</div>
 					</c:forEach>

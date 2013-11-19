@@ -37,16 +37,16 @@
 				</div>
 				<div class="ladoDireito">
 					<div class="itemLadoDireito">
-						<input type="text" name="nome">
+						<input type="text" name="nome" value="${produto != null? produto.nome: ''}">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="file" name="arquivo" id="imagemDoProduto">
+						<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="text" name="resumo">
+						<input type="text" name="resumo" value="${produto != null? produto.resumo: ''}">
 					</div>
 					<div class="itemLadoDireito">
-						<textarea name="descricao" cols="50"></textarea>
+						<textarea name="descricao" cols="50"  value="${produto != null? produto.descricao: ''}"></textarea>
 					</div>
 					<div class="itemLadoDireito">
 						<select multiple name="grupoDoProduto">
@@ -70,7 +70,7 @@
 					</div>
 					<br/>
 					<div class="itemLadoDireito">
-						<input type="submit" value="Criar">
+						<input type="submit" value="${produto != null? 'Alterar': 'Criar'}">
 						<input type="reset" value="Cancelar">
 					</div>
 				</div>

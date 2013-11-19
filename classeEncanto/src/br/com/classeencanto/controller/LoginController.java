@@ -41,11 +41,11 @@ public class LoginController extends AbstractLoginController {
 	}
 
 	@RequestMapping("formNovoUsuario")
-	public String formNovoUsuario() {
+	public String formUsuario() {
 
 		adminController.logout();
 
-		return "formNovoUsuario";
+		return "formUsuario";
 	}
 
 	@RequestMapping("novoUsuario")

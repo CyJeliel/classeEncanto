@@ -37,6 +37,8 @@ public class ProdutoController {
 
 	private List<String> feedbacks;
 
+	private Produto produto;
+
 	public ProdutoController() {
 
 		feedbacks = new ArrayList<>();
@@ -100,12 +102,16 @@ public class ProdutoController {
 
 			mav.addObject("feedbacks", feedbacks);
 
+			mav.addObject("produto", produto);
+
 		} else {
 
 			mav.setViewName("loginAdmin");
 		}
 
 		feedbacks.clear();
+
+		produto = null;
 
 		return mav;
 
@@ -230,6 +236,21 @@ public class ProdutoController {
 
 				feedbacks.add("A imagem do produto não pode estar em branco.");
 			}
+
+			retorno = "redirect:cadastroDeProduto";
+		}
+
+		return retorno;
+	}
+
+	@RequestMapping("formAlterarDadosProduto")
+	public String formAlterarDadosProduto(Long idProduto) {
+
+		String retorno = "redirect:admin";
+
+		if (adminController.isLogado()) {
+
+			produto = produtoDao.findById(idProduto);
 
 			retorno = "redirect:cadastroDeProduto";
 		}
