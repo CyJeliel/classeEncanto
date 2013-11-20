@@ -258,4 +258,20 @@ public class ProdutoController {
 		return retorno;
 	}
 
+	@RequestMapping({ "/getImagemProduto" })
+	@ResponseBody
+	public byte[] getImagemProduto(Long idProduto) {
+
+		byte[] image = null;
+
+		Produto produto = produtoDao.findById(idProduto);
+
+		if (produto != null && produto.getImagem() != null) {
+
+			image = produto.getImagem();
+		}
+
+		return image;
+	}
+
 }

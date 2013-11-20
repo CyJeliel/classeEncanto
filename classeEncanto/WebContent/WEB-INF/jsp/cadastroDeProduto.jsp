@@ -9,6 +9,8 @@
 		<link type="text/css" rel="stylesheet" href="css/cadastroDeProdutos.css"/>		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroDeProduto.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
@@ -40,7 +42,10 @@
 						<input type="text" name="nome" value="${produto != null? produto.nome: ''}">
 					</div>
 					<div class="itemLadoDireito">
-						<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}">
+						<c:if test="${produto != null}">
+							<img id="imagem" alt="" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+						</c:if>
+						<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}" onchange="alterarVisibilidadeDaImagem(this)">
 					</div>
 					<div class="itemLadoDireito">
 						<input type="text" name="resumo" value="${produto != null? produto.resumo: ''}">
