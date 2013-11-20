@@ -27,7 +27,7 @@
 			<form method="post" action="salvarProduto" enctype="multipart/form-data">
 				<div class="ladoEsquerdo">
 					<div class="itemLadoEsquerdo">Nome:</div>
-					<div class="itemLadoEsquerdo">
+					<div class="itemImagem">
 						<label for="imagemDoProduto">Imagem:</label>
 					</div>
 					<div class="itemLadoEsquerdo">Resumo:</div>
@@ -46,6 +46,7 @@
 					<div class="itemLadoDireito">
 						<c:if test="${produto != null}">
 							<img id="imagem" alt="" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+							<br />
 						</c:if>
 						<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}" onchange="alterarVisibilidadeDaImagem(this)">
 					</div>

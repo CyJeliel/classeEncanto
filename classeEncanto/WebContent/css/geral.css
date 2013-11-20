@@ -138,3 +138,9 @@ footer {
 	background-color: #FF77CC;
 	color: #FFFFCC;
 }
+
+#conteudo {
+	width: 400px;
+	height: 300px;
+	margin-left: 400px;
+}

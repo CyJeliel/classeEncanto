@@ -13,11 +13,21 @@
 }
 
 .itemMaior {
-	margin-top: 65px;
-	margin-bottom: 30px;	
+	margin-top: 55px;
+	margin-bottom: 40px;	
 }
 
 .itemBotao {
 	margin-top: 57px;
+}
+
+.itemImagem {
+	margin-top: 35px;
+	margin-bottom: 65px;	
+}
+
+#imagem {
+	width: 80px;
+	margin-left: 3px;
 }
 

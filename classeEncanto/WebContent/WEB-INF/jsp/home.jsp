@@ -22,14 +22,16 @@
 			</c:otherwise>			
 		</c:choose>
 		<div id="conteudo">
-			<a href="#" onclick="exibeProximoDestaque()" id="setaFrente"><img src="img/setaFrente.png"></img></a>
-			<a href="#" onclick="exibeDestaqueAnterior()" id="setaTras"><img src="img/setaTras.png"></img></a>
-			
-			<c:forEach var="destaque" items="${listaDeDestaques}" >
-				<a id="${destaque.posicao}" href="detalhesDeProduto?idProduto=${destaque.id}">
-					<img  id="destaqueHome"	src="<%=request.getContextPath()%>/getDestaquehome?posicao=${destaque.posicao}">
-				</a>
-			</c:forEach>
+			<div id="conteudoHome">
+				<a href="#" onclick="exibeProximoDestaque()" id="setaFrente"><img src="img/setaFrente.png"></img></a>
+				<a href="#" onclick="exibeDestaqueAnterior()" id="setaTras"><img src="img/setaTras.png"></img></a>
+				
+				<c:forEach var="destaque" items="${listaDeDestaques}" >
+					<a id="${destaque.posicao}" href="detalhesDeProduto?idProduto=${destaque.id}">
+						<img  id="destaqueHome"	src="<%=request.getContextPath()%>/getDestaquehome?posicao=${destaque.posicao}">
+					</a>
+				</c:forEach>
+			</div>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>

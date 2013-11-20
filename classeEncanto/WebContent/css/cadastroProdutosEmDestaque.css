@@ -1,10 +1,11 @@
-#conteudo {
-	width: 400px;
-	height: 300px;
-	margin-left: 470px;
+#escolherProdutos {
+	margin-left: 70px;
 	margin-top: 40px;
 }
 
+#produtosEscolhidos {
+	margin-top: 40px;
+}
 .produtoDestaque {
 	border-color: #3399FF;
 	width: 170px;
