@@ -32,11 +32,12 @@
 	width: 40px;
 }
 
-#manterProduto {
+.manterProduto {
 	color: #FF3399;
 	text-decoration: none;
 	margin-left: 10px;
 	font-size: 15px;
+	cursor: pointer;
 }
 
 a#manterProduto:visited {

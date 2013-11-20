@@ -1,5 +1,6 @@
 package br.com.classeencanto.dao;
 
+import br.com.classeencanto.model.Entity;
 
 /**
  * Interface para classes que acessam o banco de dados.
@@ -8,16 +9,14 @@ package br.com.classeencanto.dao;
  * 
  * @param <T>
  */
-public interface DAO<T> {
+public interface DAO<T extends Entity> {
 
-	T find(T t);
-
-	T findById(Long id);
+	T findById(T t);
 
 	void save(T t);
 
 	void merge(T t);
 
-	void delete(Long id);
+	void delete(T t);
 
 }

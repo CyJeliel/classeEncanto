@@ -5,8 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.classeencanto.dao.DAO;
+import br.com.classeencanto.model.Entity;
 
-public class AbstractDAO<T> implements DAO<T> {
+public class AbstractDAO<T extends Entity> implements DAO<T> {
 
 	protected EntityManagerFactory factory;
 
@@ -16,19 +17,29 @@ public class AbstractDAO<T> implements DAO<T> {
 	}
 
 	@Override
-	public T findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public T findById(T t) {
+
+		beginTransaction();
+
+		@SuppressWarnings("unchecked")
+		T t1 = (T) em.find(t.getClass(), t.getId());
+
+		return t1;
 	}
 
-	@Override
-	public void save(T t) {
-
+	protected void beginTransaction() {
+		
 		factory = Persistence.createEntityManagerFactory("classeEncanto");
 
 		em = factory.createEntityManager();
 
 		em.getTransaction().begin();
+	}
+
+	@Override
+	public void save(T t) {
+
+		beginTransaction();
 
 		em.persist(t);
 
@@ -37,20 +48,23 @@ public class AbstractDAO<T> implements DAO<T> {
 
 	@Override
 	public void merge(T t) {
-		// TODO Auto-generated method stub
+
+		beginTransaction();
+
+		em.persist(t);
+
+		em.getTransaction().commit();
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
+	public void delete(T t) {
 
+		beginTransaction();
+
+		t = (T) em.find(t.getClass(), t.getId());
+
+		em.remove(t);
 	}
-
-	@Override
-	public T find(T t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

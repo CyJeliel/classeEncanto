@@ -17,10 +17,3 @@ window.onload = function() {
 	texto = "</ol>";
 	document.getElementById('listagemDeProdutos').innerHTML = texto;
 };
-
-
-function excluirProduto() {
-	if (window.confirm("Tem certeza que deseja excluir esse produto?")){
-		
-	}
-}

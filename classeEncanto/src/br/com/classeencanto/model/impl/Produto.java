@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class Produto implements br.com.classeencanto.model.Entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "produto_seq")

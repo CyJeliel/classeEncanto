@@ -20,4 +20,5 @@ public interface ProdutoDAO extends DAO<Produto> {
 
 	Destaque findDestaque(Integer posicaoAntiga);
 
+	Produto findById(Long idProduto);
 }

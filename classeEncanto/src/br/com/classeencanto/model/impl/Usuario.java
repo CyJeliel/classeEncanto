@@ -10,14 +10,14 @@ import br.com.classeencanto.dao.UsuarioDAO;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements br.com.classeencanto.model.Entity{
 	@Id
 	private Long id;
 	private String login;
 	private String senha;
 	private String email;
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -68,7 +68,7 @@ public class Usuario {
 
 		if (valido()) {
 
-			Usuario usuario = usuarioDAO.find(this);
+			Usuario usuario = usuarioDAO.findByLoginSenha(this);
 
 			if (usuario != null) {
 

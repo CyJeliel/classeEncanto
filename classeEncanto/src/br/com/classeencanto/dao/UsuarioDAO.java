@@ -9,4 +9,6 @@ public interface UsuarioDAO extends DAO<Usuario> {
 
 	Administrador findAdministrador(Administrador administrador);
 
+	Usuario findByLoginSenha(Usuario usuario);
+
 }

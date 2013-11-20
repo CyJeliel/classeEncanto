@@ -262,7 +262,7 @@ public class ProdutoController {
 			produto.setImagem(produtoExistente.getImagem());
 		}
 		
-		produtoDao.save(produto);
+		produtoDao.merge(produto);
 
 		feedbacks.add("Produto salvo com sucesso.");
 	}
@@ -310,6 +310,14 @@ public class ProdutoController {
 		}
 
 		return image;
+	}
+	
+	@RequestMapping("excluirProduto")
+	public String excluirProduto(Produto produto) {
+		
+		produtoDao.delete(produto);
+		
+		return "redirect:home";
 	}
 
 }

@@ -5,10 +5,10 @@
 <html>
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
-		<link type="text/css" rel="stylesheet" href="css/detalhesDoProduto.css"/>
+		<link type="text/css" rel="stylesheet" href="css/detalhesDeProduto.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
-		<script src="js/listagemDeProdutos.js"></script>
+		<script src="js/detalhesDeProduto.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
@@ -25,8 +25,12 @@
 			<c:out value="${produto.nome}"/> 
 			<a href="adicionarListaDeDesejos?produtoId=${produto.id}"><img src="img/listaDeDesejos.png" id="adicionarListaDeDesejos" title="Adicionar à Lista de Desejos"/></a>
 			<c:if test="${isAdmin}">
-				<a title="Alterar Produto" href="formAlterarDadosProduto?idProduto=${produto.id}">Alterar</a>
-				<a href="removerProduto?idProduto=${produto.id}"" title="Excluir Produto" id="manterProduto">Remover</a>
+				<a title="Alterar Produto" href="formAlterarDadosProduto?idProduto=${produto.id}" class="manterProduto">Alterar</a>
+				<!-- <a href="removerProduto?idProduto=${produto.id}" title="Excluir Produto" class="manterProduto">Remover</a> -->
+				<form method="post" action="excluirProduto">
+					<input type="hidden" value="${produto.id}">
+					<a onclick="excluirProduto()" title="Excluir Produto" class="manterProduto">Remover</a>
+				</form>
 			</c:if>
 		</h1>
 		<div>

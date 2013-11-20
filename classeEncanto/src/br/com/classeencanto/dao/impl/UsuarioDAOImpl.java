@@ -22,18 +22,18 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 	}
 
 	@Override
-	public Usuario find(Usuario t) {
-		// TODO REMOVER MÉTODO
-
-		Usuario usuario = new Usuario();
-
-		return usuario;
-	}
-
-	@Override
 	public Administrador findAdministrador(Administrador administrador) {
 		// TODO Auto-generated method stub
 		return administrador;
+	}
+
+	@Override
+	public Usuario findByLoginSenha(Usuario usuario) {
+		// TODO MÉTODO EM MOCK
+
+		usuario = new Usuario();
+
+		return usuario;
 	}
 
 }
