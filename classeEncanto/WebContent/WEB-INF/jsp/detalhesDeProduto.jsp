@@ -34,7 +34,7 @@
 			</c:if>
 		</h1>
 		<div>
-			<img src="img/produto<c:out value="${produto.id}"/>.png" alt="imagem do produto <c:out value="${produto.id}"/>" class="imagem_produto" />
+			<img class="imagemDetalhe" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}" alt="imagem do produto <c:out value="${produto.id}"/>" class="imagem_produto" />
 		</div>
 		<h2>Resumo</h2>
 		<p>

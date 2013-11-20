@@ -3,6 +3,10 @@ package br.com.classeencanto.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
@@ -73,9 +77,16 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public List<Produto> findProdutos(Long idCategoria) {
-		// TODO MÉTODO EM MOCK
 
-		return findListaDeDesejos(null);
+		beginTransaction();
+
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+
+		CriteriaQuery<Produto> criteria = builder.createQuery(Produto.class);
+
+		TypedQuery<Produto> query = em.createQuery(criteria);
+
+		return query.getResultList();
 	}
 
 	@Override
