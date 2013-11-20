@@ -203,7 +203,7 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("salvarProduto")
-	public String salvarProduto(Produto produto, HttpServletRequest request) {
+	public String salvarProduto(Produto produto, List<Integer> grupoDoProduto, HttpServletRequest request) {
 
 		String retorno = "redirect:admin";
 

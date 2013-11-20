@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,6 +28,10 @@ public class Produto implements br.com.classeencanto.model.Entity {
 	private String descricao;
 
 	private byte[] imagem;
+	
+	@ManyToMany
+	@JoinTable(name="produto_categoria", joinColumns={@JoinColumn(name="produto_id")}, inverseJoinColumns={@JoinColumn(name="categoria_id")})
+	private List<Categoria> categorias;
 
 	public long getId() {
 		return id;
@@ -92,6 +99,14 @@ public class Produto implements br.com.classeencanto.model.Entity {
 		}
 
 		return valido;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 }
