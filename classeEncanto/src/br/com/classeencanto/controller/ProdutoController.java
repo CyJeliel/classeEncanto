@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -203,7 +204,10 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("salvarProduto")
-	public String salvarProduto(Produto produto, List<Integer> grupoDoProduto, HttpServletRequest request) {
+	public String salvarProduto(Produto produto,
+			@RequestParam(value = "grupoDoProduto") String[] grupoDoProduto,
+			@RequestParam(value = "temaDoProduto") String[] temaDoProduto,
+			HttpServletRequest request) {
 
 		String retorno = "redirect:admin";
 
@@ -216,13 +220,13 @@ public class ProdutoController {
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
 				MultipartFile file = multipartRequest.getFile("arquivo");
-			
+
 				if (produto.getId() != 0){
-					
+
 					alterarProduto(produto, file);
-				
+
 				} else {
-					
+
 					inserirProduto(produto, file);
 				}
 			}
@@ -238,41 +242,41 @@ public class ProdutoController {
 		if (file != null) {
 
 			applyImagem(produto, file);
-			
+
 			produtoDao.save(produto);
 
 			feedbacks.add("Produto salvo com sucesso.");
-				
+
 		} else {
 
-			feedbacks.add("A imagem do produto não pode estar em branco.");
+			feedbacks.add("A imagem do produto nao pode estar em branco.");
 		}
 	}
 
 	private void alterarProduto(Produto produto, MultipartFile file) {
 
 		if (file != null){
-			
+
 			applyImagem(produto, file);
-			
+
 		} else {
-			
+
 			Produto produtoExistente = produtoDao.findById(produto.getId());
-			
+
 			produto.setImagem(produtoExistente.getImagem());
 		}
-		
+
 		produtoDao.merge(produto);
 
 		feedbacks.add("Produto salvo com sucesso.");
 	}
 
 	private void applyImagem (Produto produto, MultipartFile file){
-		
+
 		try {
-		
+
 			produto.setImagem(transformer.fileToByte(file));
-			
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -280,7 +284,7 @@ public class ProdutoController {
 			return;
 		}
 	}
-	
+
 	@RequestMapping("formAlterarDadosProduto")
 	public String formAlterarDadosProduto(Long idProduto) {
 
@@ -311,12 +315,12 @@ public class ProdutoController {
 
 		return image;
 	}
-	
+
 	@RequestMapping("excluirProduto")
 	public String excluirProduto(Produto produto) {
-		
+
 		produtoDao.delete(produto);
-		
+
 		return "redirect:home";
 	}
 
