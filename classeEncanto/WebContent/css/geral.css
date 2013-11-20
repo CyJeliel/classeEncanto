@@ -58,12 +58,12 @@ form {
 .menuSubtituloLink {
 	padding: 2px 5px 2px 5px;
 	display: block;
-	background-color: #F0F0F0;
+	background-color: #DDDDDD;
 	text-decoration: none;
 	text-align: center;
 	border-color: #3399FF;
 	border-style: solid;
-	color: #FF3399;
+	color: #FF55AA;
 	font-size: 1.1em;
 }
 
@@ -142,5 +142,5 @@ footer {
 #conteudo {
 	width: 400px;
 	height: 300px;
-	margin-left: 400px;
+	margin-left: 350px;
 }
