@@ -24,7 +24,7 @@
 				</c:forEach>
 			</c:if>
 			<h1>Novo Produto</h1>
-			<form method="post" action="novoProduto" enctype="multipart/form-data">
+			<form method="post" action="salvarProduto" enctype="multipart/form-data">
 				<div class="ladoEsquerdo">
 					<div class="itemLadoEsquerdo">Nome:</div>
 					<div class="itemLadoEsquerdo">
@@ -38,6 +38,8 @@
 					</div>
 				</div>
 				<div class="ladoDireito">
+					<input type="hidden" value="${produto != null? produto.id: 0}"/>
+				
 					<div class="itemLadoDireito">
 						<input type="text" name="nome" value="${produto != null? produto.nome: ''}">
 					</div>
