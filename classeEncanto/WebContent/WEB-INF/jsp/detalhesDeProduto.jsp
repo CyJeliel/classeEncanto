@@ -8,6 +8,7 @@
 		<link type="text/css" rel="stylesheet" href="css/detalhesDeProduto.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
 		<script src="js/detalhesDeProduto.js"></script>
 	</head>
 	<body>
@@ -26,10 +27,9 @@
 			<a href="adicionarListaDeDesejos?produtoId=${produto.id}"><img src="img/listaDeDesejos.png" id="adicionarListaDeDesejos" title="Adicionar à Lista de Desejos"/></a>
 			<c:if test="${isAdmin}">
 				<a title="Alterar Produto" href="formAlterarDadosProduto?idProduto=${produto.id}" class="manterProduto">Alterar</a>
-				<!-- <a href="removerProduto?idProduto=${produto.id}" title="Excluir Produto" class="manterProduto">Remover</a> -->
-				<form method="post" action="excluirProduto">
-					<input type="hidden" value="${produto.id}">
-					<a onclick="excluirProduto()" title="Excluir Produto" class="manterProduto">Remover</a>
+				<form method="post" action="excluirProduto" id="formRemoverProduto">
+					<input name="id" type="hidden" value="${produto.id}">
+					<a onclick="excluirProduto(this.form)" title="Excluir Produto" class="manterProduto">Remover</a>
 				</form>
 			</c:if>
 		</h1>

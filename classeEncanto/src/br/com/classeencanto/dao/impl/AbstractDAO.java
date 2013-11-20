@@ -66,5 +66,7 @@ public class AbstractDAO<T extends Entity> implements DAO<T> {
 		t = (T) em.find(t.getClass(), t.getId());
 
 		em.remove(t);
+		
+		em.getTransaction().commit();
 	}
 }
