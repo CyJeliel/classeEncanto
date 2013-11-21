@@ -23,7 +23,16 @@
 					<div class="feedback"><c:out value="${feedback}"></c:out></div>
 				</c:forEach>
 			</c:if>
-			<h1>Novo Produto</h1>
+			
+			<c:choose>
+				<c:when test="${produto != null}">
+					<h1>Alterar Produto</h1>
+				</c:when>
+				<c:otherwise>
+					<h1>Novo Produto</h1>
+				</c:otherwise>
+			</c:choose>
+			
 			<form method="post" action="salvarProduto" enctype="multipart/form-data">
 				<input name="id" type="hidden" value="${produto != null? produto.id: 0}"/>
 				<table>
@@ -58,7 +67,7 @@
 					<tr>
 						<td>Eventos:</td>
 						<td>
-							<select multiple name="grupoDoProduto">
+							<select multiple name="grupoDoProduto" id="grupoDoProduto">
 								<c:forEach var="categoria" items="${gruposCategoria}">
 									<option value="${categoria.id}">${categoria.descricao}</option>								
 								</c:forEach>
@@ -68,7 +77,7 @@
 					<tr>
 						<td>Decorações:</td>
 						<td>
-							<select multiple name="temaDoProduto">
+							<select multiple name="temaDoProduto" id="temaDoProduto">
 								<c:forEach var="categoria" items="${temasCategoria}">
 									<option value="${categoria.id}">${categoria.descricao}</option>								
 								</c:forEach>
@@ -77,7 +86,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="submit" value="${produto != null? 'Alterar': 'Criar'}">
+							<input type="button" value="${produto != null? 'Alterar': 'Criar'}" onclick="validaCadastro(this.form)">
 						</td>
 						<td>
 							<input type="reset" value="Cancelar">
