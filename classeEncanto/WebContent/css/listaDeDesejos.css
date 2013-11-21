@@ -40,6 +40,10 @@
 	margin-left: 30px;
 }
 
+a.link {
+	color: #3399FF;
+}
+
 a.link:visited {
 	color: #3399FF;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,7 +33,14 @@
 			</div>
 			<div id="escolherProdutos" style="display: none;">
 				<div id="miniaturasBox">
-					<div class="miniatura">
+					<c:forEach var="produto" items="${listaDeProdutos}" >
+						<div class="miniatura">
+							<img onclick="selecionaProduto();" class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+						</div>
+					</c:forEach>
+				
+				
+					<!-- <div class="miniatura">
 						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
 					</div>
 					<div class="miniatura">
@@ -76,7 +84,7 @@
 					</div>
 					<div class="miniatura">
 						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

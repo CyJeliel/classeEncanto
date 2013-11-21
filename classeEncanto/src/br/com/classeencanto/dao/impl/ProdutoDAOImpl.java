@@ -3,6 +3,7 @@ package br.com.classeencanto.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -78,15 +79,31 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	@Override
 	public List<Produto> findProdutos(Long idCategoria) {
 
-		beginTransaction();
+		EntityManager em = beginTransaction();
 
-		CriteriaBuilder builder = em.getCriteriaBuilder();
+		try {
 
-		CriteriaQuery<Produto> criteria = builder.createQuery(Produto.class);
+			CriteriaBuilder builder = em.getCriteriaBuilder();
 
-		TypedQuery<Produto> query = em.createQuery(criteria);
+			CriteriaQuery<Produto> criteria = builder
+					.createQuery(Produto.class);
 
-		return query.getResultList();
+			TypedQuery<Produto> query = em.createQuery(criteria);
+
+			List<Produto> resultList = query.getResultList();
+
+			return resultList;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@Override
@@ -118,15 +135,28 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	@Override
 	public Destaque findDestaque(Integer posicaoAntiga) {
 
-		super.beginTransaction();
+		EntityManager em = super.beginTransaction();
 
-		Produto produto = em.find(Produto.class, 10l);
+		try {
 
-		Destaque destaque = new Destaque(produto);
+			Produto produto = em.find(Produto.class, 10l);
 
-		destaque.setPosicao(1);
+			Destaque destaque = new Destaque(produto);
 
-		return destaque;
+			destaque.setPosicao(1);
+
+			return destaque;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@Override

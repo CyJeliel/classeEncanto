@@ -78,14 +78,20 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("produtoDestaque")
-	public String cadastroProdutosEmDestaque(Usuario usuario) {
+	public ModelAndView cadastroProdutosEmDestaque(Usuario usuario) {
 
+		ModelAndView mav = new ModelAndView("loginAdmin");
+		
 		if (adminController.isLogado()) {
 
-			return "cadastroProdutosEmDestaque";
+			List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
+			
+			mav.addObject("listaDeProdutos", listaDeProdutos );
+			
+			mav.setViewName("cadastroProdutosEmDestaque");
 		}
 
-		return "loginAdmin";
+		return mav;
 	}
 
 	@RequestMapping({ "/cadastroDeProduto" })

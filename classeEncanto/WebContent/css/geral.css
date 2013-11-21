@@ -133,7 +133,6 @@ footer {
 
 .feedback {
 	margin-top: 10px;
-	margin-left: 345px;
 	width: 400px;
 	background-color: #FF77CC;
 	color: #FFFFCC;
@@ -143,4 +142,5 @@ footer {
 	width: 400px;
 	height: 300px;
 	margin-left: 350px;
+	min-height: 500px;
 }

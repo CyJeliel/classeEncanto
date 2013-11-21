@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="ladoDireito">
-					<input type="hidden" value="${produto != null? produto.id: 0}"/>
+					<input name="id" type="hidden" value="${produto != null? produto.id: 0}"/>
 				
 					<div class="itemLadoDireito">
 						<input type="text" name="nome" value="${produto != null? produto.nome: ''}">

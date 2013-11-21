@@ -9,64 +9,122 @@ import br.com.classeencanto.model.Entity;
 
 public class AbstractDAO<T extends Entity> implements DAO<T> {
 
-	protected EntityManagerFactory factory;
-
-	protected EntityManager em;
-
+	private EntityManagerFactory factory;
+	
 	public AbstractDAO() {
 	}
 
 	@Override
 	public T findById(T t) {
 
-		beginTransaction();
+		EntityManager em = beginTransaction();
 
-		@SuppressWarnings("unchecked")
-		T t1 = (T) em.find(t.getClass(), t.getId());
+		try {
 
-		return t1;
-	}
+			@SuppressWarnings("unchecked")
+			T t1 = (T) em.find(t.getClass(), t.getId());
 
-	protected void beginTransaction() {
-		
-		factory = Persistence.createEntityManagerFactory("classeEncanto");
+			return t1;
 
-		em = factory.createEntityManager();
+		} catch (Exception e) {
 
-		em.getTransaction().begin();
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@Override
 	public void save(T t) {
 
-		beginTransaction();
+		EntityManager em = beginTransaction();
 
-		em.persist(t);
+		try {
 
-		em.getTransaction().commit();
+			em.persist(t);
+
+			em.getTransaction().commit();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@Override
 	public void merge(T t) {
 
-		beginTransaction();
+		EntityManager em = beginTransaction();
 
-		em.persist(t);
+		try {
+			
+			em.merge(t);
 
-		em.getTransaction().commit();
+			em.getTransaction().commit();
 
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void delete(T t) {
-
-		beginTransaction();
-
-		t = (T) em.find(t.getClass(), t.getId());
-
-		em.remove(t);
 		
-		em.getTransaction().commit();
+		EntityManager em = beginTransaction();
+
+		try {
+			
+			t = (T) em.find(t.getClass(), t.getId());
+
+			em.remove(t);
+
+			em.getTransaction().commit();
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
+	}
+
+	protected EntityManager beginTransaction() {
+
+		factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = factory.createEntityManager();
+
+		em.getTransaction().begin();
+		
+		return em;
+	}
+
+	protected void endTransaction(EntityManager em) {
+
+		em.close();
+
+		factory.close();
 	}
 }
