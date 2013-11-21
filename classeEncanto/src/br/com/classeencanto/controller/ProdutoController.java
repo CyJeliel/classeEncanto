@@ -3,6 +3,7 @@ package br.com.classeencanto.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,10 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.model.impl.Categoria;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.transformer.ArrayTransformer;
 import br.com.classeencanto.transformer.ImageTransformer;
 
 @Controller
@@ -31,13 +35,16 @@ public class ProdutoController {
 	private LoginController loginController;
 
 	@Autowired
-	private CategoriaController categoriaController;
-
-	@Autowired
 	private ProdutoDAO produtoDao;
 
 	@Autowired
+	private CategoriaDAO categoriaDao;
+
+	@Autowired
 	private ImageTransformer transformer;
+
+	@Autowired
+	private ArrayTransformer arrayTransformer;
 
 	private List<String> feedbacks;
 
@@ -89,7 +96,7 @@ public class ProdutoController {
 
 			List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
 
-			mav.addObject("listaDeProdutos", listaDeProdutos );
+			mav.addObject("listaDeProdutos", listaDeProdutos);
 
 			mav.setViewName("cadastroProdutosEmDestaque");
 		}
@@ -113,6 +120,15 @@ public class ProdutoController {
 			mav.addObject("feedbacks", feedbacks);
 
 			mav.addObject("produto", produto);
+
+			List<Categoria> gruposCategoria = categoriaDao.findByTipo("Evento");
+
+			List<Categoria> temasCategoria = categoriaDao
+					.findByTipo("Decoracao");
+
+			mav.addObject("gruposCategoria", gruposCategoria);
+
+			mav.addObject("temasCategoria", temasCategoria);
 
 		} else {
 
@@ -218,20 +234,21 @@ public class ProdutoController {
 			@RequestParam(value = "temaDoProduto") String[] temaDoProduto,
 			HttpServletRequest request) {
 
-
 		String retorno = "redirect:admin";
 
 		if (adminController.isLogado()) {
 
 			feedbacks.clear();
 
-			if (produto.valido(feedbacks)){
+			if (produto.valido(feedbacks)) {
 
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
 				MultipartFile file = multipartRequest.getFile("arquivo");
 
-				if (produto.getId() != 0){
+				applyCategorias(produto, grupoDoProduto, temaDoProduto);
+
+				if (produto.getId() != 0) {
 
 					alterarProduto(produto, file);
 
@@ -245,6 +262,24 @@ public class ProdutoController {
 		}
 
 		return retorno;
+	}
+
+	private void applyCategorias(Produto produto, String[] grupoDoProduto,
+			String[] temaDoProduto) {
+
+		Set<String> gruposDoProduto = arrayTransformer
+				.arrayToSet(grupoDoProduto);
+
+		Set<String> temasDoProduto = arrayTransformer
+				.arrayToSet(temaDoProduto);
+
+		List<Categoria> grupos = categoriaDao.findByIds(gruposDoProduto);
+
+		List<Categoria> temas = categoriaDao.findByIds(temasDoProduto);
+
+		grupos.addAll(temas);
+
+		produto.setCategorias(grupos);
 	}
 
 	private void inserirProduto(Produto produto, MultipartFile file) {
@@ -265,7 +300,7 @@ public class ProdutoController {
 
 	private void alterarProduto(Produto produto, MultipartFile file) {
 
-		if (file != null){
+		if (file != null) {
 
 			applyImagem(produto, file);
 
@@ -281,7 +316,7 @@ public class ProdutoController {
 		feedbacks.add("Produto alterado com sucesso.");
 	}
 
-	private void applyImagem (Produto produto, MultipartFile file){
+	private void applyImagem(Produto produto, MultipartFile file) {
 
 		try {
 

@@ -52,7 +52,7 @@
 					<tr>
 						<td>Detalhes:</td>
 						<td>
-							<textarea name="descricao" cols="50"  value="${produto != null? produto.descricao: ''}"></textarea>
+							<textarea name="descricao" cols="50">${produto != null? produto.descricao: ''}</textarea>
 						</td>
 					</tr>
 					<tr>
@@ -62,14 +62,6 @@
 								<c:forEach var="categoria" items="${gruposCategoria}">
 									<option value="${categoria.id}">${categoria.descricao}</option>								
 								</c:forEach>
-							
-							
-								<option value="01">Aniversário</option>
-								<option value="02">Batizado</option>
-								<option value="03">Casamento</option>
-								<option value="04">Chá de Bebê</option>
-								<option value="05">Debutante</option>
-								<option value="06">Nascimento</option>
 							</select>
 						</td>
 					</tr>
@@ -80,12 +72,6 @@
 								<c:forEach var="categoria" items="${temasCategoria}">
 									<option value="${categoria.id}">${categoria.descricao}</option>								
 								</c:forEach>
-								<option value="01">Convites</option>
-								<option value="02">Lembrancinhas</option>
-								<option value="03">Kit Higiene</option>
-								<option value="04">Kit Ressaca</option>
-								<option value="05">Mesa do Bolo</option>
-								<option value="06">Mesa dos Convidados</option>
 							</select>
 						</td>
 					</tr>

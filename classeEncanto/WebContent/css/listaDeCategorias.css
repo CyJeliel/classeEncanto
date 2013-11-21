@@ -19,3 +19,11 @@ a#manterCategoria:visited {
 #conteudo {
 	color: #3399FF;
 }
+
+td.descricao {
+	min-width: 170px;
+}
+
+th {
+
+}

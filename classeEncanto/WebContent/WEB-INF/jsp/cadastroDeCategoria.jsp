@@ -8,8 +8,6 @@
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroDeProduto.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
@@ -27,17 +25,24 @@
 				
 				<input name="id" type="hidden" value="${categoria != null? categoria.id: 0}"/>
 				
-				Descrição:
-				
-				<input type="text" name="descricao" value="${categoria != null? categoria.descricao: ''}">
-				<br/>
-				
-				Tipo:
-				
-				<input type="text" name="tipo" value="${categoria != null? categoria.tipo: ''}">
-				<br/>
-				<input type="submit" value="${categoria != null? 'Alterar': 'Criar'}">
-				<input type="reset" value="Cancelar">
+				<table>
+					<tr>
+						<td>Descrição:</td>
+						<td><input type="text" name="descricao" value="${categoria != null? categoria.descricao: ''}"></td>
+					</tr>
+					<tr>
+						<td>Tipo:</td>
+						<td><input type="text" name="tipo" value="${categoria != null? categoria.tipo: ''}"></td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="${categoria != null? 'Alterar': 'Criar'}">
+						</td>
+						<td>
+							<input type="reset" value="Cancelar">
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

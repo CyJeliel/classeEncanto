@@ -29,11 +29,13 @@
 			<c:choose>
 				<c:when test="${listaDeCategorias != null && !listaDeCategorias.isEmpty()}">
 					<table>
-						<th><b>Categoria</b></th>
-						<th><b>Tipo</b></th>
+						<tr>
+							<th><b>Categoria</b></th>
+							<th><b>Tipo</b></th>
+						</tr>
 						<c:forEach var="categoria" items="${listaDeCategorias}" >
 							<tr>
-								<td>${categoria.descricao}</td>
+								<td class="descricao">${categoria.descricao}</td>
 								<td>${categoria.tipo}</td>
 								<td><a title="Alterar categoria" href="formAlterarDadosCategoria?idCategoria=${categoria.id}" class="manterCategoria">Alterar</a></td>
 								<td>

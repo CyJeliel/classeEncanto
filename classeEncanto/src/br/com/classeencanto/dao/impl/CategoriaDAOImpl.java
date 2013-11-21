@@ -1,6 +1,8 @@
 package br.com.classeencanto.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -56,6 +58,63 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 
 			endTransaction(em);
 		}
+	}
+
+	@Override
+	public List<Categoria> findByTipo(String string) {
+
+		EntityManager em = beginTransaction();
+
+		try {
+
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+
+			CriteriaQuery<Categoria> criteria = builder
+					.createQuery(Categoria.class);
+
+			TypedQuery<Categoria> query = em.createQuery(criteria);
+
+			List<Categoria> resultList = query.getResultList();
+
+			return resultList;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
+	}
+
+	@Override
+	public List<Categoria> findByIds(Set<String> ids) {
+
+		List<Categoria> categorias = new ArrayList<>();
+
+		for (String idString : ids) {
+
+			long id;
+			try {
+
+				id = Long.parseLong(idString);
+
+			} catch (NumberFormatException e) {
+
+				e.printStackTrace();
+
+				return null;
+			}
+
+			Categoria categoria = findById(id);
+
+			categorias.add(categoria);
+		}
+
+		return categorias;
 	}
 
 }
