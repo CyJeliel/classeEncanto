@@ -81,13 +81,13 @@ public class ProdutoController {
 	public ModelAndView cadastroProdutosEmDestaque(Usuario usuario) {
 
 		ModelAndView mav = new ModelAndView("loginAdmin");
-		
+
 		if (adminController.isLogado()) {
 
 			List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
-			
+
 			mav.addObject("listaDeProdutos", listaDeProdutos );
-			
+
 			mav.setViewName("cadastroProdutosEmDestaque");
 		}
 
@@ -275,7 +275,7 @@ public class ProdutoController {
 
 		produtoDao.merge(produto);
 
-		feedbacks.add("Produto salvo com sucesso.");
+		feedbacks.add("Produto alterado com sucesso.");
 	}
 
 	private void applyImagem (Produto produto, MultipartFile file){

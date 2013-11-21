@@ -122,7 +122,7 @@ footer {
 .error {
 	color: #ff0000;
 }
- 
+
 .errorblock {
 	color: #000;
 	background-color: #ffEEEE;
@@ -143,4 +143,5 @@ footer {
 	height: 300px;
 	margin-left: 350px;
 	min-height: 500px;
+	font-family: "calibri", Garamond, 'Comic Sans';
 }

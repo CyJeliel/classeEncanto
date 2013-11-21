@@ -28,7 +28,7 @@ public class Produto implements br.com.classeencanto.model.Entity {
 	private String descricao;
 
 	private byte[] imagem;
-	
+
 	@ManyToMany
 	@JoinTable(name="produto_categoria", joinColumns={@JoinColumn(name="produto_id")}, inverseJoinColumns={@JoinColumn(name="categoria_id")})
 	private List<Categoria> categorias;
@@ -79,21 +79,21 @@ public class Produto implements br.com.classeencanto.model.Entity {
 
 		if (nome == null || nome.isEmpty()) {
 
-			feedbacks.add("O nome do produto n„o pode estar em branco.");
+			feedbacks.add("O nome do produto n√£o pode estar em branco.");
 
 			valido = false;
 		}
 
 		if (resumo == null) {
 
-			feedbacks.add("O resumo do produto n„o pode estar em branco.");
+			feedbacks.add("O resumo do produto n√£o pode estar em branco.");
 
 			valido = false;
 		}
 
 		if (descricao == null) {
 
-			feedbacks.add("A descriÁ„o do produto n„o pode estar em branco.");
+			feedbacks.add("A descri√ß√£o do produto n√£o pode estar em branco.");
 
 			valido = false;
 		}

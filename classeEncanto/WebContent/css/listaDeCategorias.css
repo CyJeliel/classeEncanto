@@ -1,0 +1,21 @@
+.manterCategoria {
+	color: #FF3399;
+	text-decoration: none;
+	margin-left: 10px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+a#manterCategoria:visited {
+	color: #FF3399;
+	text-decoration: none;
+}
+
+#formRemoverCategoria {
+	min-width: 100px;
+	display: inline;
+}
+
+#conteudo {
+	color: #3399FF;
+}
