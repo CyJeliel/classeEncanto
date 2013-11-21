@@ -1,7 +1,10 @@
 package br.com.classeencanto.model.impl;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
@@ -11,11 +14,19 @@ import br.com.classeencanto.dao.UsuarioDAO;
 @Entity
 @Table(name = "usuario")
 public class Usuario implements br.com.classeencanto.model.Entity{
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "usuario_seq")
+	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_id_seq", allocationSize = 1)
 	private Long id;
+
 	private String login;
+
 	private String senha;
+
 	private String email;
+
+	private boolean admin;
 
 	public long getId() {
 		return id;
@@ -47,6 +58,14 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	public boolean valido() {

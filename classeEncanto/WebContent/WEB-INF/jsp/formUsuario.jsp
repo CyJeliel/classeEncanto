@@ -21,33 +21,50 @@
 				<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 			</c:otherwise>			
 		</c:choose>
+			
+		<c:if test="${feedbacks != null}">
+			<c:forEach var="feedback" items="${feedbacks}">
+				<div class="feedback"><c:out value="${feedback}"></c:out></div>
+			</c:forEach>
+		</c:if>
+		
 		<div>
 			<h1>Novo Usuário</h1>
 			<form action="novoUsuario" method="post">
-				<div class="ladoEsquerdo">
-					<div class="itemLadoEsquerdo">* Login:</div>
-					<div class="itemLadoEsquerdo">* Senha:</div>
-					<div class="itemLadoEsquerdo">* Confirmação:</div>
-					<div class="itemLadoEsquerdo">* Email:</div>
-				</div>
-				<div class="ladoDireito">
-					<div class="itemLadoDireito">
-						<input type="text" name="login"/>
-					</div>
-					<div class="itemLadoDireito">
-						<input type="text" name="senha"/>
-					</div>
-					<div class="itemLadoDireito">
-						<input type="text" name="confirmacaoSenha"/>
-					</div>
-					<div class="itemLadoDireito">
-						<input type="text" name="email"/>
-					</div>
-					<div class="itemLadoDireito">
-						<input type="button" onclick="check(this.form)" value="Criar"/>
-						<input type="reset" value="Cancelar">
-					</div>
-				</div>
+				<table>
+					<tr>
+						<td>* Login:</td>
+						<td>
+							<input type="text" name="login"/>
+						</td>						
+					</tr>
+					<tr>
+						<td>* Senha:</td>
+						<td>
+							<input type="password" name="senha"/>
+						</td>						
+					</tr>
+					<tr>
+						<td>* Confirmação:</td>
+						<td>
+							<input type="password" name="confirmacaoSenha"/>
+						</td>						
+					</tr>
+					<tr>
+						<td>* Email:</td>
+						<td>
+							<input type="text" name="email"/>
+						</td>	
+					</tr>
+					<tr>
+						<td>
+							<input type="button" onclick="check(this.form)" value="Criar"/>
+						</td>
+						<td>
+							<input type="reset" value="Cancelar">
+						</td>						
+					</tr>
+				</table>
 			</form>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

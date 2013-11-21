@@ -3,6 +3,7 @@ package br.com.classeencanto.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.impl.Usuario;
@@ -17,7 +18,7 @@ public class LoginController extends AbstractLoginController {
 	private UsuarioDAO usuarioDAO;
 
 	@RequestMapping("login")
-	public String login(Usuario usuario) {
+	public ModelAndView login(Usuario usuario) {
 
 		return super.login(usuario, usuarioDAO);
 	}
@@ -34,22 +35,26 @@ public class LoginController extends AbstractLoginController {
 
 	@RequestMapping("logout")
 	public String logout() {
-		
+
 		adminController.logout();
-		
+
 		return super.logout();
 	}
 
 	@RequestMapping("formNovoUsuario")
-	public String formUsuario() {
+	public ModelAndView formUsuario() {
 
 		adminController.logout();
 
-		return "formUsuario";
+		ModelAndView mav = new ModelAndView("formUsuario");
+
+		mav.addObject("isAdmin", adminController.isLogado());
+
+		return mav;
 	}
 
 	@RequestMapping("novoUsuario")
-	public String novoUsuario(Usuario usuario) {
+	public ModelAndView novoUsuario(Usuario usuario) {
 
 		adminController.logout();
 

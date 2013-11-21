@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,10 +16,8 @@ import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Categoria;
-import br.com.classeencanto.model.impl.Categoria_;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
-import br.com.classeencanto.model.impl.Produto_;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
@@ -47,17 +44,19 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 		Set<Long> idsCategorias = new HashSet<>();
 
-		for (Categoria categoria: categorias){
+		for (Categoria categoria : categorias) {
 
 			idsCategorias.add(categoria.getId());
 		}
 
-		List<Produto> itensRelacionados = findProdutosRelacionados(idsCategorias, idProduto);
+		List<Produto> itensRelacionados = findProdutosRelacionados(
+				idsCategorias, idProduto);
 
 		return itensRelacionados;
 	}
 
-	private List<Produto> findProdutosRelacionados(Set<Long> idsCategorias, Long idProduto) {
+	private List<Produto> findProdutosRelacionados(Set<Long> idsCategorias,
+			Long idProduto) {
 
 		EntityManager em = beginTransaction();
 
@@ -72,7 +71,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			criteria.distinct(true).where(categoria.get("id").in(idsCategorias)).where(builder.notEqual(produto.get("id"), idProduto));
+			criteria.distinct(true)
+					.where(categoria.get("id").in(idsCategorias))
+					.where(builder.notEqual(produto.get("id"), idProduto));
 
 			TypedQuery<Produto> query = em.createQuery(criteria);
 
@@ -143,7 +144,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			criteria.distinct(true).where(builder.equal(categoria.get("id"), builder.parameter(Long.class, "idCategoria")));
+			criteria.distinct(true).where(
+					builder.equal(categoria.get("id"),
+							builder.parameter(Long.class, "idCategoria")));
 
 			TypedQuery<Produto> query = em.createQuery(criteria);
 

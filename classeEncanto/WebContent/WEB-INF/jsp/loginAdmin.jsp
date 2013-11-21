@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
@@ -19,19 +19,27 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<h1>Acesso à administração</h1>
-		
-		<form id="form" action="admin" method="post">
-				Login
-				<br/>
-				<input type="text" name="login"/>
-				<br/>
-				Senha
-				<br/>
-				<input type="password" name="senha"/>
-				<br/>
-				<input type="button" onclick="check(this.form)" value="Login"/>
-		</form>
+		<div id="conteudo">
+			<h1>Acesso à administração</h1>
+					
+				<c:if test="${feedbacks != null}">
+					<c:forEach var="feedback" items="${feedbacks}">
+						<div class="feedback"><c:out value="${feedback}"></c:out></div>
+					</c:forEach>
+				</c:if>
+			
+			<form id="form" action="admin" method="post">
+					Login
+					<br/>
+					<input type="text" name="login"/>
+					<br/>
+					Senha
+					<br/>
+					<input type="password" name="senha"/>
+					<br/>
+					<input type="button" onclick="check(this.form)" value="Login"/>
+			</form>
+		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>
 </html>

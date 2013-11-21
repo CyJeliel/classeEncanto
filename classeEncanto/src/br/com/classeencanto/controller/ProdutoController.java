@@ -99,6 +99,9 @@ public class ProdutoController {
 			mav.addObject("listaDeProdutos", listaDeProdutos);
 
 			mav.setViewName("cadastroProdutosEmDestaque");
+		} else {
+
+			mav.setViewName("loginAdmin");
 		}
 
 		return mav;

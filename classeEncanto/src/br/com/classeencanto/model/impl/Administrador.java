@@ -1,22 +1,15 @@
 package br.com.classeencanto.model.impl;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import br.com.classeencanto.dao.UsuarioDAO;
 
-@Entity
-@Table(name = "administrador")
 public class Administrador extends Usuario {
 
-	private boolean admin;
-
 	public boolean isAdmin() {
-		return admin;
+		return super.isAdmin();
 	}
 
 	public void setAdmin(boolean admin) {
-		this.admin = admin;
+		super.setAdmin(admin);
 	}
 
 	@Override
@@ -26,7 +19,7 @@ public class Administrador extends Usuario {
 
 			this.setAdmin(true);
 
-			Administrador administrador = usuarioDAO.findAdministrador(this);
+			Usuario administrador = usuarioDAO.findByLoginSenha(this);
 
 			if (administrador != null) {
 
