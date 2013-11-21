@@ -1,18 +1,26 @@
 package br.com.classeencanto.dao.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.model.impl.Categoria;
+import br.com.classeencanto.model.impl.Categoria_;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
+import br.com.classeencanto.model.impl.Produto_;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
@@ -20,7 +28,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public Produto findById(Produto produto) {
-		// TODO REMOVER MÉTODO
+		// TODO REMOVER Mï¿½TODO
 
 		// Produto produto = new Produto();
 		produto.setNome("Bandaid's personalizados 2");
@@ -30,20 +38,63 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	}
 
 	@Override
-	public List<Long> findProdutosRelacionados(Long idProduto) {
-		// TODO MÉTODO EM MOCK
+	public List<Produto> findProdutosRelacionados(Long idProduto) {
+		// TODO Mï¿½TODO EM MOCK
 
-		List<Long> itensRelacionados = new ArrayList<>();
-		itensRelacionados.add(2L);
-		itensRelacionados.add(3L);
-		itensRelacionados.add(4L);
-		itensRelacionados.add(5L);
+		Produto produto = findById(idProduto);
+
+		List<Categoria> categorias = produto.getCategorias();
+
+		Set<Long> idsCategorias = new HashSet<>();
+
+		for (Categoria categoria: categorias){
+
+			idsCategorias.add(categoria.getId());
+		}
+
+		List<Produto> itensRelacionados = findProdutosRelacionados(idsCategorias, idProduto);
+
 		return itensRelacionados;
+	}
+
+	private List<Produto> findProdutosRelacionados(Set<Long> idsCategorias, Long idProduto) {
+
+		EntityManager em = beginTransaction();
+
+		try {
+
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+
+			CriteriaQuery<Produto> criteria = builder
+					.createQuery(Produto.class);
+
+			Root<Produto> produto = criteria.from(Produto.class);
+
+			Join<Produto, Categoria> categoria = produto.join("categorias");
+
+			criteria.distinct(true).where(categoria.get("id").in(idsCategorias)).where(builder.notEqual(produto.get("id"), idProduto));
+
+			TypedQuery<Produto> query = em.createQuery(criteria);
+
+			List<Produto> resultList = query.getResultList();
+
+			return resultList;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
 	}
 
 	@Override
 	public List<Produto> findListaDeDesejos(Usuario usuario) {
-		// TODO MÉTODO EM MOCK
+		// TODO Mï¿½TODO EM MOCK
 
 		List<Produto> listaDeDesejos = new ArrayList<>();
 
@@ -68,7 +119,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public List<Produto> addToListaDeDesejos(Produto produto, Usuario usuario) {
-		// TODO MÉTODO EM MOCK
+		// TODO Mï¿½TODO EM MOCK
 		List<Produto> listaDeDesejos = findListaDeDesejos(usuario);
 
 		listaDeDesejos.add(produto);
@@ -88,7 +139,15 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 			CriteriaQuery<Produto> criteria = builder
 					.createQuery(Produto.class);
 
+			Root<Produto> produto = criteria.from(Produto.class);
+
+			Join<Produto, Categoria> categoria = produto.join("categorias");
+
+			criteria.distinct(true).where(builder.equal(categoria.get("id"), builder.parameter(Long.class, "idCategoria")));
+
 			TypedQuery<Produto> query = em.createQuery(criteria);
+
+			query.setParameter("idCategoria", idCategoria);
 
 			List<Produto> resultList = query.getResultList();
 
@@ -108,7 +167,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public List<Destaque> findListaDeDestaques() {
-		// TODO MÉTODO EM MOCK
+		// TODO Mï¿½TODO EM MOCK
 
 		List<Destaque> listaDeDestaques = new ArrayList<>();
 

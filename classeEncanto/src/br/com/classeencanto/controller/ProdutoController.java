@@ -154,7 +154,7 @@ public class ProdutoController {
 
 		mav.addObject("produto", produto);
 
-		List<Long> itensRelacionados = produtoDao
+		List<Produto> itensRelacionados = produtoDao
 				.findProdutosRelacionados(idProduto);
 
 		mav.addObject("itensRelacionados", itensRelacionados);
@@ -189,13 +189,13 @@ public class ProdutoController {
 	}
 
 	@RequestMapping("listaDeProdutos")
-	public ModelAndView listaDeProdutos() {
+	public ModelAndView listaDeProdutos(Long idCategoria) {
 
 		ModelAndView mav = new ModelAndView();
 
 		mav.setViewName("listaDeProdutos");
 
-		List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
+		List<Produto> listaDeProdutos = produtoDao.findProdutos(idCategoria);
 
 		mav.addObject("listaDeProdutos", listaDeProdutos);
 

@@ -8,7 +8,7 @@ import br.com.classeencanto.model.impl.Usuario;
 
 public interface ProdutoDAO extends DAO<Produto> {
 
-	List<Long> findProdutosRelacionados(Long idProduto);
+	List<Produto> findProdutosRelacionados(Long idProduto);
 
 	List<Produto> findListaDeDesejos(Usuario usuario);
 

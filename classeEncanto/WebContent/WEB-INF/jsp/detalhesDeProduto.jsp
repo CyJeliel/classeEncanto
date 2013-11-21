@@ -46,19 +46,21 @@
 			<p>
 				<c:out value="${produto.descricao}"/>
 			</p>
-	
-			<h2>Itens relacionados</h2>		
-			<div id="escolherProdutos">
-				<div id="miniaturasBox">
-					<c:forEach var="item" items="${itensRelacionados}" >
-						<div class="miniatura">
-							<a href="detalhesDeProduto?idProduto=<c:out value="${item}"/>">
-								<img class="produto" src="img/bandaid.jpg">
-							</a>
-						</div>
-					</c:forEach>
+			
+			<c:if test="${itensRelacionados != null && !itensRelacionados.isEmpty()}">
+				<h2>Itens relacionados</h2>		
+				<div id="escolherProdutos">
+					<div id="miniaturasBox">
+						<c:forEach var="item" items="${itensRelacionados}" >
+							<div class="miniatura">
+								<a href="detalhesDeProduto?idProduto=<c:out value="${item.id}"/>">
+									<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${item.id}">
+								</a>
+							</div>
+						</c:forEach>
+					</div>
 				</div>
-			</div>
+			</c:if>
 		</div>
 		
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
