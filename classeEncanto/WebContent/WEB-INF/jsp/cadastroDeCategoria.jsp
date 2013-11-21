@@ -30,6 +30,12 @@
 				Descrição:
 				
 				<input type="text" name="descricao" value="${categoria != null? categoria.descricao: ''}">
+				<br/>
+				
+				Tipo:
+				
+				<input type="text" name="tipo" value="${categoria != null? categoria.tipo: ''}">
+				<br/>
 				<input type="submit" value="${categoria != null? 'Alterar': 'Criar'}">
 				<input type="reset" value="Cancelar">
 			</form>

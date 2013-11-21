@@ -31,6 +31,9 @@ public class ProdutoController {
 	private LoginController loginController;
 
 	@Autowired
+	private CategoriaController categoriaController;
+
+	@Autowired
 	private ProdutoDAO produtoDao;
 
 	@Autowired

@@ -25,63 +25,79 @@
 			</c:if>
 			<h1>Novo Produto</h1>
 			<form method="post" action="salvarProduto" enctype="multipart/form-data">
-				<div class="ladoEsquerdo">
-					<div class="itemLadoEsquerdo">Nome:</div>
-					<div class="itemImagem">
-						<label for="imagemDoProduto">Imagem:</label>
-					</div>
-					<div class="itemLadoEsquerdo">Resumo:</div>
-					<div class="itemLadoEsquerdo">Detalhes:</div>
-					<div class="itemMaior">Eventos:</div>
-					<div class="itemMaior">Decorações:</div>
-					<div class="itemBotao">
-					</div>
-				</div>
-				<div class="ladoDireito">
-					<input name="id" type="hidden" value="${produto != null? produto.id: 0}"/>
-				
-					<div class="itemLadoDireito">
-						<input type="text" name="nome" value="${produto != null? produto.nome: ''}">
-					</div>
-					<div class="itemLadoDireito">
-						<c:if test="${produto != null}">
-							<img id="imagem" alt="" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
-							<br />
-						</c:if>
-						<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}" onchange="alterarVisibilidadeDaImagem(this)">
-					</div>
-					<div class="itemLadoDireito">
-						<input type="text" name="resumo" value="${produto != null? produto.resumo: ''}">
-					</div>
-					<div class="itemLadoDireito">
-						<textarea name="descricao" cols="50"  value="${produto != null? produto.descricao: ''}"></textarea>
-					</div>
-					<div class="itemLadoDireito">
-						<select multiple name="grupoDoProduto">
-							<option value="01">Aniversário</option>
-							<option value="02">Batizado</option>
-							<option value="03">Casamento</option>
-							<option value="04">Chá de Bebê</option>
-							<option value="05">Debutante</option>
-							<option value="06">Nascimento</option>
-						</select>
-					</div>
-					<div class="itemLadoDireito">
-						<select multiple name="temaDoProduto">
-							<option value="01">Convites</option>
-							<option value="02">Lembrancinhas</option>
-							<option value="03">Kit Higiene</option>
-							<option value="04">Kit Ressaca</option>
-							<option value="05">Mesa do Bolo</option>
-							<option value="06">Mesa dos Convidados</option>
-						</select>
-					</div>
-					<br/>
-					<div class="itemLadoDireito">
-						<input type="submit" value="${produto != null? 'Alterar': 'Criar'}">
-						<input type="reset" value="Cancelar">
-					</div>
-				</div>
+				<input name="id" type="hidden" value="${produto != null? produto.id: 0}"/>
+				<table>
+					<tr>
+						<td>Nome:</td>
+						<td>
+							<input type="text" name="nome" value="${produto != null? produto.nome: ''}">
+						</td>
+					</tr>
+					<tr>
+						<td>Imagem:</td>
+						<td>
+							<c:if test="${produto != null}">
+								<img id="imagem" alt="" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+								<br />
+							</c:if>
+							<input type="file" name="arquivo" id="imagemDoProduto" value="${produto != null? produto.imagem: ''}" onchange="alterarVisibilidadeDaImagem(this)">
+						</td>
+					</tr>
+					<tr>
+						<td>Resumo:</td>
+						<td>
+							<input type="text" name="resumo" value="${produto != null? produto.resumo: ''}">
+						</td>
+					</tr>
+					<tr>
+						<td>Detalhes:</td>
+						<td>
+							<textarea name="descricao" cols="50"  value="${produto != null? produto.descricao: ''}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Eventos:</td>
+						<td>
+							<select multiple name="grupoDoProduto">
+								<c:forEach var="categoria" items="${gruposCategoria}">
+									<option value="${categoria.id}">${categoria.descricao}</option>								
+								</c:forEach>
+							
+							
+								<option value="01">Aniversário</option>
+								<option value="02">Batizado</option>
+								<option value="03">Casamento</option>
+								<option value="04">Chá de Bebê</option>
+								<option value="05">Debutante</option>
+								<option value="06">Nascimento</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Decorações:</td>
+						<td>
+							<select multiple name="temaDoProduto">
+								<c:forEach var="categoria" items="${temasCategoria}">
+									<option value="${categoria.id}">${categoria.descricao}</option>								
+								</c:forEach>
+								<option value="01">Convites</option>
+								<option value="02">Lembrancinhas</option>
+								<option value="03">Kit Higiene</option>
+								<option value="04">Kit Ressaca</option>
+								<option value="05">Mesa do Bolo</option>
+								<option value="06">Mesa dos Convidados</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="${produto != null? 'Alterar': 'Criar'}">
+						</td>
+						<td>
+							<input type="reset" value="Cancelar">
+						</td>
+					</tr>
+				</table>
 			</form>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>

@@ -21,6 +21,8 @@ public class Categoria implements br.com.classeencanto.model.Entity {
 
 	private String descricao;
 
+	private String tipo;
+
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos;
 
@@ -38,6 +40,14 @@ public class Categoria implements br.com.classeencanto.model.Entity {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public List<Produto> getProdutos() {

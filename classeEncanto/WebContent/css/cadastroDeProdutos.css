@@ -1,29 +1,10 @@
-.ladoEsquerdo {
-	float: left;
-	width: 100px;
-}
-
-.itemLadoEsquerdo {
-	margin-bottom: 20px;
-	
-}
-
-.itemLadoDireito {
-	margin-bottom: 12px;	
-}
-
-.itemMaior {
-	margin-top: 55px;
-	margin-bottom: 40px;	
-}
-
 .itemBotao {
 	margin-top: 57px;
 }
 
 .itemImagem {
 	margin-top: 35px;
-	margin-bottom: 65px;	
+	margin-bottom: 65px;
 }
 
 #imagem {
