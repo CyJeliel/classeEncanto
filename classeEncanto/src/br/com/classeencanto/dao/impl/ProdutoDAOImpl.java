@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -71,9 +72,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			criteria.distinct(true)
-					.where(categoria.get("id").in(idsCategorias))
-					.where(builder.notEqual(produto.get("id"), idProduto));
+			Predicate restricaoProduto = builder.and(categoria.get("id").in(idsCategorias), builder.notEqual(produto.get("id"), idProduto));
+
+			criteria.distinct(true).where(restricaoProduto);
 
 			TypedQuery<Produto> query = em.createQuery(criteria);
 
@@ -144,9 +145,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			criteria.distinct(true).where(
-					builder.equal(categoria.get("id"),
-							builder.parameter(Long.class, "idCategoria")));
+			Predicate restricaoProduto = builder.equal(categoria.get("id"), builder.parameter(Long.class, "idCategoria"));
+
+			criteria.distinct(true).where(restricaoProduto);
 
 			TypedQuery<Produto> query = em.createQuery(criteria);
 

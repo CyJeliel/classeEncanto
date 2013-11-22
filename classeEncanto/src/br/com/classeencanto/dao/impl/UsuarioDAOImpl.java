@@ -46,9 +46,13 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 					.and(builder.equal(usuarioRoot.get("login"),
 							usuario.getLogin()),
 							builder.equal(usuarioRoot.get("senha"),
-									usuario.getSenha()),
-							builder.equal(usuarioRoot.get("admin"),
+									usuario.getSenha()));
+
+			if (usuario.isAdmin()){
+
+				restricaoDeUsuarios = builder.and(restricaoDeUsuarios, builder.equal(usuarioRoot.get("admin"),
 									usuario.isAdmin()));
+			}
 
 			criteria.distinct(true).where(restricaoDeUsuarios);
 
