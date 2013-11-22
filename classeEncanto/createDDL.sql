@@ -39,7 +39,9 @@ CREATE TABLE usuario (
 	senha		VARCHAR(20)						NOT NULL,
 	email		VARCHAR(20)						NOT NULL,
     "isAdmin"   boolean                         NOT NULL DEFAULT false,
-    CONSTRAINT usuario_pkey PRIMARY KEY (id)
+    CONSTRAINT usuario_pkey      PRIMARY KEY (id),
+    CONSTRAINT usuario_email_key UNIQUE      (email),
+    CONSTRAINT usuario_login_key UNIQUE      (login)
 
 );
 

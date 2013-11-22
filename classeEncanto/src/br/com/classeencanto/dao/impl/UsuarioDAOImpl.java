@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -41,13 +42,12 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 
 			Root<Usuario> usuarioRoot = criteria.from(Usuario.class);
 
-			criteria.distinct(true)
-					.where(builder.equal(usuarioRoot.get("login"),
-							usuario.getLogin()))
-					.where(builder.equal(usuarioRoot.get("senha"),
-							usuario.getSenha()))
-					.where(builder.equal(usuarioRoot.get("admin"),
-							usuario.isAdmin()));
+			Predicate restricaoDeUsuarios = builder.and(builder.equal(usuarioRoot.get("login"),
+					usuario.getLogin()), builder.equal(usuarioRoot.get("senha"),
+							usuario.getSenha()), builder.equal(usuarioRoot.get("admin"),
+									usuario.isAdmin()));
+
+			criteria.distinct(true).where(restricaoDeUsuarios);
 
 			TypedQuery<Usuario> query = em.createQuery(criteria);
 
