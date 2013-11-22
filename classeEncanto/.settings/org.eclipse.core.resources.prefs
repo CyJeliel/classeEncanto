@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/js/cadastroDeProduto.js=UTF-8
+encoding//WebContent/js/listaDeUsuarios.js=UTF-8
 encoding//src/br/com/classeencanto/dao/impl/ProdutoDAOImpl.java=UTF-8
 encoding//src/br/com/classeencanto/dao/impl/UsuarioDAOImpl.java=UTF-8
 encoding//src/br/com/classeencanto/model/impl/Categoria.java=UTF-8

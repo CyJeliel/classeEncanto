@@ -27,7 +27,9 @@ public abstract class AbstractLoginController {
 
 		String retorno;
 
-		if (isLogado() || usuario.existe(usuarioDAO)) {
+		boolean existe = usuario.existe(usuarioDAO);
+
+		if (isLogado() || existe) {
 
 			this.usuario = usuario;
 
@@ -35,9 +37,16 @@ public abstract class AbstractLoginController {
 
 		} else {
 
-			feedbacks.add("Login ou senha incorretos.");
+			String login = usuario.getLogin();
 
-			mav.addObject("feedbacks", feedbacks);
+			String senha = usuario.getSenha();
+
+			if ((login != null && !login.isEmpty()) || (senha != null && !senha.isEmpty())) {
+
+				feedbacks.add("Login ou senha incorretos.");
+
+				mav.addObject("feedbacks", feedbacks);
+			}
 
 			retorno = getPaginaDeLogin();
 

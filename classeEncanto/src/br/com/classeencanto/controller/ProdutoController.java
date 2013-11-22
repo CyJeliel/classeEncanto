@@ -32,7 +32,7 @@ public class ProdutoController {
 	private AdminController adminController;
 
 	@Autowired
-	private LoginController loginController;
+	private UsuarioController loginController;
 
 	@Autowired
 	private ProdutoDAO produtoDao;

@@ -18,7 +18,7 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "usuario_seq")
 	@SequenceGenerator(name = "usuario_seq", sequenceName = "usuario_id_seq", allocationSize = 1)
-	private Long id;
+	private long id;
 
 	private String login;
 
@@ -32,7 +32,7 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

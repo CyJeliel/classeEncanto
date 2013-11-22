@@ -19,7 +19,7 @@
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
 		<%@ include file="/WEB-INF/jsp/menuLateral.jsp" %>
 		
-		<a href="formNovoUsuario" class="logout">Criar Login</a>
+		<a href="cadastroDeUsuario" class="logout">Criar Login</a>
 
 		<div id="conteudo">
 			<h1>Acesso à área do usuário</h1>

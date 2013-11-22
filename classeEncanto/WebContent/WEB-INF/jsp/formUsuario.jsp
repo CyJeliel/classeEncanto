@@ -29,36 +29,61 @@
 		</c:if>
 		
 		<div>
-			<h1>Novo Usuário</h1>
-			<form action="novoUsuario" method="post">
+			<c:choose>
+			<c:when test="${usuario != null}">
+				<h1>Alterar Usuário</h1>
+			</c:when>
+			<c:otherwise>
+				<h1>Novo Usuário</h1>
+			</c:otherwise>
+			
+			</c:choose>
+			<form action="salvarUsuario" method="post">
+				<input type="hidden" name="id" value="${usuario != null ? usuario.id: 0}"/>
+			
 				<table>
 					<tr>
 						<td>* Login:</td>
 						<td>
-							<input type="text" name="login"/>
+							<input type="text" name="login" value="${usuario != null ? usuario.login: ''}"/>
 						</td>						
 					</tr>
 					<tr>
 						<td>* Senha:</td>
 						<td>
-							<input type="password" name="senha"/>
+							<input type="password" name="senha" value="${usuario != null ? usuario.senha: ''}"/>
 						</td>						
 					</tr>
 					<tr>
 						<td>* Confirmação:</td>
 						<td>
-							<input type="password" name="confirmacaoSenha"/>
+							<input type="password" name="confirmacaoSenha" value="${usuario != null ? usuario.senha: ''}"/>
 						</td>						
 					</tr>
 					<tr>
 						<td>* Email:</td>
 						<td>
-							<input type="text" name="email"/>
+							<input type="text" name="email" value="${usuario != null ? usuario.email: ''}"/>
 						</td>	
 					</tr>
+					<c:if test="${isAdmin}">
+						<tr>
+							<td>Administrador:</td>
+							<td>
+								<c:choose>
+									<c:when test="${usuario != null && usuario.admin}">
+										<input type="checkbox" name="admin" checked/>
+									</c:when>									
+									<c:otherwise>
+										<input type="checkbox" name="admin"/>
+									</c:otherwise>
+								</c:choose>
+							</td>	
+						</tr>
+					</c:if>
 					<tr>
 						<td>
-							<input type="button" onclick="check(this.form)" value="Criar"/>
+							<input type="button" onclick="check(this.form)" value="${usuario != null ? 'Alterar': 'Criar'}" name="admin"/>
 						</td>
 						<td>
 							<input type="reset" value="Cancelar">

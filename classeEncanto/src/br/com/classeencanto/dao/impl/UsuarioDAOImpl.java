@@ -42,9 +42,12 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 
 			Root<Usuario> usuarioRoot = criteria.from(Usuario.class);
 
-			Predicate restricaoDeUsuarios = builder.and(builder.equal(usuarioRoot.get("login"),
-					usuario.getLogin()), builder.equal(usuarioRoot.get("senha"),
-							usuario.getSenha()), builder.equal(usuarioRoot.get("admin"),
+			Predicate restricaoDeUsuarios = builder
+					.and(builder.equal(usuarioRoot.get("login"),
+							usuario.getLogin()),
+							builder.equal(usuarioRoot.get("senha"),
+									usuario.getSenha()),
+							builder.equal(usuarioRoot.get("admin"),
 									usuario.isAdmin()));
 
 			criteria.distinct(true).where(restricaoDeUsuarios);
@@ -63,6 +66,48 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 			}
 
 			return usuario;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
+	}
+
+	@Override
+	public Usuario findById(Long idUsuario) {
+
+		Usuario usuario = new Usuario();
+
+		usuario.setId(idUsuario);
+
+		usuario = super.findById(usuario);
+
+		return usuario;
+	}
+
+	@Override
+	public List<Usuario> findAll() {
+
+		EntityManager em = beginTransaction();
+
+		try {
+
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+
+			CriteriaQuery<Usuario> criteria = builder
+					.createQuery(Usuario.class);
+
+			TypedQuery<Usuario> query = em.createQuery(criteria);
+
+			List<Usuario> resultList = query.getResultList();
+
+			return resultList;
 
 		} catch (Exception e) {
 
