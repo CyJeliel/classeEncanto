@@ -13,9 +13,11 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.impl.Categoria;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
@@ -23,6 +25,9 @@ import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
+
+	@Autowired
+	private UsuarioDAO usuarioDao;
 
 	@Override
 	public Produto findById(Produto produto) {
@@ -72,7 +77,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			Predicate restricaoProduto = builder.and(categoria.get("id").in(idsCategorias), builder.notEqual(produto.get("id"), idProduto));
+			Predicate restricaoProduto = builder.and(
+					categoria.get("id").in(idsCategorias),
+					builder.notEqual(produto.get("id"), idProduto));
 
 			criteria.distinct(true).where(restricaoProduto);
 
@@ -96,35 +103,48 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public List<Produto> findListaDeDesejos(Usuario usuario) {
-		// TODO M�TODO EM MOCK
 
-		List<Produto> listaDeDesejos = new ArrayList<>();
+		usuario = usuarioDao.findById(usuario);
 
-		Produto produto1 = new Produto();
-
-		produto1.setId(1l);
-
-		Produto produto = findById(produto1);
-
-		listaDeDesejos.add(produto);
-
-		Produto produto3 = new Produto();
-
-		produto1.setId(2l);
-
-		Produto produto2 = findById(produto3);
-
-		listaDeDesejos.add(produto2);
-
-		return listaDeDesejos;
+		return usuario.getListaDeDesejos();
 	}
 
 	@Override
 	public List<Produto> addToListaDeDesejos(Produto produto, Usuario usuario) {
-		// TODO M�TODO EM MOCK
-		List<Produto> listaDeDesejos = findListaDeDesejos(usuario);
 
-		listaDeDesejos.add(produto);
+		EntityManager em = beginTransaction();
+
+		List<Produto> listaDeDesejos = null;
+
+		try {
+
+			listaDeDesejos = findListaDeDesejos(usuario);
+
+			listaDeDesejos.add(produto);
+
+			usuario.setListaDeDesejos(listaDeDesejos);
+
+			usuarioDao.merge(usuario);
+
+			em.getTransaction().commit();
+
+		} catch (Exception e) {
+
+			if (!e.getMessage().contains("duplicate key")) {
+
+				e.printStackTrace();
+
+				throw e;
+
+			} else {
+
+				listaDeDesejos.remove(produto);
+			}
+
+		} finally {
+
+			endTransaction(em);
+		}
 
 		return listaDeDesejos;
 	}
@@ -145,7 +165,8 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			Join<Produto, Categoria> categoria = produto.join("categorias");
 
-			Predicate restricaoProduto = builder.equal(categoria.get("id"), builder.parameter(Long.class, "idCategoria"));
+			Predicate restricaoProduto = builder.equal(categoria.get("id"),
+					builder.parameter(Long.class, "idCategoria"));
 
 			criteria.distinct(true).where(restricaoProduto);
 

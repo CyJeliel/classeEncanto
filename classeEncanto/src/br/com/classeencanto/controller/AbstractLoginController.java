@@ -27,11 +27,11 @@ public abstract class AbstractLoginController {
 
 		String retorno;
 
-		boolean existe = usuario.existe(usuarioDAO);
+		Usuario usuarioDB = usuario.existe(usuarioDAO);
 
-		if (isLogado() || existe) {
+		if (isLogado() || usuarioDB != null) {
 
-			this.usuario = usuario;
+			this.usuario = usuarioDB;
 
 			retorno = getPaginaDeRetorno();
 

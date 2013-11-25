@@ -45,3 +45,15 @@ CREATE TABLE usuario (
 
 );
 
+CREATE TABLE lista_de_desejos (
+  usuario_id bigint NOT NULL,
+  produto_id bigint NOT NULL,
+  CONSTRAINT lista_de_desejos_pkey PRIMARY KEY (usuario_id, produto_id),
+  CONSTRAINT produto_fk FOREIGN KEY (produto_id)
+      REFERENCES produto (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT usuario_fk FOREIGN KEY (usuario_id)
+      REFERENCES usuario (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+

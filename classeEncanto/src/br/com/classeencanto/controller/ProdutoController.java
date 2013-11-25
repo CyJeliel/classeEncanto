@@ -223,6 +223,8 @@ public class ProdutoController {
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
 
+			mav.addObject("isAdmin", adminController.isLogado());
+
 		} else {
 
 			mav.setViewName("login");

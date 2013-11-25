@@ -1,9 +1,14 @@
 package br.com.classeencanto.model.impl;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -13,7 +18,7 @@ import br.com.classeencanto.dao.UsuarioDAO;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements br.com.classeencanto.model.Entity{
+public class Usuario implements br.com.classeencanto.model.Entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "usuario_seq")
@@ -27,6 +32,10 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 	private String email;
 
 	private boolean admin;
+
+	@ManyToMany
+	@JoinTable(name = "lista_de_desejos", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = { @JoinColumn(name = "produto_id") })
+	private List<Produto> listaDeDesejos;
 
 	public long getId() {
 		return id;
@@ -68,6 +77,14 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 		this.admin = admin;
 	}
 
+	public List<Produto> getListaDeDesejos() {
+		return listaDeDesejos;
+	}
+
+	public void setListaDeDesejos(List<Produto> listaDeDesejos) {
+		this.listaDeDesejos = listaDeDesejos;
+	}
+
 	public boolean valido() {
 
 		if (login == null || login.isEmpty()) {
@@ -83,19 +100,14 @@ public class Usuario implements br.com.classeencanto.model.Entity{
 		return true;
 	}
 
-	public boolean existe(UsuarioDAO usuarioDAO) {
+	public Usuario existe(UsuarioDAO usuarioDAO) {
 
 		if (valido()) {
 
-			Usuario usuario = usuarioDAO.findByLoginSenha(this);
-
-			if (usuario != null) {
-
-				return true;
-			}
+			return usuarioDAO.findByLoginSenha(this);
 		}
 
-		return false;
+		return null;
 	}
 
 	public void adicionar(UsuarioDAO usuarioDAO) {

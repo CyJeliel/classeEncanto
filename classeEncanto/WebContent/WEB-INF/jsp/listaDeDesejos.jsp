@@ -26,43 +26,48 @@
 			
 				<h1>Lista de Desejos</h1>
 				
-				<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
-				
-				<div id="cabecalho">
-					<span><b>Item</b></span>
-					<span id="cabecalhoQuantidade"><b>Quantidade</b></span>
-				</div>
-				
-				
-				<c:forEach var="item" items="${listaDeDesejos}" >
-					<div class="item">
-						<a href="detalhesDeProduto?idProduto=<c:out value="${item.id}"/>">
-							<img id="miniatura" src="img/bandaid.jpg">
-						</a>
-						<span id="descricaoReduzida"><b><c:out value="${item.nome}"/></b></span>
+				<c:choose>
+					<c:when test="${listaDeDesejos != null && !listaDeDesejos.isEmpty()}">
+						<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
+						<div id="cabecalho">
+							<span><b>Item</b></span>
+							<span id="cabecalhoQuantidade"><b>Quantidade</b></span>
+						</div>
+						<c:forEach var="item" items="${listaDeDesejos}" >
+							<div class="item">
+								<a href="detalhesDeProduto?idProduto=<c:out value="${item.id}"/>">
+									<img id="miniatura" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+								</a>
+								<span id="descricaoReduzida"><b><c:out value="${item.nome}"/></b></span>
+								<br/>
+								<span id="descricaoDetalhada"><c:out value="${item.resumo}"/></span>
+								
+								<span id="quantidade">
+									<select>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+										<option>9</option>
+										<option>10</option>
+									</select>
+								</span>
+								
+								<a class="link" href="#">Atualizar</a>
+								
+								<a class="link" id="removerItem" href="#">Remover</a>
+							</div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
 						<br/>
-						<span id="descricaoDetalhada"><c:out value="${item.resumo}"/></span>
-						
-						<span id="quantidade">
-							<select>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								<option>6</option>
-								<option>7</option>
-								<option>8</option>
-								<option>9</option>
-								<option>10</option>
-							</select>
-						</span>
-						
-						<a class="link" href="#">Atualizar</a>
-						
-						<a class="link" id="removerItem" href="#">Remover</a>
-					</div>
-				</c:forEach>
+						Não há produtos cadastrados na lista de desejos.
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		
