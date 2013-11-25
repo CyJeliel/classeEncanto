@@ -104,8 +104,6 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	@Override
 	public List<Produto> findListaDeDesejos(Usuario usuario) {
 
-		usuario = usuarioDao.findById(usuario);
-
 		return usuario.getListaDeDesejos();
 	}
 
@@ -253,6 +251,46 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 		produto = super.findById(produto);
 
 		return produto;
+	}
+
+	@Override
+	public Usuario excluirProdutoListaDeDesejos(String idProduto,
+			Usuario usuario) {
+
+		EntityManager em = super.beginTransaction();
+
+		try {
+
+			List<Produto> listaDeDesejos = usuario.getListaDeDesejos();
+
+			if (listaDeDesejos != null && !listaDeDesejos.isEmpty()) {
+
+				for (Produto produto : listaDeDesejos) {
+
+					if (idProduto.equals(produto.getId() + "")) {
+
+						listaDeDesejos.remove(produto);
+
+						break;
+					}
+				}
+			}
+
+			usuarioDao.merge(usuario);
+
+			return usuario;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em);
+		}
+
 	}
 
 }

@@ -59,7 +59,7 @@
 								
 								<a class="link" href="#">Atualizar</a>
 								
-								<a class="link" id="removerItem" href="#">Remover</a>
+								<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.id}">Remover</a>
 							</div>
 						</c:forEach>
 					</c:when>

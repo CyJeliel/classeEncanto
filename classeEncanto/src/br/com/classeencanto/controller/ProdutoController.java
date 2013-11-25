@@ -167,30 +167,6 @@ public class ProdutoController {
 		return mav;
 	}
 
-	@RequestMapping("listaDeDesejos")
-	public ModelAndView listaDeDesejos() {
-
-		ModelAndView mav = new ModelAndView();
-
-		if (loginController.isLogado() || adminController.isLogado()) {
-
-			mav.setViewName("listaDeDesejos");
-
-			List<Produto> listaDeDesejos = produtoDao
-					.findListaDeDesejos(loginController.usuario);
-
-			mav.addObject("listaDeDesejos", listaDeDesejos);
-
-			mav.addObject("isAdmin", adminController.isLogado());
-
-		} else {
-
-			mav.setViewName("login");
-		}
-
-		return mav;
-	}
-
 	@RequestMapping("listaDeProdutos")
 	public ModelAndView listaDeProdutos(Long idCategoria) {
 
@@ -203,32 +179,6 @@ public class ProdutoController {
 		mav.addObject("listaDeProdutos", listaDeProdutos);
 
 		mav.addObject("isAdmin", adminController.isLogado());
-
-		return mav;
-	}
-
-	@RequestMapping("adicionarListaDeDesejos")
-	public ModelAndView adicionarListaDeDesejos(Long produtoId) {
-
-		ModelAndView mav = new ModelAndView();
-
-		if (loginController.isLogado() || adminController.isLogado()) {
-
-			mav.setViewName("listaDeDesejos");
-
-			Produto produto = produtoDao.findById(produtoId);
-
-			List<Produto> listaDeDesejos = produtoDao.addToListaDeDesejos(
-					produto, loginController.usuario);
-
-			mav.addObject("listaDeDesejos", listaDeDesejos);
-
-			mav.addObject("isAdmin", adminController.isLogado());
-
-		} else {
-
-			mav.setViewName("login");
-		}
 
 		return mav;
 	}

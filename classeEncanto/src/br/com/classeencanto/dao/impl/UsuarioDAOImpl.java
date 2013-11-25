@@ -64,6 +64,8 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 
 				usuario = resultList.get(0);
 
+				usuario.setListaDeDesejos(usuario.getListaDeDesejos());
+
 			} else {
 
 				usuario = null;

@@ -13,20 +13,16 @@ public class Administrador extends Usuario {
 	}
 
 	@Override
-	public boolean existe(UsuarioDAO usuarioDAO) {
+	public Usuario existe(UsuarioDAO usuarioDAO) {
 
 		if (valido()) {
 
 			this.setAdmin(true);
 
-			Usuario administrador = usuarioDAO.findByLoginSenha(this);
+			return usuarioDAO.findByLoginSenha(this);
 
-			if (administrador != null) {
-
-				return true;
-			}
 		}
 
-		return false;
+		return null;
 	}
 }

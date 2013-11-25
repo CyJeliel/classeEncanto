@@ -56,6 +56,7 @@ public class CategoriaController {
 	public String excluirCategoria(Categoria categoria) {
 
 		String retorno;
+
 		if (adminController.isLogado()) {
 
 			categoriaDao.delete(categoria);

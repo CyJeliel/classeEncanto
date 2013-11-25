@@ -22,4 +22,6 @@ public interface ProdutoDAO extends DAO<Produto> {
 
 	Produto findById(Long idProduto);
 
+	Usuario excluirProdutoListaDeDesejos(String idProduto, Usuario usuario);
+
 }
