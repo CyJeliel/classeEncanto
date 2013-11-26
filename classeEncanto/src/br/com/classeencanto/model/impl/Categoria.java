@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table(name="categoria")
 public class Categoria implements br.com.classeencanto.model.Entity {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "categoria_seq")
 	@SequenceGenerator(name = "categoria_seq", sequenceName = "categoria_id_seq", allocationSize = 1)

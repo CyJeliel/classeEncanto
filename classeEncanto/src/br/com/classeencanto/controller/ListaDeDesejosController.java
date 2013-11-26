@@ -1,15 +1,17 @@
 package br.com.classeencanto.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.classeencanto.dao.ListaDeDesejosDAO;
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.model.impl.UsuarioProduto;
 
 @Controller
 public class ListaDeDesejosController {
@@ -21,7 +23,10 @@ public class ListaDeDesejosController {
 	private UsuarioController loginController;
 
 	@Autowired
-	private ProdutoDAO produtoDao;
+	private ListaDeDesejosDAO listaDeDesejosDao;
+
+	@Autowired
+	private ProdutoDAO produtoDAO;
 
 	@RequestMapping("listaDeDesejos")
 	public ModelAndView listaDeDesejos() {
@@ -32,7 +37,7 @@ public class ListaDeDesejosController {
 
 			mav.setViewName("listaDeDesejos");
 
-			List<Produto> listaDeDesejos = produtoDao
+			Set<UsuarioProduto> listaDeDesejos = listaDeDesejosDao
 					.findListaDeDesejos(loginController.usuario);
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
@@ -54,16 +59,11 @@ public class ListaDeDesejosController {
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
-			mav.setViewName("listaDeDesejos");
+			mav.setViewName("redirect:listaDeDesejos");
 
-			Produto produto = produtoDao.findById(produtoId);
+			UsuarioProduto usuarioProduto = buildUsuarioProduto(produtoId);
 
-			List<Produto> listaDeDesejos = produtoDao.addToListaDeDesejos(
-					produto, loginController.usuario);
-
-			mav.addObject("listaDeDesejos", listaDeDesejos);
-
-			mav.addObject("isAdmin", adminController.isLogado());
+			listaDeDesejosDao.addToListaDeDesejos(usuarioProduto);
 
 		} else {
 
@@ -73,6 +73,21 @@ public class ListaDeDesejosController {
 		return mav;
 	}
 
+	private UsuarioProduto buildUsuarioProduto(Long produtoId) {
+
+		Produto produto = produtoDAO.findById(produtoId);
+
+		UsuarioProduto usuarioProduto = new UsuarioProduto();
+
+		usuarioProduto.setProduto(produto);
+
+		usuarioProduto.setUsuario(loginController.usuario);
+
+		usuarioProduto.setQuantidade(1);
+
+		return usuarioProduto;
+	}
+
 	@RequestMapping("excluirProdutoListaDeDesejos")
 	public String excluirProdutoListaDeDesejos(String idProduto) {
 
@@ -80,8 +95,8 @@ public class ListaDeDesejosController {
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
-			Usuario usuario = produtoDao.excluirProdutoListaDeDesejos(idProduto,
-					loginController.usuario);
+			Usuario usuario = listaDeDesejosDao.excluirProdutoListaDeDesejos(
+					idProduto, loginController.usuario);
 
 			loginController.usuario = usuario;
 

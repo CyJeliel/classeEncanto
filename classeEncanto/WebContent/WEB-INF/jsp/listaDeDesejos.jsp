@@ -35,12 +35,12 @@
 						</div>
 						<c:forEach var="item" items="${listaDeDesejos}" >
 							<div class="item">
-								<a href="detalhesDeProduto?idProduto=<c:out value="${item.id}"/>">
-									<img id="miniatura" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+								<a href="detalhesDeProduto?idProduto=<c:out value="${item.produto.id}"/>">
+									<img id="miniatura" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${item.produto.id}">
 								</a>
-								<span id="descricaoReduzida"><b><c:out value="${item.nome}"/></b></span>
+								<span id="descricaoReduzida"><b><c:out value="${item.produto.nome}"/></b></span>
 								<br/>
-								<span id="descricaoDetalhada"><c:out value="${item.resumo}"/></span>
+								<span id="descricaoDetalhada"><c:out value="${item.produto.resumo}"/></span>
 								
 								<span id="quantidade">
 									<select>
@@ -59,7 +59,7 @@
 								
 								<a class="link" href="#">Atualizar</a>
 								
-								<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.id}">Remover</a>
+								<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.produto.id}">Remover</a>
 							</div>
 						</c:forEach>
 					</c:when>

@@ -1,7 +1,9 @@
 package br.com.classeencanto.model;
 
-public interface Entity {
+import java.io.Serializable;
+
+public interface Entity extends Serializable {
 
 	long getId();
-	
+
 }

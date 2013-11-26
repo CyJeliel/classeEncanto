@@ -1,6 +1,7 @@
 package br.com.classeencanto.model.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "produto")
 public class Produto implements br.com.classeencanto.model.Entity {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "produto_seq")
@@ -30,8 +34,11 @@ public class Produto implements br.com.classeencanto.model.Entity {
 	private byte[] imagem;
 
 	@ManyToMany
-	@JoinTable(name="produto_categoria", joinColumns={@JoinColumn(name="produto_id")}, inverseJoinColumns={@JoinColumn(name="categoria_id")})
+	@JoinTable(name = "produto_categoria", joinColumns = { @JoinColumn(name = "produto_id") }, inverseJoinColumns = { @JoinColumn(name = "categoria_id") })
 	private List<Categoria> categorias;
+
+	@OneToMany(mappedBy = "produto")
+	private Set<UsuarioProduto> listaDeDesejos;
 
 	public long getId() {
 		return id;
@@ -109,4 +116,43 @@ public class Produto implements br.com.classeencanto.model.Entity {
 		this.categorias = categorias;
 	}
 
+	public Set<UsuarioProduto> getListaDeDesejos() {
+		return listaDeDesejos;
+	}
+
+	public void setListaDeDesejos(Set<UsuarioProduto> listaDeDesejos) {
+		this.listaDeDesejos = listaDeDesejos;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == this) {
+
+			return true;
+		}
+		if (!(obj instanceof Produto)) {
+
+			return false;
+		}
+
+		Produto produto = (Produto) obj;
+
+		if (this.id == produto.getId()) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+
+		int hash = 31;
+
+		hash += this.id;
+
+		return hash;
+	}
 }

@@ -4,6 +4,8 @@ import br.com.classeencanto.dao.UsuarioDAO;
 
 public class Administrador extends Usuario {
 
+	private static final long serialVersionUID = 1L;
+
 	public boolean isAdmin() {
 		return super.isAdmin();
 	}

@@ -13,21 +13,15 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
-import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.impl.Categoria;
 import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
-import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
-
-	@Autowired
-	private UsuarioDAO usuarioDao;
 
 	@Override
 	public Produto findById(Produto produto) {
@@ -55,13 +49,13 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 			idsCategorias.add(categoria.getId());
 		}
 
-		List<Produto> itensRelacionados = findProdutosRelacionados(
+		List<Produto> itensRelacionados = findProdutosRelacionadosPorCategoria(
 				idsCategorias, idProduto);
 
 		return itensRelacionados;
 	}
 
-	private List<Produto> findProdutosRelacionados(Set<Long> idsCategorias,
+	private List<Produto> findProdutosRelacionadosPorCategoria(Set<Long> idsCategorias,
 			Long idProduto) {
 
 		EntityManager em = beginTransaction();
@@ -99,52 +93,6 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			endTransaction(em);
 		}
-	}
-
-	@Override
-	public List<Produto> findListaDeDesejos(Usuario usuario) {
-
-		return usuario.getListaDeDesejos();
-	}
-
-	@Override
-	public List<Produto> addToListaDeDesejos(Produto produto, Usuario usuario) {
-
-		EntityManager em = beginTransaction();
-
-		List<Produto> listaDeDesejos = null;
-
-		try {
-
-			listaDeDesejos = findListaDeDesejos(usuario);
-
-			listaDeDesejos.add(produto);
-
-			usuario.setListaDeDesejos(listaDeDesejos);
-
-			usuarioDao.merge(usuario);
-
-			em.getTransaction().commit();
-
-		} catch (Exception e) {
-
-			if (!e.getMessage().contains("duplicate key")) {
-
-				e.printStackTrace();
-
-				throw e;
-
-			} else {
-
-				listaDeDesejos.remove(produto);
-			}
-
-		} finally {
-
-			endTransaction(em);
-		}
-
-		return listaDeDesejos;
 	}
 
 	@Override
@@ -252,45 +200,4 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 		return produto;
 	}
-
-	@Override
-	public Usuario excluirProdutoListaDeDesejos(String idProduto,
-			Usuario usuario) {
-
-		EntityManager em = super.beginTransaction();
-
-		try {
-
-			List<Produto> listaDeDesejos = usuario.getListaDeDesejos();
-
-			if (listaDeDesejos != null && !listaDeDesejos.isEmpty()) {
-
-				for (Produto produto : listaDeDesejos) {
-
-					if (idProduto.equals(produto.getId() + "")) {
-
-						listaDeDesejos.remove(produto);
-
-						break;
-					}
-				}
-			}
-
-			usuarioDao.merge(usuario);
-
-			return usuario;
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-			throw e;
-
-		} finally {
-
-			endTransaction(em);
-		}
-
-	}
-
 }

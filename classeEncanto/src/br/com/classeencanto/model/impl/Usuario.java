@@ -1,14 +1,12 @@
 package br.com.classeencanto.model.impl;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +17,8 @@ import br.com.classeencanto.dao.UsuarioDAO;
 @Entity
 @Table(name = "usuario")
 public class Usuario implements br.com.classeencanto.model.Entity {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "usuario_seq")
@@ -33,9 +33,8 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 
 	private boolean admin;
 
-	@ManyToMany
-	@JoinTable(name = "lista_de_desejos", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = { @JoinColumn(name = "produto_id") })
-	private List<Produto> listaDeDesejos;
+	@OneToMany(mappedBy = "usuario")
+	private Set<UsuarioProduto> listaDeDesejos;
 
 	public long getId() {
 		return id;
@@ -77,11 +76,11 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 		this.admin = admin;
 	}
 
-	public List<Produto> getListaDeDesejos() {
+	public Set<UsuarioProduto> getListaDeDesejos() {
 		return listaDeDesejos;
 	}
 
-	public void setListaDeDesejos(List<Produto> listaDeDesejos) {
+	public void setListaDeDesejos(Set<UsuarioProduto> listaDeDesejos) {
 		this.listaDeDesejos = listaDeDesejos;
 	}
 
@@ -129,6 +128,38 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 		}
 
 		return false;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == this) {
+
+			return true;
+		}
+		if (!(obj instanceof Usuario)) {
+
+			return false;
+		}
+
+		Usuario usuario = (Usuario) obj;
+
+		if (this.id == usuario.getId()) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+
+		int hash = 31;
+
+		hash += this.id;
+
+		return hash;
 	}
 
 }
