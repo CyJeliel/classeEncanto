@@ -17,8 +17,7 @@ function check(form) {
 	}
 
 	if ( continuar ) {
-		// TODO ENVIAR MENSAGEM.
-		document.getElementById('telefone_alert').innerText = 'Mensagem enviada.';
+		form.submit();
 	}
 }
 
