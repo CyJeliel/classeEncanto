@@ -24,22 +24,6 @@
 	float: left;
 }
 
-#descricaoReduzida {
-	margin-left: 20px;
-}
-
-#descricaoDetalhada {
-	margin-left: 20px;
-}
-
-#quantidade {
-	margin-left: 20px;
-}
-
-#removerItem {
-	margin-left: 30px;
-}
-
 a.link {
 	color: #3399FF;
 }
@@ -51,4 +35,21 @@ a.link:visited {
 a {
 	text-decoration: none;
 	cursor: pointer;
+}
+
+td.descricaoProduto {
+	min-width: 200px;
+}
+
+input.inputQuantidade {
+	max-width: 20px;
+}
+
+.margemEsquerda20 {
+	width: 200px;
+	margin-left: 20px;
+}
+
+.formAtualizarQuantidade {
+	min-width: 100px;
 }

@@ -31,39 +31,38 @@
 				<c:choose>
 					<c:when test="${listaDeDesejos != null && !listaDeDesejos.isEmpty()}">
 						<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
-						<div id="cabecalho">
-							<span><b>Item</b></span>
-							<span id="cabecalhoQuantidade"><b>Quantidade</b></span>
-						</div>
-						<c:forEach var="item" items="${listaDeDesejos}" >
-							<div class="item">
-								<a href="detalhesDeProduto?idProduto=<c:out value="${item.produto.id}"/>">
-									<img id="miniatura" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${item.produto.id}">
-								</a>
-								<span id="descricaoReduzida"><b><c:out value="${item.produto.nome}"/></b></span>
-								<br/>
-								<span id="descricaoDetalhada"><c:out value="${item.produto.resumo}"/></span>
-								
-								<form method="post" action="alterarQuantidadeItemListaDeDesejos" id="formAtualizarQuantidade${item.produto.id}">
-									<select name="quantidade">
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
-										<option>7</option>
-										<option>8</option>
-										<option>9</option>
-										<option>10</option>
-									</select>
-									<input type="hidden" value="${item.produto.id}" name="produto.id"/>
-									<a class="link" onclick="atualizarQuantidade(${item.produto.id})">Atualizar</a>
-								</form>
-								
-								<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.produto.id}">Remover</a>
-							</div>
-						</c:forEach>
+						<table>
+							<tr>
+								<th>Item</th>
+								<th>Descrição</th>
+								<th>Quantidade</th>
+								<th></th>
+							</tr>
+							<c:forEach var="item" items="${listaDeDesejos}" >
+								<tr>
+									<td>
+										<a href="detalhesDeProduto?idProduto=<c:out value="${item.produto.id}"/>">
+											<img id="miniatura" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${item.produto.id}">
+										</a>
+									</td>
+									<td class="descricaoProduto">
+										<b class="margemEsquerda20"><c:out value="${item.produto.nome}"/></b>
+										<br/>
+										<span class="margemEsquerda20"><c:out value="${item.produto.resumo}" /></span>
+									</td>
+									<td>
+										<form method="post" action="alterarQuantidadeItemListaDeDesejos" id="formAtualizarQuantidade${item.produto.id}" class="formAtualizarQuantidade">
+											<input name="quantidade" value="${item.quantidade}" class="inputQuantidade"/>
+											<input type="hidden" value="${item.produto.id}" name="produto.id"/>
+											<a class="link" onclick="atualizarQuantidade(${item.produto.id})">Atualizar</a>
+										</form>
+									</td>
+									<td>
+										<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.produto.id}">Remover</a>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
 					</c:when>
 					<c:otherwise>
 						<br/>
