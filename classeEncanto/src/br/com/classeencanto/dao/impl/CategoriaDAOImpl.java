@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -33,7 +35,9 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 	@Override
 	public List<Categoria> findAll() {
 
-		EntityManager em = beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -56,14 +60,17 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 	}
 
 	@Override
 	public List<Categoria> findByTipo(String string) {
 
-		EntityManager em = beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -86,7 +93,7 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 	}
 

@@ -16,7 +16,7 @@
 }
 
 .item {
-	margin-bottom: 120px;	
+	margin-bottom: 120px;
 }
 
 #miniatura {
@@ -50,4 +50,5 @@ a.link:visited {
 
 a {
 	text-decoration: none;
+	cursor: pointer;
 }

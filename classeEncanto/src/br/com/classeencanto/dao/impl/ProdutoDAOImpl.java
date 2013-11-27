@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -58,7 +60,9 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	private List<Produto> findProdutosRelacionadosPorCategoria(Set<Long> idsCategorias,
 			Long idProduto) {
 
-		EntityManager em = beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -91,14 +95,17 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 	}
 
 	@Override
 	public List<Produto> findProdutos(Long idCategoria) {
 
-		EntityManager em = beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -132,7 +139,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 	}
 
@@ -165,7 +172,10 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	@Override
 	public Destaque findDestaque(Integer posicaoAntiga) {
 
-		EntityManager em = super.beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -185,7 +195,7 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 	}
 

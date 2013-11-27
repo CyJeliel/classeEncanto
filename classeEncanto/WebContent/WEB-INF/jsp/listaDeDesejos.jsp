@@ -8,6 +8,8 @@
 		<link type="text/css" rel="stylesheet" href="css/listaDeDesejos.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
+		<script src="js/listaDeDesejos.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
@@ -42,8 +44,8 @@
 								<br/>
 								<span id="descricaoDetalhada"><c:out value="${item.produto.resumo}"/></span>
 								
-								<span id="quantidade">
-									<select>
+								<form method="post" action="alterarQuantidadeItemListaDeDesejos" id="formAtualizarQuantidade${item.produto.id}">
+									<select name="quantidade">
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
@@ -55,9 +57,9 @@
 										<option>9</option>
 										<option>10</option>
 									</select>
-								</span>
-								
-								<a class="link" href="#">Atualizar</a>
+									<input type="hidden" value="${item.produto.id}" name="produto.id"/>
+									<a class="link" onclick="atualizarQuantidade(${item.produto.id})">Atualizar</a>
+								</form>
 								
 								<a class="link" id="removerItem" href="excluirProdutoListaDeDesejos?idProduto=${item.produto.id}">Remover</a>
 							</div>

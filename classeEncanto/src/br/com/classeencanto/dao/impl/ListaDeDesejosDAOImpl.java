@@ -3,6 +3,8 @@ package br.com.classeencanto.dao.impl;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +30,9 @@ public class ListaDeDesejosDAOImpl extends AbstractDAO<UsuarioProduto>
 	@Override
 	public void addToListaDeDesejos(UsuarioProduto usuarioProduto) {
 
-		EntityManager em = beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = beginTransaction(factory);
 
 		Set<UsuarioProduto> listaDeDesejos = null;
 
@@ -66,7 +70,7 @@ public class ListaDeDesejosDAOImpl extends AbstractDAO<UsuarioProduto>
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 
 	}
@@ -75,7 +79,9 @@ public class ListaDeDesejosDAOImpl extends AbstractDAO<UsuarioProduto>
 	public Usuario excluirProdutoListaDeDesejos(String idProduto,
 			Usuario usuario) {
 
-		EntityManager em = super.beginTransaction();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = beginTransaction(factory);
 
 		try {
 
@@ -107,9 +113,48 @@ public class ListaDeDesejosDAOImpl extends AbstractDAO<UsuarioProduto>
 
 		} finally {
 
-			endTransaction(em);
+			endTransaction(em, factory);
 		}
 
+	}
+
+	@Override
+	public void alterarQuantidadeItemListaDeDesejos(
+			UsuarioProduto usuarioProduto) {
+
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+
+		EntityManager em = beginTransaction(factory);
+
+		try {
+
+			Set<UsuarioProduto> listaDeDesejos = usuarioProduto.getUsuario().getListaDeDesejos();
+
+			if (listaDeDesejos != null && !listaDeDesejos.isEmpty()) {
+
+				for (UsuarioProduto usuarioProdutoExistente : listaDeDesejos) {
+
+					if (usuarioProdutoExistente.getProduto().getId() == usuarioProduto.getProduto().getId()) {
+
+						usuarioProdutoExistente.setQuantidade(usuarioProduto.getQuantidade());
+
+						merge(usuarioProdutoExistente);
+
+						break;
+					}
+				}
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			throw e;
+
+		} finally {
+
+			endTransaction(em, factory);
+		}
 	}
 
 	@Deprecated
@@ -123,13 +168,6 @@ public class ListaDeDesejosDAOImpl extends AbstractDAO<UsuarioProduto>
 
 		throw new UnsupportedOperationException(
 				"Entidade fraca é salva pelo objeto pai.");
-	}
-
-	@Deprecated
-	public void merge(UsuarioProduto t) {
-
-		throw new UnsupportedOperationException(
-				"Entidade fraca é atualizada pelo objeto pai.");
 	}
 
 	@Deprecated

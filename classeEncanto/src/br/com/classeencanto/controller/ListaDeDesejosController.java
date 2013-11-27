@@ -110,4 +110,25 @@ public class ListaDeDesejosController {
 		return retorno;
 	}
 
+	@RequestMapping("alterarQuantidadeItemListaDeDesejos")
+	public String alterarQuantidadeItemListaDeDesejos(UsuarioProduto usuarioProduto) {
+
+		String retorno;
+
+		if (loginController.isLogado() || adminController.isLogado()) {
+
+			usuarioProduto.setUsuario(loginController.usuario);
+
+			listaDeDesejosDao.alterarQuantidadeItemListaDeDesejos(usuarioProduto);
+
+			retorno = "redirect:listaDeDesejos";
+
+		} else {
+
+			retorno = "loginAdmin";
+		}
+
+		return retorno;
+	}
+
 }
