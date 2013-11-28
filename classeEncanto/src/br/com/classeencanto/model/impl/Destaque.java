@@ -10,23 +10,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="destaque")
-public class Destaque {
-	
+public class Destaque implements br.com.classeencanto.model.Entity{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "destaque_seq")
 	@SequenceGenerator(name = "destaque_seq", sequenceName = "destaque_id_seq", allocationSize = 1)
 	private long id;
-	
+
 	private int posicao;
-	
+
 	@OneToOne
 	private Produto produto;
-	
+
 	public Destaque() {
 	}
-	
+
 	public Destaque(Produto produto) {
-		
+
 		this.produto = produto;
 	}
 
@@ -37,7 +39,7 @@ public class Destaque {
 	public byte[] getImagem() {
 		return produto.getImagem();
 	}
-	
+
 	public void setPosicao(int posicao) {
 		this.posicao = posicao;
 	}
@@ -53,7 +55,7 @@ public class Destaque {
 	public void setDescricao(String descricao) {
 		produto.setDescricao(descricao);
 	}
-	
+
 	public void setImagem(byte[] imagem) {
 		produto.setImagem(imagem);
 	}
@@ -65,5 +67,13 @@ public class Destaque {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
 }
