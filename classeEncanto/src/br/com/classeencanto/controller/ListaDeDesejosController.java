@@ -59,6 +59,14 @@ public class ListaDeDesejosController {
 			Set<UsuarioProduto> listaDeDesejos = listaDeDesejosDao
 					.findListaDeDesejos(loginController.usuario);
 
+			List<String> feedbacks = new ArrayList<>();
+
+			feedbacks.addAll(this.feedbacks);
+
+			mav.addObject("feedbacks", feedbacks);
+
+			this.feedbacks.clear();
+
 			mav.addObject("listaDeDesejos", listaDeDesejos);
 
 			mav.addObject("isAdmin", adminController.isLogado());
