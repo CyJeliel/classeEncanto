@@ -20,12 +20,12 @@
 			<div id="produtosEscolhidos" >
 				<div class="produtoDestaque" id="destaqueEsquerda">
 					<c:choose>
-						<c:when test="${listaDeDestaques != null && listaDeDestaques.size() >= 1}">
+						<c:when test="${destaque1 != null}">
 							<span class="linkAdicionar">
-								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${listaDeDestaques.get(0).produto.id}">
-								<a onclick="excluirDestaque(${listaDeDestaques.get(0).id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
-								<form method="post" id="formRemoverDestaque${listaDeDestaques.get(0).id}" action="excluirDestaque">
-									<input type="hidden" value="${listaDeDestaques.get(0).id}" name="id"/>
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque1.produto.id}">
+								<a onclick="excluirDestaque(${destaque1.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque1.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque1.id}" name="id"/>
 								</form>
 							</span>
 						</c:when>
@@ -36,12 +36,12 @@
 				</div>
 				<div class="produtoDestaque" id="destaqueDireita">
 					<c:choose>
-						<c:when test="${listaDeDestaques != null && listaDeDestaques.size() >= 2}">
+						<c:when test="${destaque2 != null}">
 							<span class="linkAdicionar">
-								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${listaDeDestaques.get(1).produto.id}">
-								<a onclick="excluirDestaque(${listaDeDestaques.get(1).id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
-								<form method="post" id="formRemoverDestaque${listaDeDestaques.get(1).id}" action="excluirDestaque">
-									<input type="hidden" value="${listaDeDestaques.get(1).id}" name="id"/>
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque2.produto.id}">
+								<a onclick="excluirDestaque(${destaque2.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque2.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque2.id}" name="id"/>
 								</form>
 							</span>
 						</c:when>
@@ -52,12 +52,12 @@
 				</div>
 				<div class="produtoDestaque" id="destaqueEsquerda">
 					<c:choose>
-						<c:when test="${listaDeDestaques != null && listaDeDestaques.size() >= 3}">
+						<c:when test="${destaque3 != null}">
 							<span class="linkAdicionar">
-								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${listaDeDestaques.get(2).produto.id}">
-								<a onclick="excluirDestaque(${listaDeDestaques.get(2).id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
-								<form method="post" id="formRemoverDestaque${listaDeDestaques.get(2).id}" action="excluirDestaque">
-									<input type="hidden" value="${listaDeDestaques.get(2).id}" name="id"/>
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque3.produto.id}">
+								<a onclick="excluirDestaque(${destaque3.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque3.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque3.id}" name="id"/>
 								</form>
 							</span>
 						</c:when>
@@ -68,12 +68,12 @@
 				</div>
 				<div class="produtoDestaque" id="destaqueDireita">
 					<c:choose>
-						<c:when test="${listaDeDestaques != null && listaDeDestaques.size() >= 4}">
+						<c:when test="${destaque4 != null}">
 							<span class="linkAdicionar">
-								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${listaDeDestaques.get(3).produto.id}">
-								<a onclick="excluirDestaque(${listaDeDestaques.get(3).id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
-								<form method="post" id="formRemoverDestaque${listaDeDestaques.get(3).id}" action="excluirDestaque">
-									<input type="hidden" value="${listaDeDestaques.get(3).id}" name="id"/>
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque4.produto.id}">
+								<a onclick="excluirDestaque(${destaque4.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque4.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque4.id}" name="id"/>
 								</form>
 							</span>
 						</c:when>

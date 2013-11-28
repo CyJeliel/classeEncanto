@@ -31,9 +31,7 @@ public class DestaqueController {
 
 		ModelAndView mav = new ModelAndView();
 
-		List<Destaque> listaDeDestaques = destaqueDAO.findListaDeDestaques();
-
-		mav.addObject("listaDeDestaques", listaDeDestaques);
+		applyDestaques(mav);
 
 		mav.addObject("isAdmin", adminController.isLogado());
 
@@ -81,10 +79,7 @@ public class DestaqueController {
 
 			List<Produto> listaDeProdutos = produtoDao.findAll();
 
-			List<Destaque> listaDeDestaques = destaqueDAO
-					.findListaDeDestaques();
-
-			mav.addObject("listaDeDestaques", listaDeDestaques);
+			applyDestaques(mav);
 
 			mav.addObject("listaDeProdutos", listaDeProdutos);
 
@@ -95,6 +90,58 @@ public class DestaqueController {
 		}
 
 		return mav;
+	}
+
+	private void applyDestaques(ModelAndView mav) {
+
+		List<Destaque> listaDeDestaques = destaqueDAO.findListaDeDestaques();
+
+		Destaque destaque1 = null;
+
+		Destaque destaque2 = null;
+
+		Destaque destaque3 = null;
+
+		Destaque destaque4 = null;
+
+		for (Destaque destaque : listaDeDestaques) {
+			switch (destaque.getPosicao()) {
+
+			case 1:
+
+				destaque1 = destaque;
+
+				break;
+
+			case 2:
+
+				destaque2 = destaque;
+
+				break;
+
+			case 3:
+
+				destaque3 = destaque;
+
+				break;
+
+			case 4:
+
+				destaque4 = destaque;
+
+				break;
+			}
+		}
+
+		mav.addObject("destaque1", destaque1);
+
+		mav.addObject("destaque2", destaque2);
+
+		mav.addObject("destaque3", destaque3);
+
+		mav.addObject("destaque4", destaque4);
+
+		mav.addObject("listaDeDestaques", listaDeDestaques);
 	}
 
 	@RequestMapping("selecionaProduto")
