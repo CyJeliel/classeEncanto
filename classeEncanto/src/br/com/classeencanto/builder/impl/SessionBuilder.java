@@ -1,4 +1,4 @@
-package br.com.classeencanto.controller;
+package br.com.classeencanto.builder.impl;
 
 import java.util.Properties;
 

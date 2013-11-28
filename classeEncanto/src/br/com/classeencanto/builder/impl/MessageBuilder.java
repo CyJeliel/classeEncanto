@@ -7,7 +7,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import br.com.classeencanto.builder.Builder;
-import br.com.classeencanto.model.impl.FaleConosco;
 
 public class MessageBuilder implements Builder<Message> {
 
@@ -15,17 +14,13 @@ public class MessageBuilder implements Builder<Message> {
 
 	private String emailContent;
 
-	private String telefone;
-
 	private Session session;
 
-	public MessageBuilder(FaleConosco faleConosco, Session session) {
+	public MessageBuilder(String fromEmail, String mensagem, Session session) {
 
-		this.fromEmail = faleConosco.getEmail();
+		this.fromEmail = fromEmail;
 
-		this.emailContent = faleConosco.getMensagem();
-		
-		this.telefone = faleConosco.getTelefone();
+		this.emailContent = mensagem;
 
 		this.session = session;
 	}
@@ -44,7 +39,7 @@ public class MessageBuilder implements Builder<Message> {
 
 			message.setSubject("Fale Conosco - " + fromEmail);
 
-			message.setText(emailContent + " Telefone para contato: " + telefone);
+			message.setText(emailContent);
 
 			return message;
 

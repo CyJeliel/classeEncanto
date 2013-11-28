@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.builder.impl.ConnectionPropertiesBuilder;
 import br.com.classeencanto.builder.impl.MessageBuilder;
+import br.com.classeencanto.builder.impl.SessionBuilder;
 import br.com.classeencanto.model.impl.FaleConosco;
 
 @Controller
@@ -80,7 +81,9 @@ public class FaleConoscoController {
 
 		Session session = sessionBuilder.build();
 
-		MessageBuilder messageBuilder = new MessageBuilder(faleConosco, session);
+		String mensagem = faleConosco.getMensagem() + "\n Telefone para contato: " + faleConosco.getTelefone();
+		
+		MessageBuilder messageBuilder = new MessageBuilder(faleConosco.getEmail(), mensagem, session);
 
 		Message message = messageBuilder.build();
 

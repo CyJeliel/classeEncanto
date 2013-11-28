@@ -1,12 +1,24 @@
 package br.com.classeencanto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import java.util.Set;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.classeencanto.builder.impl.ConnectionPropertiesBuilder;
+import br.com.classeencanto.builder.impl.ListaDeDesejosEmailBuilder;
+import br.com.classeencanto.builder.impl.MessageBuilder;
+import br.com.classeencanto.builder.impl.SessionBuilder;
 import br.com.classeencanto.dao.ListaDeDesejosDAO;
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Produto;
@@ -27,6 +39,13 @@ public class ListaDeDesejosController {
 
 	@Autowired
 	private ProdutoDAO produtoDAO;
+
+	private List<String> feedbacks;
+
+	public ListaDeDesejosController() {
+
+		feedbacks = new ArrayList<>();
+	}
 
 	@RequestMapping("listaDeDesejos")
 	public ModelAndView listaDeDesejos() {
@@ -111,7 +130,8 @@ public class ListaDeDesejosController {
 	}
 
 	@RequestMapping("alterarQuantidadeItemListaDeDesejos")
-	public String alterarQuantidadeItemListaDeDesejos(UsuarioProduto usuarioProduto) {
+	public String alterarQuantidadeItemListaDeDesejos(
+			UsuarioProduto usuarioProduto) {
 
 		String retorno;
 
@@ -119,7 +139,8 @@ public class ListaDeDesejosController {
 
 			usuarioProduto.setUsuario(loginController.usuario);
 
-			listaDeDesejosDao.alterarQuantidadeItemListaDeDesejos(usuarioProduto);
+			listaDeDesejosDao
+					.alterarQuantidadeItemListaDeDesejos(usuarioProduto);
 
 			retorno = "redirect:listaDeDesejos";
 
@@ -129,6 +150,51 @@ public class ListaDeDesejosController {
 		}
 
 		return retorno;
+	}
+
+	@RequestMapping("/enviaEmailOrcamento")
+	public ModelAndView enviaEmailOrcamento() {
+
+		ModelAndView mav = new ModelAndView("redirect:listaDeDesejos");
+
+		try {
+
+			sendEmail(loginController.usuario.getListaDeDesejos());
+
+			feedbacks
+					.add("Mensagem enviada com sucesso. Em breve, entraremos em contato.");
+
+		} catch (RuntimeException | MessagingException e) {
+
+			e.printStackTrace();
+
+			feedbacks
+					.add("Erro ao enviar email. Por favor, contate o administrador do sistema.");
+		}
+
+		return mav;
+	}
+
+	private void sendEmail(Set<UsuarioProduto> listaDeDesejos)
+			throws MessagingException {
+
+		Properties properties = new ConnectionPropertiesBuilder().build();
+
+		SessionBuilder sessionBuilder = new SessionBuilder(properties);
+
+		Session session = sessionBuilder.build();
+
+		Usuario usuario = loginController.usuario;
+
+		ListaDeDesejosEmailBuilder listaDeDesejosEmailBuilder = new ListaDeDesejosEmailBuilder(
+				listaDeDesejos);
+
+		MessageBuilder messageBuilder = new MessageBuilder(usuario.getEmail(), 
+				listaDeDesejosEmailBuilder.build(), session);
+
+		Message message = messageBuilder.build();
+
+		Transport.send(message);
 	}
 
 }
