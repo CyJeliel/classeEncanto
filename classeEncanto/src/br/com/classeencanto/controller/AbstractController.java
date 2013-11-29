@@ -16,25 +16,39 @@ public abstract class AbstractController {
 	@Autowired
 	protected AdminController adminController;
 
-	private List<Categoria> categoriasMenu;
+	private List<Categoria> categoriasEventos;
+
+	private List<Categoria> categoriasDecoracoes;
 
 	protected ModelAndView finaliza(ModelAndView mav) {
 
 		mav.addObject("isAdmin", adminController.isLogado());
 
-		mav.addObject("categoriasEventos", getCategoriasMenu());
+		mav.addObject("categoriasEventos", getCategoriasEventos());
+
+		mav.addObject("categoriasDecoracoes", getCategoriasDecoracoes());
 
 		return mav;
 	}
 
-	public List<Categoria> getCategoriasMenu() {
+	public List<Categoria> getCategoriasEventos() {
 
-		if (categoriasMenu == null){
+		if (categoriasEventos == null){
 
-			categoriasMenu = categoriaDao.findAll();
+			categoriasEventos = categoriaDao.findByTipo("Evento");
 		}
 
-		return categoriasMenu;
+		return categoriasEventos;
+	}
+
+	public List<Categoria> getCategoriasDecoracoes() {
+
+		if (categoriasDecoracoes == null){
+
+			categoriasDecoracoes = categoriaDao.findByTipo("Decoracao");
+		}
+
+		return categoriasDecoracoes;
 	}
 
 }

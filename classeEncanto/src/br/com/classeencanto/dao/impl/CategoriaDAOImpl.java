@@ -10,11 +10,14 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
+import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
@@ -78,6 +81,12 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 
 			CriteriaQuery<Categoria> criteria = builder
 					.createQuery(Categoria.class);
+
+			Root<Categoria> categoria = criteria.from(Categoria.class);
+
+			Predicate restricaoDeCategorias = builder.equal(categoria.get("tipo"), string);
+
+			criteria.distinct(true).where(restricaoDeCategorias);
 
 			TypedQuery<Categoria> query = em.createQuery(criteria);
 
