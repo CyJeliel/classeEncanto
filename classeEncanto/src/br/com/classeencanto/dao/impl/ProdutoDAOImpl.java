@@ -25,7 +25,6 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
 	public List<Produto> findProdutosRelacionados(Long idProduto) {
-		// TODO M�TODO EM MOCK
 
 		Produto produto = findById(idProduto);
 
