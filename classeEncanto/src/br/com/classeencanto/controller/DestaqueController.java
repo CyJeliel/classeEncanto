@@ -15,7 +15,7 @@ import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Controller
-public class DestaqueController {
+public class DestaqueController extends AbstractController {
 
 	@Autowired
 	private AdminController adminController;
@@ -36,6 +36,8 @@ public class DestaqueController {
 		mav.addObject("isAdmin", adminController.isLogado());
 
 		mav.setViewName("home");
+
+		finaliza(mav);
 
 		return mav;
 	}
@@ -88,6 +90,61 @@ public class DestaqueController {
 
 			mav.setViewName("loginAdmin");
 		}
+
+		finaliza(mav);
+
+		return mav;
+	}
+
+	@RequestMapping("selecionaProduto")
+	public ModelAndView selecionaProduto(Destaque destaque) {
+
+		ModelAndView mav = new ModelAndView("loginAdmin");
+
+		if (adminController.isLogado()) {
+
+			Produto produto = produtoDao.findById(destaque.getProduto());
+
+			try {
+
+				Destaque destaqueCadastrado = destaqueDAO.findDestaque(destaque
+						.getPosicao());
+
+				destaqueCadastrado.setProduto(produto);
+
+				destaqueDAO.merge(destaqueCadastrado);
+
+			} catch (Exception e) {
+
+				destaqueDAO.save(destaque);
+			}
+
+			mav.setViewName("redirect:produtoDestaque");
+
+		} else {
+
+			mav.setViewName("loginAdmin");
+		}
+
+		finaliza(mav);
+
+		return mav;
+	}
+
+	@RequestMapping("excluirDestaque")
+	public ModelAndView excluirDestaque(Destaque destaque) {
+
+		ModelAndView mav = new ModelAndView("loginAdmin");
+
+		if (adminController.isLogado()) {
+
+			destaqueDAO.delete(destaque);
+
+			mav.setViewName("redirect:produtoDestaque");
+
+		}
+
+		finaliza(mav);
 
 		return mav;
 	}
@@ -142,58 +199,6 @@ public class DestaqueController {
 		mav.addObject("destaque4", destaque4);
 
 		mav.addObject("listaDeDestaques", listaDeDestaques);
-	}
-
-	@RequestMapping("selecionaProduto")
-	public ModelAndView selecionaProduto(Destaque destaque) {
-
-		ModelAndView mav = new ModelAndView("loginAdmin");
-
-		if (adminController.isLogado()) {
-
-			Produto produto = produtoDao.findById(destaque.getProduto());
-
-			try {
-
-				Destaque destaqueCadastrado = destaqueDAO.findDestaque(destaque
-						.getPosicao());
-
-				destaqueCadastrado.setProduto(produto);
-
-				destaqueDAO.merge(destaqueCadastrado);
-
-			} catch (Exception e) {
-
-				destaqueDAO.save(destaque);
-			}
-
-			mav.setViewName("redirect:produtoDestaque");
-
-		} else {
-
-			mav.setViewName("loginAdmin");
-		}
-
-		return mav;
-	}
-
-	@RequestMapping("excluirDestaque")
-	public String excluirDestaque(Destaque destaque) {
-
-		String retorno;
-
-		if (adminController.isLogado()) {
-
-			destaqueDAO.delete(destaque);
-
-			retorno = "redirect:produtoDestaque";
-
-		} else {
-
-			retorno = "loginAdmin";
-		}
-
-		return retorno;
 	}
 
 }

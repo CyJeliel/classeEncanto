@@ -26,7 +26,7 @@ import br.com.classeencanto.model.impl.Usuario;
 import br.com.classeencanto.model.impl.UsuarioProduto;
 
 @Controller
-public class ListaDeDesejosController {
+public class ListaDeDesejosController extends AbstractController{
 
 	@Autowired
 	private AdminController adminController;
@@ -69,12 +69,12 @@ public class ListaDeDesejosController {
 
 			mav.addObject("listaDeDesejos", listaDeDesejos);
 
-			mav.addObject("isAdmin", adminController.isLogado());
-
 		} else {
 
 			mav.setViewName("login");
 		}
+
+		finaliza(mav);
 
 		return mav;
 	}
@@ -97,28 +97,15 @@ public class ListaDeDesejosController {
 			mav.setViewName("login");
 		}
 
+		finaliza(mav);
+
 		return mav;
 	}
 
-	private UsuarioProduto buildUsuarioProduto(Long produtoId) {
-
-		Produto produto = produtoDAO.findById(produtoId);
-
-		UsuarioProduto usuarioProduto = new UsuarioProduto();
-
-		usuarioProduto.setProduto(produto);
-
-		usuarioProduto.setUsuario(loginController.usuario);
-
-		usuarioProduto.setQuantidade(1);
-
-		return usuarioProduto;
-	}
-
 	@RequestMapping("excluirProdutoListaDeDesejos")
-	public String excluirProdutoListaDeDesejos(String idProduto) {
+	public ModelAndView excluirProdutoListaDeDesejos(String idProduto) {
 
-		String retorno;
+		ModelAndView mav = new ModelAndView("loginAdmin");
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
@@ -127,21 +114,20 @@ public class ListaDeDesejosController {
 
 			loginController.usuario = usuario;
 
-			retorno = "redirect:listaDeDesejos";
+			mav.setViewName("redirect:listaDeDesejos");
 
-		} else {
-
-			retorno = "loginAdmin";
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping("alterarQuantidadeItemListaDeDesejos")
-	public String alterarQuantidadeItemListaDeDesejos(
+	public ModelAndView alterarQuantidadeItemListaDeDesejos(
 			UsuarioProduto usuarioProduto) {
 
-		String retorno;
+		ModelAndView mav = new ModelAndView("loginAdmin");
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
@@ -150,14 +136,13 @@ public class ListaDeDesejosController {
 			listaDeDesejosDao
 					.alterarQuantidadeItemListaDeDesejos(usuarioProduto);
 
-			retorno = "redirect:listaDeDesejos";
+			mav.setViewName("redirect:listaDeDesejos");
 
-		} else {
-
-			retorno = "loginAdmin";
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping("/enviaEmailOrcamento")
@@ -180,6 +165,8 @@ public class ListaDeDesejosController {
 					.add("Erro ao enviar email. Por favor, contate o administrador do sistema.");
 		}
 
+		finaliza(mav);
+
 		return mav;
 	}
 
@@ -197,12 +184,27 @@ public class ListaDeDesejosController {
 		ListaDeDesejosEmailBuilder listaDeDesejosEmailBuilder = new ListaDeDesejosEmailBuilder(
 				listaDeDesejos);
 
-		MessageBuilder messageBuilder = new MessageBuilder(usuario.getEmail(), 
+		MessageBuilder messageBuilder = new MessageBuilder(usuario.getEmail(),
 				listaDeDesejosEmailBuilder.build(), session);
 
 		Message message = messageBuilder.build();
 
 		Transport.send(message);
+	}
+
+	private UsuarioProduto buildUsuarioProduto(Long produtoId) {
+
+		Produto produto = produtoDAO.findById(produtoId);
+
+		UsuarioProduto usuarioProduto = new UsuarioProduto();
+
+		usuarioProduto.setProduto(produto);
+
+		usuarioProduto.setUsuario(loginController.usuario);
+
+		usuarioProduto.setQuantidade(1);
+
+		return usuarioProduto;
 	}
 
 }

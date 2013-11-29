@@ -1,11 +1,8 @@
 	<a href="" class="menuSubtituloLink">Eventos</a>
 	<div class="itensMenu">
-		<a href="listaDeProdutos?idCategoria=01" class="menuLink">Aniversário</a>
-		<a href="listaDeProdutos?idCategoria=02" class="menuLink">Batizado</a>
-		<a href="listaDeProdutos?idCategoria=03" class="menuLink">Casamento</a>
-		<a href="listaDeProdutos?idCategoria=04" class="menuLink">Chá de bebê</a>
-		<a href="listaDeProdutos?idCategoria=05" class="menuLink">Debutante</a>
-		<a href="listaDeProdutos?idCategoria=06" class="menuLink">Nascimento</a>
+		<c:forEach var="categoria" items="${categoriasEventos}" >
+			<a href="listaDeProdutos?idCategoria=${categoria.id}" class="menuLink">${categoria.descricao}</a>
+		</c:forEach>
 	</div>
 	<a href="" class="menuSubtituloLink">Decorações</a>
 	<div class="itensMenu">
