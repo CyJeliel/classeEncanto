@@ -26,7 +26,7 @@ import br.com.classeencanto.model.impl.Usuario;
 import br.com.classeencanto.model.impl.UsuarioProduto;
 
 @Controller
-public class ListaDeDesejosController extends AbstractController{
+public class ListaDeDesejosController extends FinalizaController{
 
 	@Autowired
 	private AdminController adminController;

@@ -16,7 +16,9 @@ public abstract class AbstractLoginController {
 	@Autowired
 	private CategoriaDAO categoriaDao;
 
-	private List<Categoria> categoriasMenu;
+	private List<Categoria> categoriasEventos;
+
+	private List<Categoria> categoriasDecoracoes;
 
 	protected Usuario usuario;
 
@@ -49,7 +51,8 @@ public abstract class AbstractLoginController {
 
 			String senha = usuario.getSenha();
 
-			if ((login != null && !login.isEmpty()) || (senha != null && !senha.isEmpty())) {
+			if ((login != null && !login.isEmpty())
+					|| (senha != null && !senha.isEmpty())) {
 
 				feedbacks.add("Login ou senha incorretos.");
 
@@ -94,21 +97,40 @@ public abstract class AbstractLoginController {
 
 	protected ModelAndView finaliza(ModelAndView mav) {
 
-		mav.addObject("isAdmin", usuario.isAdmin());
+		boolean isAdmin = false;
 
-		mav.addObject("categoriasMenu", getCategoriasMenu());
+		if (usuario != null) {
+
+			isAdmin = usuario.isAdmin();
+		}
+
+		mav.addObject("isAdmin", isAdmin);
+
+		mav.addObject("categoriasEventos", getCategoriasEventos());
+
+		mav.addObject("categoriasDecoracoes", getCategoriasDecoracoes());
 
 		return mav;
 	}
 
-	public List<Categoria> getCategoriasMenu() {
+	public List<Categoria> getCategoriasEventos() {
 
-		if (categoriasMenu == null){
+		if (categoriasEventos == null){
 
-			categoriasMenu = categoriaDao.findAll();
+			categoriasEventos = categoriaDao.findByTipo("Evento");
 		}
 
-		return categoriasMenu;
+		return categoriasEventos;
+	}
+
+	public List<Categoria> getCategoriasDecoracoes() {
+
+		if (categoriasDecoracoes == null){
+
+			categoriasDecoracoes = categoriaDao.findByTipo("Decoracao");
+		}
+
+		return categoriasDecoracoes;
 	}
 
 }

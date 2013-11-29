@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
 
-public abstract class AbstractController {
+public class FinalizaController {
 
 	@Autowired
 	private CategoriaDAO categoriaDao;

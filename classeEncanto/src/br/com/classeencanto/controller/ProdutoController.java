@@ -24,7 +24,7 @@ import br.com.classeencanto.transformer.ArrayTransformer;
 import br.com.classeencanto.transformer.ImageTransformer;
 
 @Controller
-public class ProdutoController extends AbstractController {
+public class ProdutoController extends FinalizaController {
 
 	@Autowired
 	private AdminController adminController;
