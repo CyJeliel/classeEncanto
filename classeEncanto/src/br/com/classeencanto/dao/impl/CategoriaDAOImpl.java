@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
-import br.com.classeencanto.model.impl.Usuario;
 
 @Repository
 public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
