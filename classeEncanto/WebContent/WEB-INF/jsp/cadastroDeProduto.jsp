@@ -68,8 +68,15 @@
 						<td>Eventos:</td>
 						<td>
 							<select multiple name="grupoDoProduto" id="grupoDoProduto">
-								<c:forEach var="categoria" items="${gruposCategoria}">
-									<option value="${categoria.id}">${categoria.descricao}</option>								
+								<c:forEach var="dto" items="${gruposCategoria}">
+									<c:choose>
+										<c:when test="${dto.selected}">
+											<option value="${dto.categoria.id}" selected="selected">${dto.categoria.descricao}</option>		
+										</c:when>
+										<c:otherwise>
+											<option value="${dto.categoria.id}">${dto.categoria.descricao}</option>
+										</c:otherwise>
+									</c:choose>						
 								</c:forEach>
 							</select>
 						</td>
@@ -78,8 +85,15 @@
 						<td>Decorações:</td>
 						<td>
 							<select multiple name="temaDoProduto" id="temaDoProduto">
-								<c:forEach var="categoria" items="${temasCategoria}">
-									<option value="${categoria.id}">${categoria.descricao}</option>								
+								<c:forEach var="dto" items="${temasCategoria}">
+									<c:choose>
+										<c:when test="${dto.selected}">
+											<option value="${dto.categoria.id}" selected="selected">${dto.categoria.descricao}</option>		
+										</c:when>
+										<c:otherwise>
+											<option value="${dto.categoria.id}">${dto.categoria.descricao}</option>
+										</c:otherwise>
+									</c:choose>						
 								</c:forEach>
 							</select>
 						</td>

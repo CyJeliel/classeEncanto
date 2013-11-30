@@ -74,4 +74,35 @@ public class Categoria implements br.com.classeencanto.model.Entity {
 		return valido;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == this) {
+
+			return true;
+		}
+		if (!(obj instanceof Categoria)) {
+
+			return false;
+		}
+
+		Categoria categoria = (Categoria) obj;
+
+		if (this.id == categoria.getId()) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+
+		int hash = 31;
+
+		hash += this.id;
+
+		return hash;
+	}
 }

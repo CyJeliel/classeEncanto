@@ -18,9 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.dto.CategoriaDTO;
 import br.com.classeencanto.model.impl.Categoria;
 import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.transformer.ArrayTransformer;
+import br.com.classeencanto.transformer.CategoriaListTransformer;
+import br.com.classeencanto.transformer.CategoriaTransformer;
 import br.com.classeencanto.transformer.ImageTransformer;
 
 @Controller
@@ -43,6 +46,12 @@ public class ProdutoController extends FinalizaController {
 
 	@Autowired
 	private ArrayTransformer arrayTransformer;
+
+	@Autowired
+	private CategoriaTransformer categoriaTransformer;
+
+	@Autowired
+	private CategoriaListTransformer categoriaListTransformer;
 
 	private List<String> feedbacks;
 
@@ -70,14 +79,7 @@ public class ProdutoController extends FinalizaController {
 
 			mav.addObject("produto", produto);
 
-			List<Categoria> gruposCategoria = categoriaDao.findByTipo("Evento");
-
-			List<Categoria> temasCategoria = categoriaDao
-					.findByTipo("Decoracao");
-
-			mav.addObject("gruposCategoria", gruposCategoria);
-
-			mav.addObject("temasCategoria", temasCategoria);
+			applyCategorias(mav);
 
 		} else {
 
@@ -92,6 +94,22 @@ public class ProdutoController extends FinalizaController {
 
 		return mav;
 
+	}
+
+	private void applyCategorias(ModelAndView mav) {
+
+		List<Categoria> gruposCategoria = categoriaDao.findByTipo("Evento");
+
+		List<Categoria> temasCategoria = categoriaDao
+				.findByTipo("Decoracao");
+
+		List<CategoriaDTO> gruposCategoriaDTO = categoriaListTransformer.entityToDTOList(gruposCategoria, produto);
+
+		List<CategoriaDTO> temasCategoriaDTO = categoriaListTransformer.entityToDTOList(temasCategoria, produto);
+
+		mav.addObject("gruposCategoria", gruposCategoriaDTO);
+
+		mav.addObject("temasCategoria", temasCategoriaDTO);
 	}
 
 	@RequestMapping("detalhesDeProduto")
@@ -159,6 +177,8 @@ public class ProdutoController extends FinalizaController {
 
 					inserirProduto(produto, file);
 				}
+
+				this.produto = produto;
 			}
 
 			mav.setViewName("redirect:cadastroDeProduto");
