@@ -33,7 +33,7 @@ public class FinalizaController {
 
 	public List<Categoria> getCategoriasEventos() {
 
-		if (categoriasEventos == null){
+		if (categoriasEventos == null || categoriasEventos.size() != categoriaDao.count("Evento") ){
 
 			categoriasEventos = categoriaDao.findByTipo("Evento");
 		}
@@ -43,7 +43,7 @@ public class FinalizaController {
 
 	public List<Categoria> getCategoriasDecoracoes() {
 
-		if (categoriasDecoracoes == null){
+		if (categoriasDecoracoes == null || categoriasDecoracoes.size() != categoriaDao.count("Decoracao")){
 
 			categoriasDecoracoes = categoriaDao.findByTipo("Decoracao");
 		}

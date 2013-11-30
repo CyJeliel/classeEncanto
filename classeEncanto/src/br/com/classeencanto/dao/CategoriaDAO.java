@@ -15,4 +15,5 @@ public interface CategoriaDAO extends DAO<Categoria>{
 
 	List<Categoria> findByIds(Set<String> gruposDoProduto);
 
+	int count(String string);
 }

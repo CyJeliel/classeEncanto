@@ -133,4 +133,9 @@ public class CategoriaDAOImpl extends AbstractDAO<Categoria> implements
 		return categorias;
 	}
 
+	@Override
+	public int count(String string) {
+		return findByTipo(string).size();
+	}
+
 }
