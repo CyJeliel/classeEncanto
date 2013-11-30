@@ -32,7 +32,23 @@
 					</tr>
 					<tr>
 						<td>Tipo:</td>
-						<td><input type="text" name="tipo" value="${categoria != null? categoria.tipo: ''}"></td>
+						<td>
+							<select name="tipo">
+								<c:choose>
+									<c:when test="${categoria != null && categoria.tipo.equals('Evento')}">
+										<option value="Evento" selected="selected"/>
+										<option value="Decoração"/>
+									</c:when>
+									<c:when test="${categoria != null && categoria.tipo.equals('Decoracao')}">
+										<option value="Evento"/>
+										<option value="Decoração" selected="selected"/>
+									</c:when>
+									<c:otherwise>
+										<option value="Evento"/>
+										<option value="Decoração"/>
+									</c:otherwise>
+								</c:choose>
+							</select>
 					</tr>
 					<tr>
 						<td>
