@@ -1,7 +1,6 @@
 package br.com.classeencanto.dao.impl;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,19 +20,10 @@ import br.com.classeencanto.model.impl.Usuario;
 public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 
 	@Override
-	public boolean existe(Usuario usuario) {
-		// TODO Auto-generated method stub
-
-		Random random = new Random();
-
-		return random.nextBoolean();
-
-	}
-
-	@Override
 	public Usuario findByLoginSenha(Usuario usuario) {
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
 
 		EntityManager em = beginTransaction(factory);
 
@@ -52,10 +42,12 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 							builder.equal(usuarioRoot.get("senha"),
 									usuario.getSenha()));
 
-			if (usuario.isAdmin()){
+			if (usuario.isAdmin()) {
 
-				restricaoDeUsuarios = builder.and(restricaoDeUsuarios, builder.equal(usuarioRoot.get("admin"),
-									usuario.isAdmin()));
+				restricaoDeUsuarios = builder.and(
+						restricaoDeUsuarios,
+						builder.equal(usuarioRoot.get("admin"),
+								usuario.isAdmin()));
 			}
 
 			criteria.distinct(true).where(restricaoDeUsuarios);
@@ -104,8 +96,8 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 	@Override
 	public List<Usuario> findAll() {
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
-
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
 
 		EntityManager em = beginTransaction(factory);
 

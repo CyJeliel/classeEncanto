@@ -19,72 +19,81 @@
 		<div id="conteudo">
 			<div id="produtosEscolhidos" >
 				<div class="produtoDestaque" id="destaqueEsquerda">
-					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+					<c:choose>
+						<c:when test="${destaque1 != null}">
+							<span class="linkAdicionar">
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque1.produto.id}">
+								<a onclick="excluirDestaque(${destaque1.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque1.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque1.id}" name="id"/>
+								</form>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span class="linkAdicionar" onclick="escolheProduto(1);">Adicionar</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="produtoDestaque" id="destaqueDireita">
-					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+					<c:choose>
+						<c:when test="${destaque2 != null}">
+							<span class="linkAdicionar">
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque2.produto.id}">
+								<a onclick="excluirDestaque(${destaque2.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque2.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque2.id}" name="id"/>
+								</form>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span class="linkAdicionar" onclick="escolheProduto(2);">Adicionar</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="produtoDestaque" id="destaqueEsquerda">
-					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+					<c:choose>
+						<c:when test="${destaque3 != null}">
+							<span class="linkAdicionar">
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque3.produto.id}">
+								<a onclick="excluirDestaque(${destaque3.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque3.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque3.id}" name="id"/>
+								</form>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span class="linkAdicionar" onclick="escolheProduto(3);">Adicionar</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="produtoDestaque" id="destaqueDireita">
-					<span class="linkAdicionar" onclick="escolheProduto();">Adicionar</span>
+					<c:choose>
+						<c:when test="${destaque4 != null}">
+							<span class="linkAdicionar">
+								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${destaque4.produto.id}">
+								<a onclick="excluirDestaque(${destaque4.id})" title="Excluir Destaque" class="manterDestaque">Remover</a>
+								<form method="post" id="formRemoverDestaque${destaque4.id}" action="excluirDestaque">
+									<input type="hidden" value="${destaque4.id}" name="id"/>
+								</form>
+							</span>
+						</c:when>
+						<c:otherwise>
+							<span class="linkAdicionar" onclick="escolheProduto(4);">Adicionar</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<div id="escolherProdutos" style="display: none;">
 				<div id="miniaturasBox">
 					<c:forEach var="produto" items="${listaDeProdutos}" >
 						<div class="miniatura">
-							<img onclick="selecionaProduto();" class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+							<form method="post" id="selecionaProduto${produto.id}" action="selecionaProduto">
+								<input type="hidden" value="1" name="posicao" class="posicao"/>
+								<input type="hidden" value="${produto.id}" name="produto.id"/>
+								<img onclick="selecionaProduto(${produto.id});" class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+							</form>
 						</div>
 					</c:forEach>
-				
-				
-					<!-- <div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div>
-					<div class="miniatura">
-						<img onclick="selecionaProduto();" class="produto" src="img/bandaid.jpg">
-					</div> -->
 				</div>
 			</div>
 		</div>

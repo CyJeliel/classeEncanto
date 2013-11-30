@@ -1,6 +1,5 @@
 package br.com.classeencanto.dao.impl;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,26 +18,13 @@ import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.ProdutoDAO;
 import br.com.classeencanto.model.impl.Categoria;
-import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
 
 @Repository
 public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 	@Override
-	public Produto findById(Produto produto) {
-		// TODO REMOVER M�TODO
-
-		// Produto produto = new Produto();
-		produto.setNome("Bandaid's personalizados 2");
-		produto.setResumo("Bandaid's personalizados para Kit Banheiro 2");
-		produto.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
-		return produto;
-	}
-
-	@Override
 	public List<Produto> findProdutosRelacionados(Long idProduto) {
-		// TODO M�TODO EM MOCK
 
 		Produto produto = findById(idProduto);
 
@@ -51,16 +37,25 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 			idsCategorias.add(categoria.getId());
 		}
 
-		List<Produto> itensRelacionados = findProdutosRelacionadosPorCategoria(
-				idsCategorias, idProduto);
+		List<Produto> itensRelacionados = null;
+
+		try {
+
+			itensRelacionados = findProdutosRelacionadosPorCategoria(
+					idsCategorias, idProduto);
+		} catch (Exception e) {
+
+			itensRelacionados = findAll();
+		}
 
 		return itensRelacionados;
 	}
 
-	private List<Produto> findProdutosRelacionadosPorCategoria(Set<Long> idsCategorias,
-			Long idProduto) {
+	private List<Produto> findProdutosRelacionadosPorCategoria(
+			Set<Long> idsCategorias, Long idProduto) {
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
 
 		EntityManager em = beginTransaction(factory);
 
@@ -102,8 +97,8 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	@Override
 	public List<Produto> findProdutos(Long idCategoria) {
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
-
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
 
 		EntityManager em = beginTransaction(factory);
 
@@ -144,48 +139,37 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 	}
 
 	@Override
-	public List<Destaque> findListaDeDestaques() {
-		// TODO M�TODO EM MOCK
+	public Produto findById(Long idProduto) {
 
-		List<Destaque> listaDeDestaques = new ArrayList<>();
+		Produto produto = new Produto();
 
-		for (int i = 1; i <= 3; ++i) {
+		produto.setId(idProduto);
 
-			Destaque destaque = new Destaque(new Produto());
+		produto = super.findById(produto);
 
-			destaque.setNome("Bandaid's personalizados 2");
-
-			destaque.setResumo("Bandaid's personalizados para Kit Banheiro 2");
-
-			destaque.setDescricao("Bandaid's personalizados para Kit Banheiro 2");
-
-			destaque.setId(Long.valueOf(i));
-
-			destaque.setPosicao(i);
-
-			listaDeDestaques.add(destaque);
-		}
-
-		return listaDeDestaques;
+		return produto;
 	}
 
 	@Override
-	public Destaque findDestaque(Integer posicaoAntiga) {
+	public List<Produto> findAll() {
 
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("classeEncanto");
-
+		EntityManagerFactory factory = Persistence
+				.createEntityManagerFactory("classeEncanto");
 
 		EntityManager em = beginTransaction(factory);
 
 		try {
 
-			Produto produto = em.find(Produto.class, 10l);
+			CriteriaBuilder builder = em.getCriteriaBuilder();
 
-			Destaque destaque = new Destaque(produto);
+			CriteriaQuery<Produto> criteria = builder
+					.createQuery(Produto.class);
 
-			destaque.setPosicao(1);
+			TypedQuery<Produto> query = em.createQuery(criteria);
 
-			return destaque;
+			List<Produto> resultList = query.getResultList();
+
+			return resultList;
 
 		} catch (Exception e) {
 
@@ -197,17 +181,5 @@ public class ProdutoDAOImpl extends AbstractDAO<Produto> implements ProdutoDAO {
 
 			endTransaction(em, factory);
 		}
-	}
-
-	@Override
-	public Produto findById(Long idProduto) {
-
-		Produto produto = new Produto();
-
-		produto.setId(idProduto);
-
-		produto = super.findById(produto);
-
-		return produto;
 	}
 }

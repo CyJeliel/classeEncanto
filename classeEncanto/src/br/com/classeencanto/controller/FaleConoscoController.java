@@ -20,7 +20,7 @@ import br.com.classeencanto.builder.impl.SessionBuilder;
 import br.com.classeencanto.model.impl.FaleConosco;
 
 @Controller
-public class FaleConoscoController {
+public class FaleConoscoController extends FinalizaController{
 
 	@Autowired
 	private AdminController adminController;
@@ -31,7 +31,7 @@ public class FaleConoscoController {
 
 		feedbacks = new ArrayList<>();
 	}
-	
+
 	@RequestMapping("/faleConosco")
 	public ModelAndView faleConosco() {
 
@@ -49,6 +49,8 @@ public class FaleConoscoController {
 
 		this.feedbacks.clear();
 
+		finaliza(mav);
+
 		return mav;
 	}
 
@@ -62,13 +64,15 @@ public class FaleConoscoController {
 			sendEmail(faleConosco);
 
 			feedbacks.add("Mensagem enviada com sucesso. Em breve, entraremos em contato.");
-			
+
 		} catch (RuntimeException | MessagingException e) {
 
 			e.printStackTrace();
-			
+
 			feedbacks.add("Erro ao enviar email. Por favor, contate o administrador do sistema.");
 		}
+
+		finaliza(mav);
 
 		return mav;
 	}
@@ -82,7 +86,7 @@ public class FaleConoscoController {
 		Session session = sessionBuilder.build();
 
 		String mensagem = faleConosco.getMensagem() + "\n Telefone para contato: " + faleConosco.getTelefone();
-		
+
 		MessageBuilder messageBuilder = new MessageBuilder(faleConosco.getEmail(), mensagem, session);
 
 		Message message = messageBuilder.build();

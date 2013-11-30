@@ -37,7 +37,7 @@ public class UsuarioController extends AbstractLoginController {
 	}
 
 	@RequestMapping("logout")
-	public String logout() {
+	public ModelAndView logout() {
 
 		adminController.logout();
 
@@ -51,7 +51,7 @@ public class UsuarioController extends AbstractLoginController {
 
 		mav.addObject("usuario", usuario);
 
-		mav.addObject("isAdmin", adminController.isLogado());
+		finaliza(mav);
 
 		return mav;
 	}
@@ -59,7 +59,7 @@ public class UsuarioController extends AbstractLoginController {
 	@RequestMapping("salvarUsuario")
 	public ModelAndView salvarUsuario(Usuario usuario) {
 
-		if (usuario.getId() == 0){
+		if (usuario.getId() == 0) {
 
 			usuarioDAO.save(usuario);
 
@@ -68,9 +68,9 @@ public class UsuarioController extends AbstractLoginController {
 			usuarioDAO.merge(usuario);
 		}
 
-		if (!adminController.isLogado()){
+		if (!adminController.isLogado()) {
 
-			if (usuario.isAdmin()){
+			if (usuario.isAdmin()) {
 
 				return adminController.login((Administrador) usuario);
 
@@ -83,41 +83,47 @@ public class UsuarioController extends AbstractLoginController {
 
 			usuario = null;
 
-			return new ModelAndView("redirect:listaDeUsuarios");
+			ModelAndView mav = new ModelAndView("redirect:listaDeUsuarios");
+
+			finaliza(mav);
+
+			return mav;
 		}
 	}
 
 	@RequestMapping("excluirUsuario")
-	public String excluirUsuario(Usuario usuario) {
+	public ModelAndView excluirUsuario(Usuario usuario) {
 
-		String retorno;
+		ModelAndView mav = new ModelAndView("loginAdmin");
+
 		if (adminController.isLogado()) {
 
 			usuarioDAO.delete(usuario);
 
-			retorno = "redirect:listaDeUsuarios";
+			mav.setViewName("redirect:listaDeUsuarios");
 
-		} else {
-
-			retorno = "loginAdmin";
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping("formAlterarDadosUsuario")
-	public String formAlterarDadosUsuario(Long idUsuario) {
+	public ModelAndView formAlterarDadosUsuario(Long idUsuario) {
 
-		String retorno = "redirect:admin";
+		ModelAndView mav = new ModelAndView("loginAdmin");
 
 		if (adminController.isLogado()) {
 
 			usuario = usuarioDAO.findById(idUsuario);
 
-			retorno = "redirect:cadastroDeUsuario";
+			mav.setViewName("redirect:cadastroDeUsuario");
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping("listaDeUsuarios")
@@ -133,12 +139,12 @@ public class UsuarioController extends AbstractLoginController {
 
 			mav.addObject("listaDeUsuarios", listaDeUsuarios);
 
-			mav.addObject("isAdmin", adminController.isLogado());
-
 		} else {
 
 			mav.setViewName("loginAdmin");
 		}
+
+		finaliza(mav);
 
 		return mav;
 	}

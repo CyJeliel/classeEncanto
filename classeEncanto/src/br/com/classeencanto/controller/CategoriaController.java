@@ -12,10 +12,7 @@ import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
 
 @Controller
-public class CategoriaController {
-
-	@Autowired
-	private AdminController adminController;
+public class CategoriaController extends FinalizaController{
 
 	@Autowired
 	private CategoriaDAO categoriaDao;
@@ -42,7 +39,7 @@ public class CategoriaController {
 
 			mav.addObject("listaDeCategorias", listaDeCategorias);
 
-			mav.addObject("isAdmin", adminController.isLogado());
+			finaliza(mav);
 
 		} else {
 
@@ -53,22 +50,20 @@ public class CategoriaController {
 	}
 
 	@RequestMapping("excluirCategoria")
-	public String excluirCategoria(Categoria categoria) {
+	public ModelAndView excluirCategoria(Categoria categoria) {
 
-		String retorno;
+		ModelAndView mav = new ModelAndView("loginAdmin");
 
 		if (adminController.isLogado()) {
 
 			categoriaDao.delete(categoria);
 
-			retorno = "redirect:listaDeCategorias";
-
-		} else {
-
-			retorno = "loginAdmin";
+			mav.setViewName("redirect:listaDeCategorias");
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping({ "/cadastroDeCategoria" })
@@ -97,28 +92,32 @@ public class CategoriaController {
 
 		categoria = null;
 
+		finaliza(mav);
+
 		return mav;
 	}
 
 	@RequestMapping("formAlterarDadosCategoria")
-	public String formAlterarDadosCategoria(Long idCategoria) {
+	public ModelAndView formAlterarDadosCategoria(Long idCategoria) {
 
-		String retorno = "redirect:admin";
+		ModelAndView mav = new ModelAndView("redirect:admin");
 
 		if (adminController.isLogado()) {
 
 			categoria = categoriaDao.findById(idCategoria);
 
-			retorno = "redirect:cadastroDeCategoria";
+			mav.setViewName("redirect:cadastroDeCategoria");
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
 	}
 
 	@RequestMapping("salvarCategoria")
-	public String salvarCategoria(Categoria categoria) {
+	public ModelAndView salvarCategoria(Categoria categoria) {
 
-		String retorno = "redirect:admin";
+		ModelAndView mav = new ModelAndView("redirect:admin");
 
 		if (adminController.isLogado()) {
 
@@ -136,10 +135,10 @@ public class CategoriaController {
 				}
 			}
 
-			retorno = "redirect:cadastroDeCategoria";
+			mav.setViewName("redirect:cadastroDeCategoria");
 		}
 
-		return retorno;
+		return mav;
 	}
 
 	private void inserirCategoria(Categoria categoria) {

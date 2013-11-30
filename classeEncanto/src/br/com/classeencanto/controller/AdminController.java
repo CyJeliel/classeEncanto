@@ -39,7 +39,7 @@ public class AdminController extends AbstractLoginController implements
 	}
 
 	@RequestMapping("logoutAdmin")
-	public String logout() {
+	public ModelAndView logout() {
 
 		return super.logout();
 	}

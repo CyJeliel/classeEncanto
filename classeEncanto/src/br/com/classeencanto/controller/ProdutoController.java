@@ -18,15 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.dao.ProdutoDAO;
+import br.com.classeencanto.dto.CategoriaDTO;
 import br.com.classeencanto.model.impl.Categoria;
-import br.com.classeencanto.model.impl.Destaque;
 import br.com.classeencanto.model.impl.Produto;
-import br.com.classeencanto.model.impl.Usuario;
 import br.com.classeencanto.transformer.ArrayTransformer;
+import br.com.classeencanto.transformer.CategoriaListTransformer;
+import br.com.classeencanto.transformer.CategoriaTransformer;
 import br.com.classeencanto.transformer.ImageTransformer;
 
 @Controller
-public class ProdutoController {
+public class ProdutoController extends FinalizaController {
 
 	@Autowired
 	private AdminController adminController;
@@ -46,6 +47,12 @@ public class ProdutoController {
 	@Autowired
 	private ArrayTransformer arrayTransformer;
 
+	@Autowired
+	private CategoriaTransformer categoriaTransformer;
+
+	@Autowired
+	private CategoriaListTransformer categoriaListTransformer;
+
 	private List<String> feedbacks;
 
 	private Produto produto;
@@ -53,58 +60,6 @@ public class ProdutoController {
 	public ProdutoController() {
 
 		feedbacks = new ArrayList<>();
-	}
-
-	@RequestMapping({ "/", "/home" })
-	public ModelAndView produtosEmDestaque() {
-
-		ModelAndView mav = new ModelAndView();
-
-		List<Destaque> listaDeDestaques = produtoDao.findListaDeDestaques();
-
-		mav.addObject("listaDeDestaques", listaDeDestaques);
-
-		mav.addObject("isAdmin", adminController.isLogado());
-
-		mav.setViewName("home");
-
-		return mav;
-	}
-
-	@RequestMapping({ "/getDestaquehome" })
-	@ResponseBody
-	public byte[] produtoEmDestaque(Integer posicao) {
-
-		byte[] image = null;
-
-		Destaque destaque = produtoDao.findDestaque(posicao);
-
-		if (destaque != null && destaque.getImagem() != null) {
-
-			image = destaque.getImagem();
-		}
-
-		return image;
-	}
-
-	@RequestMapping("produtoDestaque")
-	public ModelAndView cadastroProdutosEmDestaque(Usuario usuario) {
-
-		ModelAndView mav = new ModelAndView("loginAdmin");
-
-		if (adminController.isLogado()) {
-
-			List<Produto> listaDeProdutos = produtoDao.findProdutos(null);
-
-			mav.addObject("listaDeProdutos", listaDeProdutos);
-
-			mav.setViewName("cadastroProdutosEmDestaque");
-		} else {
-
-			mav.setViewName("loginAdmin");
-		}
-
-		return mav;
 	}
 
 	@RequestMapping({ "/cadastroDeProduto" })
@@ -124,14 +79,7 @@ public class ProdutoController {
 
 			mav.addObject("produto", produto);
 
-			List<Categoria> gruposCategoria = categoriaDao.findByTipo("Evento");
-
-			List<Categoria> temasCategoria = categoriaDao
-					.findByTipo("Decoracao");
-
-			mav.addObject("gruposCategoria", gruposCategoria);
-
-			mav.addObject("temasCategoria", temasCategoria);
+			applyCategorias(mav);
 
 		} else {
 
@@ -142,8 +90,26 @@ public class ProdutoController {
 
 		produto = null;
 
+		finaliza(mav);
+
 		return mav;
 
+	}
+
+	private void applyCategorias(ModelAndView mav) {
+
+		List<Categoria> gruposCategoria = categoriaDao.findByTipo("Evento");
+
+		List<Categoria> temasCategoria = categoriaDao
+				.findByTipo("Decoracao");
+
+		List<CategoriaDTO> gruposCategoriaDTO = categoriaListTransformer.entityToDTOList(gruposCategoria, produto);
+
+		List<CategoriaDTO> temasCategoriaDTO = categoriaListTransformer.entityToDTOList(temasCategoria, produto);
+
+		mav.addObject("gruposCategoria", gruposCategoriaDTO);
+
+		mav.addObject("temasCategoria", temasCategoriaDTO);
 	}
 
 	@RequestMapping("detalhesDeProduto")
@@ -162,7 +128,7 @@ public class ProdutoController {
 
 		mav.addObject("itensRelacionados", itensRelacionados);
 
-		mav.addObject("isAdmin", adminController.isLogado());
+		finaliza(mav);
 
 		return mav;
 	}
@@ -178,18 +144,18 @@ public class ProdutoController {
 
 		mav.addObject("listaDeProdutos", listaDeProdutos);
 
-		mav.addObject("isAdmin", adminController.isLogado());
+		finaliza(mav);
 
 		return mav;
 	}
 
 	@RequestMapping("salvarProduto")
-	public String salvarProduto(Produto produto,
+	public ModelAndView salvarProduto(Produto produto,
 			@RequestParam(value = "grupoDoProduto") String[] grupoDoProduto,
 			@RequestParam(value = "temaDoProduto") String[] temaDoProduto,
 			HttpServletRequest request) {
 
-		String retorno = "redirect:admin";
+		ModelAndView mav = new ModelAndView("redirect:admin");
 
 		if (adminController.isLogado()) {
 
@@ -211,12 +177,61 @@ public class ProdutoController {
 
 					inserirProduto(produto, file);
 				}
+
+				this.produto = produto;
 			}
 
-			retorno = "redirect:cadastroDeProduto";
+			mav.setViewName("redirect:cadastroDeProduto");
 		}
 
-		return retorno;
+		finaliza(mav);
+
+		return mav;
+	}
+
+	@RequestMapping("formAlterarDadosProduto")
+	public ModelAndView formAlterarDadosProduto(Long idProduto) {
+
+		ModelAndView mav = new ModelAndView("redirect:admin");
+
+		if (adminController.isLogado()) {
+
+			produto = produtoDao.findById(idProduto);
+
+			mav.setViewName("redirect:cadastroDeProduto");
+		}
+
+		finaliza(mav);
+
+		return mav;
+	}
+
+	@RequestMapping({ "/getImagemProduto" })
+	@ResponseBody
+	public byte[] getImagemProduto(Long idProduto) {
+
+		byte[] image = null;
+
+		Produto produto = produtoDao.findById(idProduto);
+
+		if (produto != null && produto.getImagem() != null) {
+
+			image = produto.getImagem();
+		}
+
+		return image;
+	}
+
+	@RequestMapping("excluirProduto")
+	public ModelAndView excluirProduto(Produto produto) {
+
+		produtoDao.delete(produto);
+
+		ModelAndView mav = new ModelAndView("redirect:home");
+
+		finaliza(mav);
+
+		return mav;
 	}
 
 	private void applyCategorias(Produto produto, String[] grupoDoProduto,
@@ -225,8 +240,7 @@ public class ProdutoController {
 		Set<String> gruposDoProduto = arrayTransformer
 				.arrayToSet(grupoDoProduto);
 
-		Set<String> temasDoProduto = arrayTransformer
-				.arrayToSet(temaDoProduto);
+		Set<String> temasDoProduto = arrayTransformer.arrayToSet(temaDoProduto);
 
 		List<Categoria> grupos = categoriaDao.findByIds(gruposDoProduto);
 
@@ -283,45 +297,6 @@ public class ProdutoController {
 
 			return;
 		}
-	}
-
-	@RequestMapping("formAlterarDadosProduto")
-	public String formAlterarDadosProduto(Long idProduto) {
-
-		String retorno = "redirect:admin";
-
-		if (adminController.isLogado()) {
-
-			produto = produtoDao.findById(idProduto);
-
-			retorno = "redirect:cadastroDeProduto";
-		}
-
-		return retorno;
-	}
-
-	@RequestMapping({ "/getImagemProduto" })
-	@ResponseBody
-	public byte[] getImagemProduto(Long idProduto) {
-
-		byte[] image = null;
-
-		Produto produto = produtoDao.findById(idProduto);
-
-		if (produto != null && produto.getImagem() != null) {
-
-			image = produto.getImagem();
-		}
-
-		return image;
-	}
-
-	@RequestMapping("excluirProduto")
-	public String excluirProduto(Produto produto) {
-
-		produtoDao.delete(produto);
-
-		return "redirect:home";
 	}
 
 }

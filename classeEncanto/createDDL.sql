@@ -1,8 +1,8 @@
 CREATE TABLE produto
 (
   id        serial                 NOT NULL,
-  nome      character varying(50)  NOT NULL,
-  resumo    character varying(100) NOT NULL,
+  nome      character varying(100) NOT NULL,
+  resumo    character varying(200) NOT NULL,
   descricao character varying(300) NOT NULL,
   imagem    bytea                  NOT NULL,
 
