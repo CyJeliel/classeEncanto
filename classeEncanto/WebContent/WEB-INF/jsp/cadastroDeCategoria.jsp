@@ -21,7 +21,16 @@
 					<div class="feedback"><c:out value="${feedback}"></c:out></div>
 				</c:forEach>
 			</c:if>
-			<h1>Nova Categoria</h1>
+			
+			<c:choose>
+				<c:when test="${categoria != null}">
+					<h1>Alterar Categoria</h1>
+				</c:when>
+				<c:otherwise>
+					<h1>Nova Categoria</h1>
+				</c:otherwise>
+			</c:choose>
+			
 			<form method="post" action="salvarCategoria">
 				
 				<input name="id" type="hidden" value="${categoria != null? categoria.id: 0}"/>
@@ -36,13 +45,15 @@
 						<td>
 							<c:choose>
 								<c:when test="${categoria != null && categoria.tipo.equals('Evento')}">
-									<select name="tipo" disabled="disabled">
+									<input type="hidden" name="tipo" value="Evento">
+									<select disabled="disabled">
 										<option value="Evento" selected="selected">Evento</option>
 										<option value="Decoracao">Decoração</option>
 									</select>
 								</c:when>
 								<c:when test="${categoria != null && categoria.tipo.equals('Decoracao')}">
-									<select name="tipo" disabled="disabled">
+									<input type="hidden" name="tipo" value="Decoracao">
+									<select disabled="disabled">
 										<option value="Evento">Evento</option>
 										<option value="Decoracao" selected="selected">Decoração</option>
 									</select>

@@ -33,7 +33,7 @@ public class FinalizaController {
 
 	public List<Categoria> getCategoriasEventos() {
 
-		if (categoriasEventos == null || categoriasEventos.size() != categoriaDao.count("Evento") ){
+		if (categoriasEventos == null){
 
 			categoriasEventos = categoriaDao.findByTipo("Evento");
 		}
@@ -43,7 +43,7 @@ public class FinalizaController {
 
 	public List<Categoria> getCategoriasDecoracoes() {
 
-		if (categoriasDecoracoes == null || categoriasDecoracoes.size() != categoriaDao.count("Decoracao")){
+		if (categoriasDecoracoes == null){
 
 			categoriasDecoracoes = categoriaDao.findByTipo("Decoracao");
 		}
@@ -51,4 +51,11 @@ public class FinalizaController {
 		return categoriasDecoracoes;
 	}
 
+	public void recarregaCategorias() {
+		
+		categoriasDecoracoes = null;
+		
+		categoriasEventos = null;
+	}
+	
 }

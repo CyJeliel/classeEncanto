@@ -59,6 +59,8 @@ public class CategoriaController extends FinalizaController {
 			categoriaDao.delete(categoria);
 
 			mav.setViewName("redirect:listaDeCategorias");
+			
+			recarregaCategorias();
 		}
 
 		finaliza(mav);
@@ -132,6 +134,8 @@ public class CategoriaController extends FinalizaController {
 				if (!existeCategoria) {
 
 					salvar(categoria);
+					
+					recarregaCategorias();
 				}
 			}
 		}
