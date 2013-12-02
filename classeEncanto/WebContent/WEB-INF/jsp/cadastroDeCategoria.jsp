@@ -7,6 +7,7 @@
 	<head>
 		<link type="text/css" rel="stylesheet" href="css/geral.css"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroDeCategoria.js"></script>
 		<title>Classe e Encanto</title>
 	</head>
 	<body>
@@ -52,7 +53,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="submit" value="${categoria != null? 'Alterar': 'Criar'}">
+							<input type="button" onclick="check(this.form)" value="${categoria != null? 'Alterar': 'Criar'}">
 						</td>
 						<td>
 							<input type="reset" value="Cancelar">

@@ -50,7 +50,7 @@ public class UsuarioController extends AbstractLoginController {
 	@RequestMapping("cadastroDeUsuario")
 	public ModelAndView cadastroDeUsuario() {
 
-		ModelAndView mav = new ModelAndView("formUsuario");
+		ModelAndView mav = new ModelAndView("cadastroDeUsuario");
 
 		mav.addObject("usuario", usuarioQueSeraAlterado);
 

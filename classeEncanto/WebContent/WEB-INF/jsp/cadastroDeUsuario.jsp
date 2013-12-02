@@ -9,7 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/js/novoUsuario.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroDeUsuario.js"></script>
 	</head>
 	<body>
 		<%@ include file="/WEB-INF/jsp/header.jsp" %>
