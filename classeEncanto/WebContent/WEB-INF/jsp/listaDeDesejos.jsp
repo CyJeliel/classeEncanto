@@ -59,7 +59,7 @@
 										</td>
 										<td>
 											<form method="post" action="alterarQuantidadeItemListaDeDesejos" id="formAtualizarQuantidade${item.produto.id}" class="formAtualizarQuantidade">
-												<input name="quantidade" value="${item.quantidade}" class="inputQuantidade"/>
+												<input name="quantidade" id="quantidade${item.produto.id}" value="${item.quantidade}" class="inputQuantidade"/>
 												<input type="hidden" value="${item.produto.id}" name="produto.id"/>
 												<a class="link" onclick="atualizarQuantidade(${item.produto.id})">Atualizar</a>
 											</form>
