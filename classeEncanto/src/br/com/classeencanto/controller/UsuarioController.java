@@ -1,5 +1,6 @@
 package br.com.classeencanto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class UsuarioController extends AbstractLoginController {
 
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+
+	private Usuario usuarioQueSeraAlterado;
 
 	@RequestMapping("login")
 	public ModelAndView login(Usuario usuario) {
@@ -49,7 +52,15 @@ public class UsuarioController extends AbstractLoginController {
 
 		ModelAndView mav = new ModelAndView("formUsuario");
 
-		mav.addObject("usuario", usuario);
+		mav.addObject("usuario", usuarioQueSeraAlterado);
+
+		List<String> feedbacks = new ArrayList<>();
+
+		feedbacks.addAll(this.feedbacks);
+
+		mav.addObject("feedbacks", feedbacks);
+		
+		this.feedbacks.clear();
 
 		finaliza(mav);
 
@@ -59,6 +70,31 @@ public class UsuarioController extends AbstractLoginController {
 	@RequestMapping("salvarUsuario")
 	public ModelAndView salvarUsuario(Usuario usuario) {
 
+		ModelAndView mav = new ModelAndView("redirect:listaDeUsuarios");
+
+		boolean existeLoginOuSenha = existeLoginOuSenha(usuario, mav);
+
+		if (!existeLoginOuSenha) {
+
+			salvar(usuario);
+
+			if (!adminController.isLogado()) {
+
+				return logar(usuario);
+
+			} else {
+
+				usuario = null;
+
+				finaliza(mav);
+			}
+		}
+
+		return mav;
+	}
+
+	private void salvar(Usuario usuario) {
+
 		if (usuario.getId() == 0) {
 
 			usuarioDAO.save(usuario);
@@ -67,27 +103,48 @@ public class UsuarioController extends AbstractLoginController {
 
 			usuarioDAO.merge(usuario);
 		}
+	}
 
-		if (!adminController.isLogado()) {
+	private boolean existeLoginOuSenha(Usuario usuario, ModelAndView mav) {
 
-			if (usuario.isAdmin()) {
+		boolean existeLoginOuSenha = false;
 
-				return adminController.login((Administrador) usuario);
+		List<Usuario> usuariosExistentes = usuarioDAO.findAll();
 
-			} else {
+		if (usuariosExistentes != null && !usuariosExistentes.isEmpty()) {
 
-				return super.login(usuario, usuarioDAO);
+			for (Usuario usuarioExistente : usuariosExistentes) {
+
+				if (usuarioExistente.getLogin().equals(usuario.getLogin())
+						|| usuarioExistente.getEmail().equals(
+								usuario.getEmail())) {
+
+					if (usuarioExistente.getId() != usuario.getId()) {
+
+						feedbacks.add("Login ou email já cadastrados.");
+
+						mav.setViewName("redirect:cadastroDeUsuario");
+
+						existeLoginOuSenha = true;
+
+						break;
+					}
+				}
 			}
+		}
+
+		return existeLoginOuSenha;
+	}
+
+	private ModelAndView logar(Usuario usuario) {
+
+		if (usuario.isAdmin()) {
+
+			return adminController.login((Administrador) usuario);
 
 		} else {
 
-			usuario = null;
-
-			ModelAndView mav = new ModelAndView("redirect:listaDeUsuarios");
-
-			finaliza(mav);
-
-			return mav;
+			return super.login(usuario, usuarioDAO);
 		}
 	}
 
@@ -116,7 +173,7 @@ public class UsuarioController extends AbstractLoginController {
 
 		if (adminController.isLogado()) {
 
-			usuario = usuarioDAO.findById(idUsuario);
+			usuarioQueSeraAlterado = usuarioDAO.findById(idUsuario);
 
 			mav.setViewName("redirect:cadastroDeUsuario");
 		}
@@ -134,7 +191,7 @@ public class UsuarioController extends AbstractLoginController {
 		if (adminController.isLogado()) {
 
 			super.usuario = adminController.usuario;
-			
+
 			mav.setViewName("listaDeUsuarios");
 
 			List<Usuario> listaDeUsuarios = usuarioDAO.findAll();

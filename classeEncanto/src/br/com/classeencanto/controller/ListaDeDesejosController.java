@@ -64,7 +64,7 @@ public class ListaDeDesejosController extends FinalizaController{
 			mav.setViewName("listaDeDesejos");
 
 			Set<UsuarioProduto> listaDeDesejos = listaDeDesejosDao
-					.findListaDeDesejos(loginController.usuario);
+					.findListaDeDesejos(usuario);
 
 			List<String> feedbacks = new ArrayList<>();
 

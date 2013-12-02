@@ -12,7 +12,7 @@ import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
 
 @Controller
-public class CategoriaController extends FinalizaController{
+public class CategoriaController extends FinalizaController {
 
 	@Autowired
 	private CategoriaDAO categoriaDao;
@@ -123,22 +123,62 @@ public class CategoriaController extends FinalizaController{
 
 			feedbacks.clear();
 
+			mav.setViewName("redirect:cadastroDeCategoria");
+
 			if (categoria.valida(feedbacks)) {
 
-				if (categoria.getId() != 0) {
+				boolean existeCategoria = existeCategoria(categoria, mav);
 
-					alterarCategoria(categoria);
+				if (!existeCategoria) {
 
-				} else {
-
-					inserirCategoria(categoria);
+					salvar(categoria);
 				}
 			}
-
-			mav.setViewName("redirect:cadastroDeCategoria");
 		}
 
 		return mav;
+	}
+
+	private void salvar(Categoria categoria) {
+
+		if (categoria.getId() != 0) {
+
+			alterarCategoria(categoria);
+
+		} else {
+
+			inserirCategoria(categoria);
+		}
+	}
+
+	private boolean existeCategoria(Categoria categoria, ModelAndView mav) {
+
+		boolean existeCategoria = false;
+
+		List<Categoria> categoriasExistentes = categoriaDao.findAll();
+
+		if (categoriasExistentes != null && !categoriasExistentes.isEmpty()) {
+
+			for (Categoria categoriaExistente : categoriasExistentes) {
+
+				if (categoriaExistente.getDescricao().equals(
+						categoria.getDescricao())) {
+
+					if (categoriaExistente.getId() != categoria.getId()) {
+
+						feedbacks.add("Categoria já cadastrada.");
+
+						mav.setViewName("redirect:cadastroDeCategoria");
+
+						existeCategoria = true;
+
+						break;
+					}
+				}
+			}
+		}
+
+		return existeCategoria;
 	}
 
 	private void inserirCategoria(Categoria categoria) {
