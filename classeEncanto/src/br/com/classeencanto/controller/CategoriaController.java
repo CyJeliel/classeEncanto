@@ -12,7 +12,7 @@ import br.com.classeencanto.dao.CategoriaDAO;
 import br.com.classeencanto.model.impl.Categoria;
 
 @Controller
-public class CategoriaController extends AbstractController{
+public class CategoriaController extends FinalizaController{
 
 	@Autowired
 	private CategoriaDAO categoriaDao;

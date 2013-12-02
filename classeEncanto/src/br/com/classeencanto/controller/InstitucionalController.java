@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class InstitucionalController extends AbstractController{
+public class InstitucionalController extends FinalizaController{
 
 	@Autowired
 	private AdminController adminController;

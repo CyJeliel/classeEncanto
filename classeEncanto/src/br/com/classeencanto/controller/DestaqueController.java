@@ -15,7 +15,7 @@ import br.com.classeencanto.model.impl.Produto;
 import br.com.classeencanto.model.impl.Usuario;
 
 @Controller
-public class DestaqueController extends AbstractController {
+public class DestaqueController extends FinalizaController {
 
 	@Autowired
 	private AdminController adminController;
@@ -26,7 +26,7 @@ public class DestaqueController extends AbstractController {
 	@Autowired
 	private ProdutoDAO produtoDao;
 
-	@RequestMapping({ "/", "/home" })
+	@RequestMapping({ "", "/", "/home" })
 	public ModelAndView produtosEmDestaque() {
 
 		ModelAndView mav = new ModelAndView();

@@ -26,7 +26,7 @@ import br.com.classeencanto.model.impl.Usuario;
 import br.com.classeencanto.model.impl.UsuarioProduto;
 
 @Controller
-public class ListaDeDesejosController extends AbstractController{
+public class ListaDeDesejosController extends FinalizaController{
 
 	@Autowired
 	private AdminController adminController;
@@ -54,6 +54,13 @@ public class ListaDeDesejosController extends AbstractController{
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
+			Usuario usuario = loginController.usuario;
+			
+			if (usuario == null){
+				
+				usuario = adminController.usuario;
+			}
+			
 			mav.setViewName("listaDeDesejos");
 
 			Set<UsuarioProduto> listaDeDesejos = listaDeDesejosDao

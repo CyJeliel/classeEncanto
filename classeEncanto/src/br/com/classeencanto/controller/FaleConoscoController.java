@@ -20,7 +20,7 @@ import br.com.classeencanto.builder.impl.SessionBuilder;
 import br.com.classeencanto.model.impl.FaleConosco;
 
 @Controller
-public class FaleConoscoController extends AbstractController{
+public class FaleConoscoController extends FinalizaController{
 
 	@Autowired
 	private AdminController adminController;
