@@ -34,22 +34,26 @@
 					<tr>
 						<td>Tipo:</td>
 						<td>
-							<select name="tipo">
-								<c:choose>
-									<c:when test="${categoria != null && categoria.tipo.equals('Evento')}">
+							<c:choose>
+								<c:when test="${categoria != null && categoria.tipo.equals('Evento')}">
+									<select name="tipo" disabled="disabled">
 										<option value="Evento" selected="selected">Evento</option>
 										<option value="Decoracao">Decoração</option>
-									</c:when>
-									<c:when test="${categoria != null && categoria.tipo.equals('Decoracao')}">
+									</select>
+								</c:when>
+								<c:when test="${categoria != null && categoria.tipo.equals('Decoracao')}">
+									<select name="tipo" disabled="disabled">
 										<option value="Evento">Evento</option>
 										<option value="Decoracao" selected="selected">Decoração</option>
-									</c:when>
-									<c:otherwise>
+									</select>
+								</c:when>
+								<c:otherwise>
+									<select name="tipo">
 										<option value="Evento">Evento</option>
 										<option value="Decoracao">Decoração</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
+									</select>
+								</c:otherwise>
+							</c:choose>
 					</tr>
 					<tr>
 						<td>
