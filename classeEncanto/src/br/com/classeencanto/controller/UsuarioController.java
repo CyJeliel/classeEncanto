@@ -133,6 +133,8 @@ public class UsuarioController extends AbstractLoginController {
 
 		if (adminController.isLogado()) {
 
+			super.usuario = adminController.usuario;
+			
 			mav.setViewName("listaDeUsuarios");
 
 			List<Usuario> listaDeUsuarios = usuarioDAO.findAll();
