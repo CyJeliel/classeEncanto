@@ -24,7 +24,7 @@ public class CategoriaListTransformer {
 
 			boolean isSelected = false;
 
-			if (produto.getCategorias().contains(categoria)){
+			if (produto != null && produto.getCategorias() != null && produto.getCategorias().contains(categoria)){
 
 				isSelected = true;
 			}

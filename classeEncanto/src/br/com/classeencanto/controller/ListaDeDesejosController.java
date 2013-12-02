@@ -54,6 +54,13 @@ public class ListaDeDesejosController extends FinalizaController{
 
 		if (loginController.isLogado() || adminController.isLogado()) {
 
+			Usuario usuario = loginController.usuario;
+			
+			if (usuario == null){
+				
+				usuario = adminController.usuario;
+			}
+			
 			mav.setViewName("listaDeDesejos");
 
 			Set<UsuarioProduto> listaDeDesejos = listaDeDesejosDao
