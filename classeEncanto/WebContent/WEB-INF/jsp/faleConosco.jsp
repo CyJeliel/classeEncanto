@@ -29,7 +29,7 @@
 				</c:forEach>
 			</c:if>
 			
-			<form action="enviaEmailFaleConosco" name="faleConosco" class="faleConosco">
+			<form action="enviaEmailFaleConosco" name="faleConosco" class="faleConosco" method="post">
 					<h1>Fale Conosco</h1>
 					<table>
 						<tr>

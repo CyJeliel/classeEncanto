@@ -36,7 +36,7 @@
 				
 				<c:choose>
 					<c:when test="${listaDeDesejos != null && !listaDeDesejos.isEmpty()}">
-						<form action="enviaEmailOrcamento">
+						<form action="enviaEmailOrcamento" method="post">
 							<input id="solicitarOrcamento" type="submit" value="Solicitar Orçamento"/>
 							<table>
 								<tr>
