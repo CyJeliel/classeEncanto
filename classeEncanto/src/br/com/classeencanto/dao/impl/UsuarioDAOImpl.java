@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.classeencanto.dao.UsuarioDAO;
 import br.com.classeencanto.model.impl.Usuario;
+import br.com.classeencanto.model.impl.UsuarioProduto;
 
 @Repository
 public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
@@ -60,6 +61,11 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario> implements UsuarioDAO {
 
 				usuario = resultList.get(0);
 
+				for (UsuarioProduto usuarioProduto: usuario.getListaDeDesejos()){
+					
+					usuarioProduto.setProduto(usuarioProduto.getProduto());
+				}
+				
 				usuario.setListaDeDesejos(usuario.getListaDeDesejos());
 
 			} else {

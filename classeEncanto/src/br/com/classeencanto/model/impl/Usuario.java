@@ -2,6 +2,7 @@ package br.com.classeencanto.model.impl;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 
 	private boolean admin;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
 	private Set<UsuarioProduto> listaDeDesejos;
 
 	public long getId() {
