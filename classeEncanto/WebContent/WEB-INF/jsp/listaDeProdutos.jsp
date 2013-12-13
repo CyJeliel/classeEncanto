@@ -23,17 +23,24 @@
 		<h1>Lista de produtos</h1>
 		
 		<div id="conteudo">
-			<div id="escolherProdutos">
-				<div id="miniaturasBox">
-					<c:forEach var="produto" items="${listaDeProdutos}" >
-						<div class="miniatura">
-							<a href="detalhesDeProduto?idProduto=${produto.id}">
-								<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
-							</a>
+			<c:choose>
+				<c:when test="${listaDeProdutos != null && !listaDeProdutos.isEmpty()}">
+					<div id="escolherProdutos">
+						<div id="miniaturasBox">
+							<c:forEach var="produto" items="${listaDeProdutos}" >
+								<div class="miniatura">
+									<a href="detalhesDeProduto?idProduto=${produto.id}">
+										<img class="produto" src="<%=request.getContextPath()%>/getImagemProduto?idProduto=${produto.id}">
+									</a>
+								</div>
+							</c:forEach>
 						</div>
-					</c:forEach>
-				</div>
-			</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<p>Não há produtos nessa categoria.</p>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<%@ include file="/WEB-INF/jsp/footer.jsp" %>
 	</body>

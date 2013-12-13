@@ -10,6 +10,6 @@ function atualizarQuantidade(idProduto) {
 		
 	} else {
 		
-		alert("A quantidade deveser um número positivo.");
+		alert("A quantidade deve ser um numero positivo.");
 	}
 }

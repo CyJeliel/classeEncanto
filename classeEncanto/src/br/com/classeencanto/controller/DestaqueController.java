@@ -27,7 +27,7 @@ public class DestaqueController extends FinalizaController {
 	private ProdutoDAO produtoDao;
 
 	@RequestMapping({ "", "/", "/home" })
-	public ModelAndView produtosEmDestaque() {
+	public ModelAndView home() {
 
 		ModelAndView mav = new ModelAndView();
 
