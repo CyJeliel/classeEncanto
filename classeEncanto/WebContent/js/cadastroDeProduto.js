@@ -44,7 +44,7 @@ function validaCadastro(form) {
 
 function validarNome (form){
 
-	var nome = form.nome;
+	var nome = form.nome.value;
 
 	if (nome == null || nome == ""){
 
@@ -56,10 +56,24 @@ function validarNome (form){
 	return true;
 }
 
+function validarImagem (){
+
+	var imagem = $("#imagem").val();
+	
+	if (imagem == null || imagem == ""){
+
+		window.alert("A imagem não pode estar em branco.");
+
+		return false;
+	}
+
+	return true;
+}
+
 function validarResumo(form) {
 
-	var resumo = form.resumo;
-
+	var resumo = form.resumo.value;
+	
 	if (resumo == null || resumo == ""){
 
 		window.alert("O resumo não pode estar em branco.");
@@ -72,7 +86,7 @@ function validarResumo(form) {
 
 function validarDescricao(form) {
 
-	var descricao = form.descricao;
+	var descricao = form.descricao.value;
 
 	if (descricao == null || descricao == ""){
 
