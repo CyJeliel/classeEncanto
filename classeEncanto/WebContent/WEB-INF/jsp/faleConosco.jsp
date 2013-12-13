@@ -5,10 +5,9 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/geral.css">
-<!-- 		<link rel="stylesheet" type="text/css" href="css/faleConosco.css">
--->
 		<meta charset="UTF-8">
 		<title>Fale conosco</title>
+		<script src="js/email.js"></script>
 		<script src="js/faleConosco.js"></script>
 	</head>
 	<body>
@@ -57,7 +56,7 @@
 						<tr>
 							<td>Mensagem
 							</td>
-							<td><div id="message_alert" style="display:inline; color: red;"></div>
+							<td><div id="message_alert" style="display:none; color: red;"></div>
 							</td>
 						</tr>
 						<tr>

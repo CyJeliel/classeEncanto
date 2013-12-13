@@ -4,7 +4,9 @@ function check(form) {
 	if (form.login.value.length != 0 && senha.length != 0
 			&& confirmacaoSenha.length != 0 && form.email.value.length != 0) {
 		if (senha == confirmacaoSenha) {
-			form.submit();
+			if (validateEmail(form.email.value) ) {
+				form.submit();
+			}
 		} else {
 			alert("Erro: Senha e confirmação não são iguais.");
 		}

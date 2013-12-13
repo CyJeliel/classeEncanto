@@ -9,6 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Classe e Encanto</title>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/jQuery/jquery-1.10.2.min.js"></script>
+		<script src="js/email.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/cadastroDeUsuario.js"></script>
 	</head>
 	<body>
@@ -65,7 +66,8 @@
 							<td>* Email:</td>
 							<td>
 								<input type="text" name="email" value="${usuario != null ? usuario.email: ''}"/>
-							</td>	
+							</td>
+							<td><div id="email_alert" style="display:inline; color: red;"></div>
 						</tr>
 						<c:if test="${isAdmin}">
 							<tr>
