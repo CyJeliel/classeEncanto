@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
-
 import br.com.classeencanto.dao.UsuarioDAO;
 
 @Entity
@@ -34,7 +32,7 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 
 	private boolean admin;
 
-	@OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private Set<UsuarioProduto> listaDeDesejos;
 
 	public long getId() {
@@ -108,27 +106,6 @@ public class Usuario implements br.com.classeencanto.model.Entity {
 		}
 
 		return null;
-	}
-
-	public void adicionar(UsuarioDAO usuarioDAO) {
-
-		usuarioDAO.save(this);
-	}
-
-	public boolean validarInsercao(String confirmacaoSenha) {
-
-		if (valido()) {
-
-			EmailValidator emailValidator = new EmailValidator();
-
-			if (senha.equals(confirmacaoSenha)
-					&& emailValidator.isValid(email, null)) {
-
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	@Override
