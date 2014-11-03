@@ -34,11 +34,11 @@ CREATE TABLE produto_categoria
 );
 
 CREATE TABLE usuario (
-	id			SERIAL			PRIMARY KEY				,
+	id			SERIAL							NOT NULL,
 	login		VARCHAR(20)						NOT NULL,
 	senha		VARCHAR(20)						NOT NULL,
 	email		VARCHAR(100)					NOT NULL,
-    "isAdmin"   boolean                         NOT NULL DEFAULT false,
+    admin	    boolean                         NOT NULL DEFAULT false,
     CONSTRAINT usuario_pkey      PRIMARY KEY (id),
     CONSTRAINT usuario_email_key UNIQUE      (email),
     CONSTRAINT usuario_login_key UNIQUE      (login)
@@ -48,6 +48,7 @@ CREATE TABLE usuario (
 CREATE TABLE lista_de_desejos (
   usuario_id bigint NOT NULL,
   produto_id bigint NOT NULL,
+  quantidade int NOT NULL,
   CONSTRAINT lista_de_desejos_pkey PRIMARY KEY (usuario_id, produto_id),
   CONSTRAINT produto_fk FOREIGN KEY (produto_id)
       REFERENCES produto (id) MATCH SIMPLE
@@ -57,3 +58,12 @@ CREATE TABLE lista_de_desejos (
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 
+CREATE TABLE destaque (
+	id			SERIAL							NOT NULL,
+	posicao     int                             NOT NULL,
+	produto_id  bigint							NOT NULL,
+	CONSTRAINT destaque_pkey PRIMARY KEY (id),
+  	CONSTRAINT produto_fk FOREIGN KEY (produto_id)
+      REFERENCES produto (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)

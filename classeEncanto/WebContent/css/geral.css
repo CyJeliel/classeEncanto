@@ -1,5 +1,4 @@
 body {
-	background-color: #FFFFE0;
 	font-family: "calibri", Garamond, 'Comic Sans';
 	width: 90%;
 	height: 100%;
@@ -38,15 +37,13 @@ form {
 #listaDeDesejos {
 	height: 100px;
 	width: 100px;
-	margin-left: 760px;
+	margin-left: 60px;
 }
 
 #redeSocial {
-	margin-right: 10px;
-	margin-top: 60px;
 	height: 40px;
 	width: 40px;
-	float: right;
+	float: left;
 }
 
 .menuLateral {
@@ -56,61 +53,63 @@ form {
 }
 
 .menuSubtituloLink {
-	padding: 2px 5px 2px 5px;
+	padding: 16px 5px 17px 5px;
 	display: block;
-	background-color: #DDDDDD;
+	background-image: url("../img/botao.png");
 	text-decoration: none;
 	text-align: center;
-	border-color: #3399FF;
-	border-style: solid;
 	color: #FF55AA;
 	font-size: 1.1em;
 }
 
 .menuLink {
-	padding: 2px 5px 2px 5px;
+	padding: 13px 15px 13px 5px;
 	display: block;
-	background-color: #F0F0F0;
 	text-decoration: none;
 	text-align: center;
-	border-color: #3399FF;
-	border-style: solid;
+	background-image: url("../img/botaoMenor.png");
+	background-repeat: no-repeat;
 	font-size: 0.9em;
 	color: #FF3399;
 }
 
 .itensMenu {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 a.menuLink:hover, a.menuSubtituloLink:hover {
-	color: #F0F0F0;
-	background-color: #FF3399;
+	color: #c7a51f;
 }
 
-footer {
-	background-color: #FFFFCC;
-	margin: 0px 100px 10px 100px;
-	border: 0.5px;
-	border-color: #FFFF99;
-	text-align: center;
-	position: relative;
-	height: 35px;
-	clear:both;
-	min-width: 1050px;
-}
-
-.footerLink {
-	padding: 10px 0 10px 50px;
-	font-size: 1em;
-	color: #0099FF;
+.headerLink {
+	padding: 30px 50px 30px 50px;
 	display: block;
 	float: left;
-	text-decoration: none;
+	background-repeat: no-repeat;
 }
 
-.itensFooter {
-	margin-left: 200px;
+.headerLinkAdministracao {
+	background-image: url("../img/botaoAdministracao.png");
+}
+
+.headerLinkFaleConosco {
+	background-image: url("../img/botaoFaleConosco.png");
+}
+
+.headerLinkInstitucional {
+	background-image: url("../img/botaoInstitucional.png");
+}
+
+.headerLinkLocalizacao {
+	background-image: url("../img/botaoLocalizacao.png");
+}
+
+.headerLinkOrcamento {
+	background-image: url("../img/botaoOrcamento.png");
+}
+
+.itensHeader {
+	margin-left: 285px;
 }
 
 .logout {
@@ -143,5 +142,6 @@ footer {
 	height: 300px;
 	margin-left: 350px;
 	min-height: 500px;
+	min-width: 1000px;
 	font-family: "calibri", Garamond, 'Comic Sans';
 }
